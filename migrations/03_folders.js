@@ -1,0 +1,20 @@
+'use strict';
+
+exports.up = function (knex, Promise) {
+  // Creates the user's database, with columns:
+  //  id, firstName, email, hashedPassword, timestamps.
+  return knex.schema.createTable('folders', table => {
+    table.increments();
+    table.integer('userId').notNullable()
+      .references('id').inTable('users');
+    table.integer('parentFolder')
+      .references('id').inTable('folders');
+    table.text('name').notNullable().defaultTo('');
+    table.boolean('isSecure').defaultTo(false);
+  });
+};
+
+exports.down = function (knex, Promise) {
+  // Drops the user's database.
+  return knex.schema.dropTable('folders');
+};
