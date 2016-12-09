@@ -30,3 +30,27 @@ module.exports.post = {
           .required()
   })
 };
+
+module.exports.patch = {
+  body: Joi.object().keys({
+    firstName: Joi.string()
+          .trim()
+          .alphanum()
+          .min(1)
+          .max(20),
+    email: Joi.string()
+          .trim()
+          .email(),
+    password: Joi.string()
+          .trim()
+          .min(8)
+          .max(256)
+  }).or('firstName', 'email', 'password'),
+
+  params: Joi.object().keys({
+    id: Joi.number()
+          .integer()
+          .positive()
+          .required()
+  })
+};
