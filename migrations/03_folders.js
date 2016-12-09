@@ -5,12 +5,12 @@ exports.up = function (knex, Promise) {
   //  id, firstName, email, hashedPassword, timestamps.
   return knex.schema.createTable('folders', table => {
     table.increments();
-    table.integer('userId').notNullable()
+    table.integer('user_id').notNullable()
       .references('id').inTable('users');
-    table.integer('parentFolder')
+    table.integer('parent_folder')
       .references('id').inTable('folders');
     table.text('name').notNullable().defaultTo('');
-    table.boolean('isSecure').defaultTo(false);
+    table.boolean('is_secure').defaultTo(false);
   });
 };
 

@@ -17,33 +17,33 @@ exports.seed = function (knex, Promise) {
         // Inserts seed entries
         knex('users').insert({
           id: 1,
-          firstName: 'Aidan',
+          first_name: 'Aidan',
           email: 'baack.admin@gmail.com',
-          hashedPassword: passwords.aidan
+          hashed_password: passwords.aidan
         }),
         knex('users').insert({
           id: 2,
-          firstName: 'Matt',
+          first_name: 'Matt',
           email: 'pestridge.admin@gmail.com',
-          hashedPassword: passwords.mattpest
+          hashed_password: passwords.mattpest
         }),
         knex('users').insert({
           id: 3,
-          firstName: 'Matt',
+          first_name: 'Matt',
           email: 'lindly.admin@gmail.com',
-          hashedPassword: passwords.mattlin
+          hashed_password: passwords.mattlin
         }),
         knex('users').insert({
           id: 4,
-          firstName: 'Malila',
+          first_name: 'Malila',
           email: 'clearwater.admin@gmail.com',
-          hashedPassword: passwords.malila
+          hashed_password: passwords.malila
         }),
         knex('users').insert({
           id: 5,
-          firstName: 'Devin',
+          first_name: 'Devin',
           email: 'hurd.admin@gmail.com',
-          hashedPassword: passwords.devin
+          hashed_password: passwords.devin
         })
       ]);
     })
