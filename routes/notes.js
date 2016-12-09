@@ -8,11 +8,15 @@ router.use(bodyParser.json());
 
 
 //test route
-router.get('/users', (req, res, next) => {
-  knex('users')
-  .orderBy('first_name')
-  .then((users) => {
-    res.send(users);
+router.get('/notes/:id', function(req, res, next) {
+  knex('notes')
+  .where('id', req.params.id)
+  .first()
+  .then((note) => {
+    if(!note){
+      return next();
+    }
+    res.send(note);
   }).catch((err) => {
     next(err);
   })

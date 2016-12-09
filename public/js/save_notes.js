@@ -7,6 +7,11 @@ $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
 
+  var noteId = window.QUERY_PARAMETERS.id;
+  if(noteId) {
+    console.log(noteId);
+  };
+
   $button.on('click', function() {
     noteContent = simplemde.value();
     console.log(noteContent);
