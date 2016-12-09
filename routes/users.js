@@ -10,6 +10,9 @@ var express = require('express');
 var router = express.Router();
 var ev = require('express-validation');
 var validations = require('../validations/users');
+var knex = require('../knex');
+var bcrypt = require('bcrypt-as-promised');
+const { camelizeKeys, decamelizeKeys } = require('humps');
 
 // GET: All users.
 router.get('/', (req, res, next) => {
@@ -23,7 +26,7 @@ router.get('/', (req, res, next) => {
 });
 
 // GET w/ ID: Gets a single user's information.
-router.get('/:id', ev(validations), (req, res, next) => {
+router.get('/:id', ev(validations.get), (req, res, next) => {
   const id = req.params.id;
 
   knex('users')
@@ -33,7 +36,7 @@ router.get('/:id', ev(validations), (req, res, next) => {
         return res.status(401).send('Unauthorized Access.');
       }
       // After determining if the ID exists and is valid; find it.
-      knex('users')
+      return knex('users')
         .where('users.id', id)
         .first()
         .then(result => {
@@ -49,16 +52,18 @@ router.get('/:id', ev(validations), (req, res, next) => {
 });
 
 // POST: Creates a new user.
-router.post('/', ev(validations), (req, res, next) => {
+router.post('/', ev(validations.post), (req, res, next) => {
   const { firstName, email, password } = req.body;
 
   let newUser = { firstName, email };
   bcrypt.hash(password, 10).then(result => {
-    newUser.password = result;
-  })
-  .then(() => {
+    newUser.hashed_password = result;
     return knex('users')
-      .insert(decamelizeKeys(newUser));
+      .insert(decamelizeKeys(newUser))
+      .then(result => {
+        delete newUser.hashed_password;
+        res.status(200).send(newUser);
+      });
   })
   .catch(err => {
     next(err);
@@ -66,16 +71,15 @@ router.post('/', ev(validations), (req, res, next) => {
 });
 
 // PATCH w/ ID: Updates a user with the ID.
-router.patch('/:id', ev(validations), (req, res, next) => {
+router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const id = req.params.id;
   const { firstName, email, password } = req.body;
 
   let newUser = { firstName, email };
   bcrypt.hash(password, 10).then(result => {
-    newUser.password = result;
-  }).then(() => {
+    newUser.hashed_password = result;
     // Query and make sure the ID is fine.
-    knex('users')
+    return knex('users')
       .max('id')
       .then(results => {
         if (!results || !id || id <= 0 || id > results) {
@@ -83,21 +87,21 @@ router.patch('/:id', ev(validations), (req, res, next) => {
         }
         // After determining if the ID exists and is valid; find it.
         return knex('users')
-          .update(decamelizeKeys({newUser}))
-          .where('users.id', id)
+          .update(decamelizeKeys(newUser))
+          .where('id', id)
           .then(updated => {
-            delete newUser.password;
+            delete newUser.hashed_password;
             res.status(200).send(camelizeKeys(newUser));
           });
       })
       .catch(err => {
         next(err);
       });
-  });
+  })
 });
 
 // DELETE w/ ID: Deletes an individual user by ID.
-router.delete('/:id', ev(validations), (req, res, next) => {
+router.delete('/:id', ev(validations.delete), (req, res, next) => {
   const id = req.params.id;
 
   knex('users')
@@ -108,7 +112,7 @@ router.delete('/:id', ev(validations), (req, res, next) => {
       }
       // After determining if the ID exists delete it.
       return knex('users')
-        .del([ first_name, email ])
+        .del([ 'first_name', 'email' ])
         .where('users.id', id)
         .then(deleted => {
           res.status(200).send(deleted[0]);
