@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 
-//test route
 router.get('/notes/:id', function(req, res, next) {
   knex('notes')
   .where('id', req.params.id)

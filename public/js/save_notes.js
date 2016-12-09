@@ -6,8 +6,9 @@ var name = 'note name';
 $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
-
-  var noteId = window.QUERY_PARAMETERS.id;
+  var urlParams = new URLSearchParams(window.location.search);
+  console.log(urlParams.get('id'));
+  var noteId = 10;
   if(noteId) {
     getNote(noteId);
   };
@@ -33,12 +34,6 @@ function postVal(content) {
 };
 
 function getNote(id) {
-  const options = {
-    contentType: 'application/JSON',
-    dataType: 'json',
-    type: 'GET',
-    url: '/notes/' + id
-  }
-  $.ajax(options)
+  $.getJSON('/notes/10')
   .done(console.log('done'));
-}
+};
