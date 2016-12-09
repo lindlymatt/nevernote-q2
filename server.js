@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;
-const knex = require('knex');
+const knex = require('./knex');
 
 app.disable('x-powered-by');
 
@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 app.get('/users', (req, res) => {
   knex('users')
-  .orderBy('name')
+  .orderBy('first_name')
   .then((users) => {
     res.send(users);
   });
