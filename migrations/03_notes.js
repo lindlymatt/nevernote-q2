@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
     table.increments();
     table.integer('parent_folder')
       .references('id').inTable('folders')
-      .defaultTo(null);
+      .defaultTo(null).onDelete('CASCADE');
     table.text('name').defaultTo('New Note');
     table.text('content').defaultTo('');
     table.timestamps(true, true);

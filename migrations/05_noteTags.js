@@ -6,9 +6,9 @@ exports.up = function (knex, Promise) {
   return knex.schema.createTable('note_tags', table => {
     table.increments();
     table.integer('user_id').notNullable()
-      .references('id').inTable('users');
+      .references('id').inTable('users').onDelete('CASCADE');
     table.integer('note_id').notNullable()
-      .references('id').inTable('notes');
+      .references('id').inTable('notes').onDelete('CASCADE');
     table.text('tag').notNullable();
   });
 };

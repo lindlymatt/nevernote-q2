@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
     table.integer('user_id').notNullable()
       .references('id').inTable('users');
     table.integer('parent_folder').defaultTo(null);
-    table.foreign('parent_folder').references('id').inTable('folders');
+    table.foreign('parent_folder').references('id').inTable('folders').onDelete('CASCADE');
     table.text('name').notNullable().defaultTo('New Folder');
     table.boolean('is_secure').defaultTo(false);
   });
