@@ -50,11 +50,7 @@ router.get('/:id', ev(validations), (req, res, next) => {
 
 // POST: Creates a new user.
 router.post('/', ev(validations), (req, res, next) => {
-  const {
-    firstName,
-    email,
-    password
-  } = req.body;
+  const { firstName, email, password } = req.body;
 
   let newUser = { firstName, email };
   bcrypt.hash(password, 10).then(result => {
@@ -71,10 +67,8 @@ router.post('/', ev(validations), (req, res, next) => {
 
 // PATCH w/ ID: Updates a user with the ID.
 router.patch('/:id', ev(validations), (req, res, next) => {
-  const {
-  firstName,
-  email,
-  password } = req.body;
+  const id = req.params.id;
+  const { firstName, email, password } = req.body;
 
   let newUser = { firstName, email };
   bcrypt.hash(password, 10).then(result => {
@@ -100,6 +94,8 @@ router.patch('/:id', ev(validations), (req, res, next) => {
 
 // DELETE w/ ID: Deletes an individual user by ID.
 router.delete('/:id', ev(validations), (req, res, next) => {
+  const id = req.params.id;
+
   knex('users')
     .max('id')
     .then(results => {
