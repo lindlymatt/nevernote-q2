@@ -18,6 +18,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('notes').insert({
           id: 3,
+          parent_folder: 3,
           content: "This is Matt Pestridge's note \n ## This is the second line.",
           name: 'Pestridge Test Note'
         }),
