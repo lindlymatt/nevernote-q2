@@ -49,4 +49,16 @@ router.patch('/notes/:id', (req, res, next) => {
   })
 });
 
+router.delete('/notes/:id', (req, res, next) => {
+  knex('notes')
+  .where('id', req.params.id)
+  .del()
+  .then((note) => {
+    res.sendStatus(200);
+  })
+  .catch((err) => {
+    next(err);
+  })
+});
+
 module.exports = router;

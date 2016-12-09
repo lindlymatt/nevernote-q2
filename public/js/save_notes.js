@@ -8,14 +8,14 @@ $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
   noteId = 2;
-  // if(noteId) {
-  //   getNote(noteId);
-  // };
+  if(noteId) {
+    getNote(noteId);
+  };
 
   $button.on('click', function() {
     noteContent = simplemde.value();
     console.log(noteContent);
-    updateNote(name, noteContent);
+    patchNote(name, noteContent);
   });
 });
 
@@ -32,7 +32,7 @@ function postNote(name, content) {
   .done(console.log('done'));
 };
 
-function updateNote(name, content) {
+function patchNote(name, content) {
   const options = {
     contentType: 'application/JSON',
     data: JSON.stringify({name, content}),
