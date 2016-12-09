@@ -8,18 +8,18 @@ $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
   noteId = 2;
-  if(noteId) {
-    getNote(noteId);
-  };
+  // if(noteId) {
+  //   getNote(noteId);
+  // };
 
   $button.on('click', function() {
     noteContent = simplemde.value();
     console.log(noteContent);
-    postVal(noteContent);
+    updateNote(name, noteContent);
   });
 });
 
-function postVal(content) {
+function postNote(name, content) {
   const options = {
     contentType: 'application/JSON',
     data: JSON.stringify({name, content}),
@@ -31,6 +31,18 @@ function postVal(content) {
   $.ajax(options)
   .done(console.log('done'));
 };
+
+function updateNote(name, content) {
+  const options = {
+    contentType: 'application/JSON',
+    data: JSON.stringify({name, content}),
+    dataType: 'json',
+    type: 'PATCH',
+    url: '/notes/' + noteId
+  }
+  $.ajax(options)
+  .done(console.log('yayyy'));
+}
 
 function getNote(id) {
   $.getJSON('/notes/' + noteId)

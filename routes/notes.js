@@ -31,7 +31,22 @@ router.post('/notes', (req, res, next) => {
   .then((note) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(note[0]);
+  }).catch((err) => {
+    next(err);
   })
-})
+});
+
+router.patch('/notes/:id', (req, res, next) => {
+  var {name, content} = req.body;
+  knex('notes')
+  .where('id', req.params.id)
+  .update({
+    content,
+    name
+  }, '*')
+  .then((note) => {
+    res.send(note);
+  })
+});
 
 module.exports = router;
