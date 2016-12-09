@@ -1,5 +1,6 @@
 .header {
   background-color: #616161;
+  z-index: 99;
 }
 
 .nav-link {
@@ -22,4 +23,18 @@
 
 .aside {
   background-color: #BDBDBD;
+}
+
+#nav-mobile {
+  z-index: 100;
+}
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
 }
