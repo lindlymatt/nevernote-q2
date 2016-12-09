@@ -1,12 +1,13 @@
 'use strict';
 
 var bcrypt = require('bcrypt-as-promised');
+
 const passwords = {
-  aidan: bcrypt.hash('baackadmin', 12),
-  mattlin: bcrypt.hash('lindlyadmin', 12),
-  mattpest: bcrypt.hash('pestridgeadmin', 12),
-  malila: bcrypt.hash('clearwateradmin', 12),
-  devin: bcrypt.hash('hurdadmin', 12)
+  aidan: '$2a$12$0jFnXS8CE4GZ094HCwWEFuQXM0qkAohTcOb8oaONiWCnFFpGUcfcS', // baackadmin
+  mattlin: '$2a$12$2tbWbnz0hDtMu8Eviz2SaO6vMRacnrvmv1paW9bWU.nnUPbZ.yfxa', // lindlyadmin
+  mattpest: '$2a$12$/8d0tYxUh2YFJneBOS2BL.fsKB7fszRAjfiEHJzkN0GdEZFmtPH62', //pestridgeadmin
+  malila: '$2a$12$K/RqkH/ejFrv9xmjctil8eK17J/FckPDVtuocXecPIfvZYPMjgCN.', //clearwateradmin
+  devin: '$2a$12$Q7uZA3TvtvytBZgd4ciwZOpLuIWacpc2b9u6EgFA4igkHXeTMVY1C' //hurdadmin
 };
 
 exports.seed = function (knex, Promise) {

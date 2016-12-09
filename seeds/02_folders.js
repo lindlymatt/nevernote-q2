@@ -1,3 +1,5 @@
+'use strict';
+
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('folders').del()
@@ -30,5 +32,20 @@ exports.seed = function (knex, Promise) {
         })
       ]);
     })
-    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"));
+    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"))
+    .then(() => {
+      return knex('folders')
+        .insert({
+           user_id: 4,
+           parent_folder: 4,
+           name: 'New Foldaa',
+           is_secure: false
+         });
+    })
+    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"))
+    .then(() => {
+      return knex('folders')
+        .update({parent_folder: 4})
+        .where('folders.id', 3);
+    });
 };
