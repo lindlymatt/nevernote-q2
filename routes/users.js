@@ -10,6 +10,8 @@ var express = require('express');
 var router = express.Router();
 var ev = require('express-validation');
 var validations = require('../validations/users');
+var knex = require('../knex');
+const { camelizeKeys, decamelizeKeys } = require('humps');
 
 // GET: All users.
 router.get('/', (req, res, next) => {
