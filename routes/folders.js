@@ -9,12 +9,12 @@
 var express = require('express');
 var router = express.Router();
 var ev = require('express-validation');
-var validations = require('../validations/users');
+var validations = require('../validations/folders');
 var knex = require('../knex');
 var bcrypt = require('bcrypt-as-promised');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
-// GET: All users.
+// GET: All of the folders.
 router.get('/', (req, res, next) => {
   knex('folders')
     .then(results => {
@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-// GET w/ ID: Gets a single user's information.
+// GET w/ ID: Get a folder by it's ID.
 router.get('/:id', ev(validations.get), (req, res, next) => {
   const id = req.params.id;
 
@@ -51,7 +51,12 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
     });
 });
 
-// POST: Creates a new user.
+// GETs: All folders by a certain user.
+router.get('/users/:id', ev(validations.get), (req, res, next) => {
+  // Shit.
+});
+
+// POST: Creates a new folder. 
 router.post('/', ev(validations.post), (req, res, next) => {
   const { firstName, email, password } = req.body;
 
