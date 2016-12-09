@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   var noteId = window.QUERY_PARAMETERS.id;
   if(noteId) {
-    console.log(noteId);
+    getNote(noteId);
   };
 
   $button.on('click', function() {
@@ -28,6 +28,17 @@ function postVal(content) {
     url: '/notes'
   };
   console.log(options);
+  $.ajax(options)
+  .done(console.log('done'));
+};
+
+function getNote(id) {
+  const options = {
+    contentType: 'application/JSON',
+    dataType: 'json',
+    type: 'GET',
+    url: '/notes/' + id
+  }
   $.ajax(options)
   .done(console.log('done'));
 }
