@@ -1,0 +1,21 @@
+.header {
+  background-color: #616161;
+}
+
+.nav-link {
+  margin-left: 1rem;
+}
+
+.brand-logo {
+  margin-top: 1.5rem;
+}
+
+#nav-mobile {
+
+}
+
+.profile-img {
+  height: 3rem;
+  width: auto;
+  border-radius: 3rem;
+}
