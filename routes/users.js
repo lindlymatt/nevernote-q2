@@ -83,8 +83,12 @@ router.patch('/:id', ev(validations), (req, res, next) => {
         }
         // After determining if the ID exists and is valid; find it.
         return knex('users')
-          .update({newUser})
-          .where('users.id', id);
+          .update(decamelizeKeys({newUser}))
+          .where('users.id', id)
+          .then(updated => {
+            delete newUser.password;
+            res.status(200).send(camelizeKeys(newUser));
+          });
       })
       .catch(err => {
         next(err);
@@ -104,8 +108,11 @@ router.delete('/:id', ev(validations), (req, res, next) => {
       }
       // After determining if the ID exists delete it.
       return knex('users')
-        .del()
-        .where('users.id', id);
+        .del([ first_name, email ])
+        .where('users.id', id)
+        .then(deleted => {
+          res.status(200).send(deleted[0]);
+        });
     })
     .catch(err => {
       next(err);
