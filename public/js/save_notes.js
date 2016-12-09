@@ -7,7 +7,7 @@ var name = 'note name';
 $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
-  noteId = 10;
+  noteId = 2;
   if(noteId) {
     getNote(noteId);
   };
