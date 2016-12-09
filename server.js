@@ -14,8 +14,13 @@ app.use(express.static(path.join('public')));
 app.use(bodyParser.json());
 
 //require routes
+
+const notes = require('./routes/notes');
+app.use(notes);
+
 const users = require('./routes/users');
 app.use('/users', users);
+
 
 //error functions
 app.use((_req, res) => {
@@ -30,7 +35,7 @@ app.use((err, _req, res, _next) => {
       .set('Content-Type', 'text/plain')
       .send(err.message);
   }
-  
+
   if (err.status) {
     console.log(err)
     return res.status(err.status).send(err);
