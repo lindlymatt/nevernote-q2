@@ -10,8 +10,8 @@ app.disable('x-powered-by');
 app.use(express.static('public'));
 
 //require routes
-// const index = require('./routes/index');
-// app.use(index);
+const index = require('./routes/index');
+app.use(index);
 
 app.get('/users', (req, res) => {
   knex('users')
