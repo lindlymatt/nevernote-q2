@@ -1,14 +1,13 @@
 'use strict';
 
 var noteContent;
+var noteId;
 var name = 'note name';
 
 $(document).ready(function() {
   console.log('ready');
   var $button = $('button');
-  var urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams.get('id'));
-  var noteId = 10;
+  noteId = 10;
   if(noteId) {
     getNote(noteId);
   };
@@ -34,7 +33,7 @@ function postVal(content) {
 };
 
 function getNote(id) {
-  $.getJSON('/notes/10')
+  $.getJSON('/notes/' + noteId)
   .done((note) => {
     // window.location.href = 'test.html/notes/10';
     simplemde.value(note.content);
