@@ -12,8 +12,8 @@ app.disable('x-powered-by');
 app.use(express.static(path.join('public')));
 
 //require routes
-const index = require('./routes/index');
-app.use(index);
+const notes = require('./routes/notes');
+app.use(notes);
 
 //error functions
 app.use((_req, res) => {

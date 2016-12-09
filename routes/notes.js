@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 
-//test routes
+//test route
 router.get('/users', (req, res, next) => {
   knex('users')
   .orderBy('first_name')
