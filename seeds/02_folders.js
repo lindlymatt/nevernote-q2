@@ -27,11 +27,25 @@ exports.seed = function (knex, Promise) {
         knex('folders').insert({
           id: 4,
           user_id: 3,
-          parent_folder: 3,
           name: 'Lindly over Pestridge',
           is_secure: false,
         })
       ]);
     })
-    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"));
+    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"))
+    .then(() => {
+      return knex('folders')
+        .insert({
+           user_id: 4,
+           parent_folder: 4,
+           name: 'New Foldaa',
+           is_secure: false
+         });
+    })
+    .then(() => knex.raw("SELECT setval('folders_id_seq', (SELECT MAX(id) FROM folders))"))
+    .then(() => {
+      return knex('folders')
+        .update({parent_folder: 4})
+        .where('folders.id', 3);
+    });
 };
