@@ -54,3 +54,12 @@ module.exports.patch = {
           .required()
   })
 };
+
+module.exports.delete = {
+  params: Joi.object().keys({
+    id: Joi.number()
+          .integer()
+          .positive()
+          .required()
+  })
+};
