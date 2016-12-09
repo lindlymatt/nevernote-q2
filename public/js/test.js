@@ -10,4 +10,11 @@ $(document).ready(function() {
     noteContent = simplemde.value();
     console.log(simplemde.value());
   });
-})
+});
+
+function postVal(val) {
+  const options = {
+    contentType: 'application/JSON',
+    data: JSON.stringify({name, })
+  }
+}
