@@ -13,14 +13,6 @@ app.use(express.static('public'));
 const index = require('./routes/index');
 app.use(index);
 
-app.get('/users', (req, res) => {
-  knex('users')
-  .orderBy('first_name')
-  .then((users) => {
-    res.send(users);
-  });
-});
-
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
