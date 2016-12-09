@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
 
 
 //test route
@@ -15,5 +17,17 @@ router.get('/users', (req, res, next) => {
     next(err);
   })
 });
+
+router.post('/notes', (req, res, next) => {
+  var {content, name} = req.body;
+  knex('notes')
+  .insert({
+    content,
+    name
+  }, '*')
+  .then((note) => {
+    res.send(note[0]);
+  })
+})
 
 module.exports = router;
