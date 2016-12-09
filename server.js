@@ -6,14 +6,16 @@ const port = process.env.PORT || 8000;
 const knex = require('./knex');
 const morgan = require('morgan');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 app.disable('x-powered-by');
 
 app.use(express.static(path.join('public')));
+app.use(bodyParser.json());
 
 //require routes
-const index = require('./routes/index');
-app.use(index);
+const users = require('./routes/users');
+app.use('/users', users);
 
 //error functions
 app.use((_req, res) => {
