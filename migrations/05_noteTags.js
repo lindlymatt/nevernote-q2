@@ -3,11 +3,11 @@
 exports.up = function (knex, Promise) {
   // Creates the noteTags's database, with columns:
   //  id, userId, noteId, tag.
-  return knex.schema.createTable('noteTags', table => {
+  return knex.schema.createTable('note_tags', table => {
     table.increments();
-    table.integer('userId').notNullable()
+    table.integer('user_id').notNullable()
       .references('id').inTable('users');
-    table.integer('noteId').notNullable()
+    table.integer('note_id').notNullable()
       .references('id').inTable('notes');
     table.text('tag').notNullable();
   });
@@ -15,5 +15,5 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
   // Drops the user's database.
-  return knex.schema.dropTable('noteTags');
+  return knex.schema.dropTable('note_tags');
 };

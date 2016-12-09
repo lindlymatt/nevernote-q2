@@ -2,41 +2,41 @@
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex('userNotes').del()
+  return knex('user_notes').del()
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('userNotes').insert({
+        knex('user_notes').insert({
           id: 1,
-          userId: 1,
-          noteId: 2,
-          readOnly: false
+          user_id: 1,
+          note_id: 2,
+          read_only: false
         }),
-        knex('userNotes').insert({
+        knex('user_notes').insert({
           id: 2,
-          userId: 2,
-          noteId: 3,
-          readOnly: false
+          user_id: 2,
+          note_id: 3,
+          read_only: false
         }),
-        knex('userNotes').insert({
+        knex('user_notes').insert({
           id: 3,
-          userId: 3,
-          noteId: 1,
-          readOnly: false
+          user_id: 3,
+          note_id: 1,
+          read_only: false
         }),
-        knex('userNotes').insert({
+        knex('user_notes').insert({
           id: 4,
-          userId: 4,
-          noteId: 5,
-          readOnly: false
+          user_id: 4,
+          note_id: 5,
+          read_only: false
         }),
-        knex('userNotes').insert({
+        knex('user_notes').insert({
           id: 5,
-          userId: 5,
-          noteId: 4,
-          readOnly: false
+          user_id: 5,
+          note_id: 4,
+          read_only: false
         }),
       ]);
     })
-    .then(() => knex.raw("SELECT setval('userNotes_id_seq', (SELECT MAX(id) FROM userNotes))"));
+    .then(() => knex.raw("SELECT setval('user_notes_id_seq', (SELECT MAX(id) FROM user_notes))"));
 };
