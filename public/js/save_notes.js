@@ -35,5 +35,9 @@ function postVal(content) {
 
 function getNote(id) {
   $.getJSON('/notes/10')
-  .done(console.log('done'));
+  .done((note) => {
+    // window.location.href = 'test.html/notes/10';
+    simplemde.value(note.content);
+    console.log(note);
+  });
 };
