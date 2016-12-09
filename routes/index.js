@@ -26,6 +26,7 @@ router.post('/notes', (req, res, next) => {
     name
   }, '*')
   .then((note) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(note[0]);
   })
 })
