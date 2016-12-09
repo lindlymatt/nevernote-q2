@@ -9,7 +9,7 @@ exports.up = function (knex, Promise) {
       .references('id').inTable('users');
     table.integer('note_id').notNullable()
       .references('id').inTable('notes');
-    table.boolean('read_only').defaultsTo(false);
+    table.boolean('read_only').defaultTo(false);
   });
 };
 

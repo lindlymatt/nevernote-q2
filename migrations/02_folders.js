@@ -8,8 +8,8 @@ exports.up = function (knex, Promise) {
     table.integer('user_id').notNullable()
       .references('id').inTable('users');
     table.integer('parent_folder')
-      .references('id').inTable('folders');
-    table.text('name').notNullable().defaultTo('');
+      .references('id').inTable('folders').defaultTo(null);
+    table.text('name').notNullable().defaultTo('New Folder');
     table.boolean('is_secure').defaultTo(false);
   });
 };

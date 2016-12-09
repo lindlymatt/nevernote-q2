@@ -5,7 +5,9 @@ exports.up = function (knex, Promise) {
   //  id, name, content, timestamps.
   return knex.schema.createTable('notes', table => {
     table.increments();
-    table.text('name').defaultTo('');
+    table.integer('parent_folder')
+      .references('id').inTable('folders').defaultTo(null);
+    table.text('name').defaultTo('New Note');
     table.text('content').defaultTo('');
     table.timestamps(true, true);
   });

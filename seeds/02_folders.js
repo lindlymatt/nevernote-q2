@@ -1,3 +1,5 @@
+'use strict';
+
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
   return knex('folders').del()
@@ -25,6 +27,7 @@ exports.seed = function (knex, Promise) {
         knex('folders').insert({
           id: 4,
           user_id: 3,
+          parent_folder: 3,
           name: 'Lindly over Pestridge',
           is_secure: false,
         })
