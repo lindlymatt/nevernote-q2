@@ -10,12 +10,16 @@
   margin-top: 1.5rem;
 }
 
-#nav-mobile {
-
+.profile-div {
+  margin-left: 1.5rem;
 }
 
 .profile-img {
   height: 3rem;
   width: auto;
   border-radius: 3rem;
+}
+
+.aside {
+  background-color: #BDBDBD;
 }
