@@ -14,8 +14,15 @@ $(document).ready(function() {
     getNote(noteId);
   };
 
+  var interval = 1000 * 5;
+  setInterval(function() {
+    console.log('going');
+    patchNote(name, localStorage.smde_content);
+  }, interval);
+
   $button.on('click', function() {
     noteContent = simplemde.value();
+    // console.log(localStorage);
     console.log(noteContent);
     patchNote(name, noteContent);
   });
@@ -35,6 +42,7 @@ function postNote(name, content) {
 };
 
 function patchNote(name, content) {
+  console.log('patching');
   const options = {
     contentType: 'application/JSON',
     data: JSON.stringify({name, content}),

@@ -16,11 +16,11 @@
       <textarea></textarea>
       <script>
         var simplemde = new SimpleMDE({
-          // autosave: {
-          //   enabled: true,
-          //   uniqueId: 'content',
-          //   delay: '1000'
-          // } saves in localstorage. on page change post to database
+          autosave: {
+            enabled: true,
+            uniqueId: 'content',
+            delay: '1000'
+          } //saves in localstorage. on page change post to database
         });
         //on loading note, simplemde.value(request result)
       </script>
