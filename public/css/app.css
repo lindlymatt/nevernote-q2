@@ -1,32 +1,5 @@
 .header {
   background-color: #616161;
-  z-index: 99;
-}
-
-.nav-link {
-  margin-left: 1rem;
-}
-
-.brand-logo {
-  margin-top: 1.5rem;
-}
-
-.profile-div {
-  margin-left: 1.5rem;
-}
-
-.profile-img {
-  height: 3rem;
-  width: auto;
-  border-radius: 3rem;
-}
-
-.aside {
-  background-color: #BDBDBD;
-}
-
-#nav-mobile {
-  z-index: 100;
 }
 
 header, main, footer {
