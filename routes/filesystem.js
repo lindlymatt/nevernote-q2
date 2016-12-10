@@ -48,32 +48,28 @@ function filesystem(folders, notes){
       userStuff.folders.push(folders[i]);
     }
   };
-  // for(var i = 0; i < userStuff.folders.length; i++) {
-  //   console.log(typeof(userStuff.folders[i]));
-  //   userStuff.folders[i].childFolders = [];
-  // }
+  //adding childFolder arr and folderNotes arr to each folder obj
+  for(var i = 0; i < userStuff.folders.length; i++) {
+    userStuff.folders[i].childFolders = [];
+    userStuff.folders[i].folderNotes = [];
+  }
   //inserting child folders
   for(var i = 0; i < folders.length; i++) {
     if(folders[i].parent_folder !== null) {
-      //getting in here expected num of times!
       for(var x = 0; x < userStuff.folders.length; x++) {
-        userStuff.folders[x].childFolders = [];
-        //running expected num of times
-        // console.log(folders[i].parent_folder);
-        // console.log(userStuff.folders[x].id);
         if(folders[i].parent_folder === userStuff.folders[x].id) {
-          // userStuff.folders[x].childFolders.push(folders[i]);
-          console.log('sickk');
+          userStuff.folders[x].childFolders.push(folders[i]);
+          console.log(folders[i]);
         }
       }
     }
   };
   //need to add notes to their respective folders
-  // for(var i = 0; i < notes.length; i++) {
-  //   if(notes[i].parent_folder !== null) {
-  //
-  //   }
-  // }
+  for(var i = 0; i < notes.length; i++) {
+    if(notes[i].parent_folder !== null) {
+
+    }
+  }
   return userStuff;
 };
 
