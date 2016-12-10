@@ -13,16 +13,16 @@ app.disable('x-powered-by');
 app.use(express.static(path.join('public')));
 app.use(bodyParser.json());
 
-app.use((req, res) => {
-  if(!req.cookies.token) {
-    return res.status(401).send('Unauthorized.');
-  }
-
-  jwt.verify(req.cookies.token, process.env.JWT_SECRET, (e, d) => {
-    req.body.userId = req.cookies.token.userId;
-    next();
-  });
-});
+// app.use((req, res) => {
+//   if(!req.cookies.token) {
+//     return res.status(401).send('Unauthorized.');
+//   }
+//
+//   jwt.verify(req.cookies.token, process.env.JWT_SECRET, (e, d) => {
+//     req.body.userId = req.cookies.token.userId;
+//     next();
+//   });
+// });
 
 //require routes
 
@@ -31,6 +31,9 @@ app.use(notes);
 
 const users = require('./routes/users');
 app.use('/users', users);
+
+const filesystem = require('./routes/filesystem');
+app.use(filesystem);
 
 
 //error functions
