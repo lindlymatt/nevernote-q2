@@ -42,6 +42,8 @@ function filesystem(folders, notes){
       userStuff.notes.push(notes[i]);
     }
   };
+  //add notes with parent folders to their folders but has to happen after folderNotes
+
   //adding parent folders
   for(var i = 0; i < folders.length; i++) {
     if(folders[i].parent_folder === null) {
@@ -59,30 +61,19 @@ function filesystem(folders, notes){
       for(var x = 0; x < userStuff.folders.length; x++) {
         if(folders[i].parent_folder === userStuff.folders[x].id) {
           userStuff.folders[x].childFolders.push(folders[i]);
-          console.log(folders[i]);
         }
       }
     }
   };
-  //need to add notes to their respective folders
+  //add notes with parent folders to their respective folders
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].parent_folder !== null) {
+      // console.log('not null');
 
+      // userStuff.folders[i].
     }
   }
   return userStuff;
 };
-
-// userStuff = {
-//   folders: {
-//     folder: {
-//       stuff
-//       childFolders: null or shows child folders
-//     }
-//   }
-//   notes: {
-//     note: notes where parent is null
-//   }
-// }
 
 module.exports = router;
