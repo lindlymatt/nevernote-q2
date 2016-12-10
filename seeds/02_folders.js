@@ -26,7 +26,7 @@ exports.seed = function (knex, Promise) {
         }),
         knex('folders').insert({
           id: 4,
-          user_id: 3,
+          user_id: 2,
           name: 'Lindly over Pestridge',
           is_secure: false,
         })
@@ -36,7 +36,7 @@ exports.seed = function (knex, Promise) {
     .then(() => {
       return knex('folders')
         .insert({
-           user_id: 4,
+           user_id: 2,
            parent_folder: 4,
            name: 'New Foldaa',
            is_secure: false

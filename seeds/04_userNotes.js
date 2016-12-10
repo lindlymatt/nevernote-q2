@@ -36,6 +36,12 @@ exports.seed = function (knex, Promise) {
           note_id: 4,
           read_only: false
         }),
+        knex('user_notes').insert({
+          id: 6,
+          user_id: 2,
+          note_id: 6,
+          read_only: false
+        })
       ]);
     })
     .then(() => knex.raw("SELECT setval('user_notes_id_seq', (SELECT MAX(id) FROM user_notes))"));
