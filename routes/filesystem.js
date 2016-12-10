@@ -38,11 +38,12 @@ function filesystem(folders, notes){
     notes: [],
   };
 
-  //adding notes without parents to userStuff
+  //adding notes without parents to userStuff & deleting note content 4 security
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].parent_folder === null) {
       userStuff.notes.push(notes[i]);
     }
+    delete notes[i].content;
   };
 
   //adding childFolder arr and folderNotes arr to each folder obj
