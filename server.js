@@ -7,40 +7,42 @@ const knex = require('./knex');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const cookieParser = require('cookie-parser');
 app.disable('x-powered-by');
 
 app.use(express.static(path.join('public')));
+app.use(cookieParser());
 app.use(bodyParser.json());
 
-// app.use((req, res) => {
-//   if(!req.cookies.token || req.cookies.token === undefined) {
-//     return res.status(401).send('Unauthorized.');
-//   }
-//
-//   jwt.verify(req.cookies.token, process.env.JWT_SECRET, (e, d) => {
-//     if(e && d === undefined) {
-//       return res.status(401).send('Unauthorized.');
-//     }
-//
-//     req.body.userId = req.cookies.token.userId;
-//     next();
-//   });
-// });
+// Stops anyone from accessing anything unless logged in.
+app.use((req, res) => {
+  if(!req.cookies.token || req.cookies.token === undefined) {
+    return res.status(401).send('Unauthorized.');
+  }
 
-//require routes
+  jwt.verify(req.cookies.token, process.env.JWT_SECRET, (e, d) => {
+    if(e && d === undefined) {
+      return res.status(401).send('Unauthorized.');
+    }
+
+    req.body.userId = req.cookies.token.userId;
+    next();
+  });
+});
+
+// Require the routes and define them here.
 const notes = require('./routes/notes');
 const users = require('./routes/users');
 const folders = require('./routes/folders');
-const filesystem = require('./routes/filesystem');
+const workspace = require('./routes/workspace');
 
-//use the routes
+// Use the routes to navigate throughout the requests.
 app.use('/notes', notes);
 app.use('/users', users);
 app.use('/folders', folders);
 app.use('/', filesystem);
 
-//error functions
+// Error Functions Handling
 app.use((_req, res) => {
   res.sendStatus(404);
 });
