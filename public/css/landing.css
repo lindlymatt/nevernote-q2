@@ -120,3 +120,37 @@ span {
   font-size: 15px;
   text-align: center;
 }
+
+
+
+/* label color */
+   .validate  {
+     color: #212121;
+   }
+   /* label focus color */
+   .validate input:focus  {
+     color: #212121;
+   }
+   /* label underline focus color */
+   .input-field:active {
+     color: pink;
+     border-bottom-color: #212121;
+
+
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #212121;
+     /*border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121; */
+   }

@@ -6,6 +6,7 @@ $(document).ready(function() {
     console.log( "ready!" );
 
   $('.parallax').parallax();
+  $('select').material_select();
   $('.button-land').mousedown(function (e) {
     var target = e.target;
     var rect = target.getBoundingClientRect();
