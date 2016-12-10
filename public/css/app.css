@@ -2,6 +2,11 @@
   background-color: #616161;
 }
 
+#profile-background {
+  height: 12rem;
+  width: inherit;
+}
+
 header, main, footer {
   padding-left: 300px;
 }
