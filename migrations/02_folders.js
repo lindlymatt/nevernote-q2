@@ -6,7 +6,7 @@ exports.up = function (knex, Promise) {
   return knex.schema.createTable('folders', table => {
     table.increments();
     table.integer('user_id').notNullable()
-      .references('id').inTable('users');
+      .references('id').inTable('users').onDelete('CASCADE');
     table.integer('parent_folder').defaultTo(null);
     table.foreign('parent_folder').references('id').inTable('folders').onDelete('CASCADE');
     table.text('name').notNullable().defaultTo('New Folder');
