@@ -7,7 +7,7 @@ const {camelizeKeys} = require('humps');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
-router.get('/filesystem/:user_id', (req, res, next) => {
+router.get('/workspace/:user_id', (req, res, next) => {
   var userFolders;
   var userNotes;
   Promise.all([
@@ -26,12 +26,12 @@ router.get('/filesystem/:user_id', (req, res, next) => {
       userNotes = notes;
     })
   ]).then(() => {
-    var result = filesystem(userFolders, userNotes);
+    var result = getWorkspace(userFolders, userNotes);
     res.send(camelizeKeys(result));
   })
 });
 
-function filesystem(folders, notes){
+function getWorkspace(folders, notes){
 //add delete to for loops to reduce runtime
   var userStuff = {
     folders: [],
