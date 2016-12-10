@@ -34,9 +34,9 @@ body {
 
   display: inline-block;
   background: #03a9f4; //#03A9F4;
-  width: 150px;
-  height: 95px;
-  color: #E1F5FE;
+  width: 135px;
+  height: 80px;
+  color: #BBC9CA;
   margin: 1rem;
   border-radius: 16px;
 }
@@ -54,9 +54,9 @@ body {
 }
 
 h5 {
-  font-size: 5px;
-  color: beige;
-  text-align: top;
+  font-size: 6px;
+  color: black;
+  text-align: center;
 
 
   margin: 0;
@@ -88,7 +88,7 @@ span {
 }
 
 .b2 {
-  background-color: #2B2745;
+  background-color: #F5F5F5;
 }
 
 .b3 {
