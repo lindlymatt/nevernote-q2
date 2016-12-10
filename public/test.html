@@ -15,7 +15,13 @@
     <section>
       <textarea></textarea>
       <script>
-        var simplemde = new SimpleMDE();
+        var simplemde = new SimpleMDE({
+          // autosave: {
+          //   enabled: true,
+          //   uniqueId: 'content',
+          //   delay: '1000'
+          // } saves in localstorage. on page change post to database
+        });
         //on loading note, simplemde.value(request result)
       </script>
       <button>save</button>
