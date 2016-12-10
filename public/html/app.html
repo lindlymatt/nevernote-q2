@@ -11,6 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js" defer></script>
   <script src="../js/script.js" defer></script>
+  <script src="../js/sidebar.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <title>Document</title>
@@ -44,7 +45,7 @@
           <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
         </div>
       </li>
-      <li><a href="#!">Note 1</a></li>
+      <!-- <li><a href="#!">Note 1</a></li>
       <li><a href="#!">Note 2</a></li>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
@@ -60,7 +61,40 @@
             </div>
           </li>
         </ul>
+      </li> -->
+
+      <li>
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a id="folder_4" class="collapsible-header">Lindly Over Pestridge</a>
+            <div class="collapsible-body">
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a id="folder_5" class="collapsible-header">Nested Test Folder</a>
+                  <div class="collapsible-body">
+                    <ul class="collapsible collapsible-accordion">
+                      <li><a href="#!">Create New Note</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a id="folder_6" class="collapsible-header">Nested Test Folder 2</a>
+                  <div class="collapsible-body">
+                    <ul class="collapsible collapsible-accordion">
+                      <li id="note_2"><a href="#!">My Note</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li><a href="#!">New Note</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </li>
+      <li><a href="#!">My Random Note</a></li>
+
+
+
     </ul>
   </header>
   <main>
