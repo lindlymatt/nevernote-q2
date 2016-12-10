@@ -15,10 +15,10 @@ $(document).ready(function() {
   };
 
 //autosave - could be refactored to trigger on time intervals, length of time w/o mouse/key activity, or click on part of page outside text area
-  var interval = 1000 * 10;
-  setInterval(function() {
-    patchNote(name, localStorage.smde_content);
-  }, interval);
+  // var interval = 1000 * 10;
+  // setInterval(function() {
+  //   patchNote(name, localStorage.smde_content);
+  // }, interval);
 
   $button.on('click', function() {
     noteContent = simplemde.value();
