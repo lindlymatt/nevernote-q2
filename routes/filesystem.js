@@ -32,6 +32,7 @@ router.get('/filesystem/:user_id', (req, res, next) => {
 });
 
 function filesystem(folders, notes){
+//add delete to for loops to reduce runtime
   var userStuff = {
     folders: [],
     notes: [],
@@ -43,11 +44,13 @@ function filesystem(folders, notes){
       userStuff.notes.push(notes[i]);
     }
   };
+
   //adding childFolder arr and folderNotes arr to each folder obj
   for(var i = 0; i < folders.length; i++) {
     folders[i].childFolders = [];
     folders[i].folderNotes = [];
   };
+
   //adding notes to their respective folders
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].parent_folder !== null) {
