@@ -14,9 +14,9 @@ $(document).ready(function() {
     getNote(noteId);
   };
 
-  var interval = 1000 * 5;
+//autosave - could be refactored to trigger on time intervals, length of time w/o mouse/key activity, or click on part of page outside text area
+  var interval = 1000 * 10;
   setInterval(function() {
-    console.log('going');
     patchNote(name, localStorage.smde_content);
   }, interval);
 
@@ -51,7 +51,7 @@ function patchNote(name, content) {
     url: '/notes/' + noteId
   }
   $.ajax(options)
-  .done(console.log('yayyy'));
+  .done();
 }
 
 var currentRequest = null;
