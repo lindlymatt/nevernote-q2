@@ -1,0 +1,156 @@
+
+
+@media only screen and (max-width : 992px) {
+  #navigation {
+    padding-left: 0;
+    color: black;
+  }
+}
+
+.navText {
+  color: black;
+}
+
+#navLogo {
+  color: black;
+}
+
+body {
+
+  background-color: #D8D9DB;
+  margin-left:0;
+
+}
+
+.parallax {
+  height: 170%%;
+}
+
+.ripple{
+  overflow:hidden;
+  position: relative;
+  box-sizing: border-box;
+  transform: translate3d(0, 0, 0);
+
+  display: inline-block;
+  background: #03a9f4; //#03A9F4;
+  width: 135px;
+  height: 80px;
+  color: #BBC9CA;
+  margin: 1rem;
+  border-radius: 16px;
+}
+
+.ripple-effect{
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  user-select: none;
+  pointer-events: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0.6;
+  transform: translate3d(-50%,-50%,0);
+}
+
+h5 {
+  font-size: 6px;
+  color: black;
+  text-align: center;
+
+
+  margin: 0;
+  user-select: none;
+}
+
+span {
+  display: inline-block;
+  padding: 20px;
+  color: #eee;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow .4s;
+  box-shadow: 0px 1px 4px transparent;
+  margin: 20px;
+
+  &:hover {
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.8);
+  }
+
+  &:active {
+    transition: .2s;
+    box-shadow: 0px 1px 4px transparent;
+  }
+}
+
+.b1 {
+  background-color: #342F86;
+}
+
+.b2 {
+  background-color: #F5F5F5;
+}
+
+.b3 {
+  background-color: #2E4518;
+}
+
+.b4 {
+  background-color: #2980b9;
+}
+
+
+.button-land {
+  display: inline-block;
+  color: black;
+  margin: 0.3em;
+  padding: 1.2em 5em;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  border: none;
+  font-size: 15px;
+  text-align: center;
+}
+
+
+
+/* label color */
+   .validate  {
+     color: #212121;
+   }
+   /* label focus color */
+   .validate input:focus  {
+     color: #212121;
+   }
+   /* label underline focus color */
+   .input-field:active {
+     color: pink;
+     border-bottom-color: #212121;
+
+
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #212121;
+     /*border-bottom: 1px solid #212121;
+     box-shadow: 0 1px 0 0 #212121; */
+   }
