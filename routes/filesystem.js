@@ -25,6 +25,7 @@ router.get('/filesystem/:user_id', (req, res, next) => {
       userNotes = notes;
     })
   ]).then(() => {
+    // console.log(userFolders, userNotes);
     var result = filesystem(userFolders, userNotes);
     res.send(result);
   })
@@ -32,37 +33,37 @@ router.get('/filesystem/:user_id', (req, res, next) => {
 
 function filesystem(folders, notes){
   var userStuff = {
-    folders: {},
-    notes: {},
+    folders: [],
+    notes: [],
   };
   //adding notes without parents to userStuff
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].parent_folder === null) {
-      userStuff.notes.note = notes[i];
+      userStuff.notes.push(notes[i]);
     }
   };
   //adding parent folders
   for(var i = 0; i < folders.length; i++) {
     if(folders[i].parent_folder === null) {
-      userStuff.folders.folder = folders[i];
+      userStuff.folders.push(folders[i]);
     }
   };
   //inserting child folders
-  for(var i = 0; i < folders.length; i++) {
-    if(folders[i].parent_folder !== null) {
-      for(var obj in userStuff.folders) {
-        if(folders[i].parent_folder === [obj].id) {
-          userStuff.folders[obj].childFolder = folders[i];
-        }
-      }
-    }
-  };
+  // for(var i = 0; i < folders.length; i++) {
+  //   if(folders[i].parent_folder !== null) {
+  //     for(var obj in userStuff.folders) {
+  //       if(folders[i].parent_folder === [obj].id) {
+  //         userStuff.folders[obj].childFolder = folders[i];
+  //       }
+  //     }
+  //   }
+  // };
   //need to add notes to their respective folders
-  for(var i = 0; i < notes.length; i++) {
-    if(notes[i].parent_folder !== null) {
-
-    }
-  }
+  // for(var i = 0; i < notes.length; i++) {
+  //   if(notes[i].parent_folder !== null) {
+  //
+  //   }
+  // }
   return userStuff;
 };
 
