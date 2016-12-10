@@ -8,14 +8,14 @@ exports.seed = function (knex, Promise) {
         // Inserts seed entries
         knex('user_notes').insert({
           id: 1,
-          user_id: 1,
-          note_id: 2,
+          user_id: 3,
+          note_id: 3,
           read_only: false
         }),
         knex('user_notes').insert({
           id: 2,
-          user_id: 2,
-          note_id: 3,
+          user_id: 3,
+          note_id: 2,
           read_only: false
         }),
         knex('user_notes').insert({
