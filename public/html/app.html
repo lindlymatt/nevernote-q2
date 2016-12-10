@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js" defer></script>
+  <script src="../js/script.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <ul id="note-options" class="dropdown-content">
+      <li><a href="#!">Rename</a></li>
+      <li class="divider"></li>
+      <li><a href="#!">Share</a></li>
+    </ul>
+    <nav>
+      <div class="nav-wrapper header">
+        <a href="#" class="brand-logo center">Aidan's Workspace</a>
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul id="nav-mobile" class="right"> <!--hide-on-med-and-down-->
+          <li><a class="dropdown-button" href="#!" data-activates="note-options"><i class="material-icons">more_vert</i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul id="slide-out" class="side-nav fixed" style="resize: horizontal;">
+      <li>
+        <div class="userView">
+          <div class="background">
+            <img id="profile-background" src="http://protiumdesign.com/wp-content/uploads/2015/01/Triangle-Shiny-Modern-Background-1024.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="http://cdn3-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-30.jpg"></a>
+          <a href="#!name"><span class="white-text name">John Doe</span></a>
+          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div>
+      </li>
+      <li><a href="#!">Note 1</a></li>
+      <li><a href="#!">Note 2</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Folder 1<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="#!">First</a></li>
+                <li><a href="#!">Second</a></li>
+                <li><a href="#!">Third</a></li>
+                <li><a href="#!">Fourth</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+  <main>
+    <!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> -->
+  <textarea id="MyID">I'm a text area</textarea>
+  <script>
+    var simplemde = new SimpleMDE({ element: document.getElementById("MyID") });
+  </script>
+  </main>
+</body>
+</html>
