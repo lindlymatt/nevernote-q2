@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
+const {camelizeKeys} = require('humps');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
@@ -25,9 +26,8 @@ router.get('/filesystem/:user_id', (req, res, next) => {
       userNotes = notes;
     })
   ]).then(() => {
-    // console.log(userFolders, userNotes);
     var result = filesystem(userFolders, userNotes);
-    res.send(result);
+    res.send(camelizeKeys(result));
   })
 });
 
@@ -36,6 +36,7 @@ function filesystem(folders, notes){
     folders: [],
     notes: [],
   };
+
   //adding notes without parents to userStuff
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].parent_folder === null) {
@@ -75,13 +76,6 @@ function filesystem(folders, notes){
       }
     }
   };
-  //add notes with parent folders to their respective folders
-  // for(var i = 0; i < notes.length; i++) {
-  //   if(notes[i].parent_folder !== null) {
-  //     // console.log('not null');
-  //     userStuff.folders[i].c
-  //   }
-  // }
   return userStuff;
 };
 
