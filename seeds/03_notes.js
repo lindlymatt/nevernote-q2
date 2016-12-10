@@ -31,6 +31,11 @@ exports.seed = function (knex, Promise) {
           id: 5,
           content: "This is Malila's note \n ## This is the second line.",
           name: 'Clearwater Test Note'
+        }),
+        knex('notes').insert({
+          id:6,
+          content: "I love my wife",
+          name: "<3"
         })
       ]);
     })

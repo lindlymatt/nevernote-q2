@@ -32,6 +32,9 @@ app.use(notes);
 const users = require('./routes/users');
 app.use('/users', users);
 
+const filesystem = require('./routes/filesystem');
+app.use(filesystem);
+
 
 //error functions
 app.use((_req, res) => {
