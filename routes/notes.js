@@ -24,7 +24,7 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.post('/notes', (req, res, next) => {
+router.post('/', (req, res, next) => {
   var {content, name} = req.body;
   knex('notes')
   .insert({

@@ -7,7 +7,7 @@ const {camelizeKeys} = require('humps');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
-router.get('/workspace/:user_id', (req, res, next) => {
+router.get('/:user_id', (req, res, next) => {
   var userFolders;
   var userNotes;
   Promise.all([
