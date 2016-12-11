@@ -1,6 +1,14 @@
 'use strict';
 
 function createSidebarStructure(folderObj) {
+  /**
+  * Generates a jQuery Object of collapsible lists that acts as
+  * the users navigation for their files and folders with the
+  * uppermost folder being the argument passed in
+  * @param {Object} folderObj The uppermost folder of the list
+  * @return {Object} A jquery object of nested collapsible lists
+  *     and list elements that are either folders or files
+  */
   let $li = createFolder(folderObj);
   let $ul = $li.find('ul');
   folderObj.childFolders.forEach((folder) => {
@@ -16,6 +24,12 @@ function createSidebarStructure(folderObj) {
 }
 
 function createFolder(folder) {
+  /**
+  * Creates a jQuery list element that includes a header, body, and an
+  * unordered list where new elements can be appended
+  * @param {Object} folder The folder to create the list element for
+  * @return {Object} A jQuery list element with the folder's info
+  */
   let $li = $('<li>');
   let $a = $('<a>')
       .addClass('collapsible-header folder')
@@ -31,6 +45,11 @@ function createFolder(folder) {
 }
 
 function createNote(note) {
+  /**
+  * Creates a jQuery list element for a given note
+  * @param {Object} note The note to create the list element for
+  * @return {Object} A jQuery list element with the note's info
+  */
   let $noteLi = $('<li>');
   let $noteA = $('<a>')
       .addClass('note')
@@ -39,7 +58,13 @@ function createNote(note) {
   return $noteLi.append($noteA);
 }
 
-function addUserSidebarFiles(userWorkspace) {
+function addSidebarFilesToPage(userWorkspace) {
+  /**
+  * Transforms a user's folders and notes as an object into HTML elements
+  * and displays them on the user's workspace page in the sidebar
+  * @param {Object} userWorkspace All of the user's workspace info from
+  *     querying the database
+  */
   userWorkspace.folders.forEach((folder) => {
     $('#folders').append(createSidebarStructure(folder));
   });
@@ -124,4 +149,4 @@ const userInfo = {
     ]
 };
 
-addUserSidebarFiles(userInfo);
+addSidebarFilesToPage(userInfo);
