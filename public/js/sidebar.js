@@ -66,7 +66,7 @@ let userInfo = {
 function createFolders(folderObj) {
   let $li = $('<li>');
   let $a = $('<a>')
-      .addClass('collapsible-header')
+      .addClass('collapsible-header folder')
       .attr('id', `folder_${folderObj.id}`)
       .text(folderObj.name);
   let $div = $('<div>')
@@ -83,6 +83,7 @@ function createFolders(folderObj) {
   }
   for (let prop in folderObj.folderNotes) {
     let $noteA = $('<a>')
+        .addClass('note')
         .attr('id', `note_${folderObj.folderNotes[prop].id}`)
         .text(folderObj.folderNotes[prop].name);
     $ul.append($('<li>').append($noteA));
@@ -96,6 +97,7 @@ userInfo.folders.forEach((folder) => {
 
 userInfo.notes.forEach((note) => {
   let $a = $('<a>')
+      .addClass('note')
       .attr('id', `note_${note.id}`)
       .text(note.name);
   $('#folders').append($('<li>').append($a));
