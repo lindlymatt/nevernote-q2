@@ -75,19 +75,32 @@ function createFolders(folderObj) {
       .addClass('collapsible collapsible-accordion');
   $div.append($ul);
   $li.append($a).append($div);
-  for (let prop in folderObj.childFolders) {
-    let childrenFolders = createFolders(folderObj.childFolders[prop]);
+  folderObj.childFolders.forEach((folder) => {
+    let childrenFolders = createFolders(folder);
     if (childrenFolders) {
       $ul.append(childrenFolders);
     }
-  }
-  for (let prop in folderObj.folderNotes) {
+  });
+  // for (let prop in folderObj.childFolders) {
+  //   let childrenFolders = createFolders(folderObj.childFolders[prop]);
+  //   if (childrenFolders) {
+  //     $ul.append(childrenFolders);
+  //   }
+  // }
+  folderObj.folderNotes.forEach((note) => {
     let $noteA = $('<a>')
         .addClass('note')
-        .attr('id', `note_${folderObj.folderNotes[prop].id}`)
-        .text(folderObj.folderNotes[prop].name);
+        .attr('id', `note_${note.id}`)
+        .text(note.name);
     $ul.append($('<li>').append($noteA));
-  }
+  });
+  // for (let prop in folderObj.folderNotes) {
+  //   let $noteA = $('<a>')
+  //       .addClass('note')
+  //       .attr('id', `note_${folderObj.folderNotes[prop].id}`)
+  //       .text(folderObj.folderNotes[prop].name);
+  //   $ul.append($('<li>').append($noteA));
+  // }
   return $li;
 }
 
