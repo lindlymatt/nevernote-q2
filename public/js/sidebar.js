@@ -1,11 +1,113 @@
 'use strict';
 
-let userInfo = {
+function createSidebarStructure(folderObj) {
+  /**
+  * Generates a jQuery Object of collapsible lists that acts as
+  * the users navigation for their files and folders with the
+  * uppermost folder being the argument passed in
+  * @param {Object} folderObj The uppermost folder of the list
+  * @return {Object} A jquery object of nested collapsible lists
+  *     and list elements that are either folders or files
+  */
+
+  let $li = createFolder(folderObj); // Create basic folder template
+  let $ul = $li.find('ul'); // Select the list where elements will be appended
+
+  // Traverse children folders and recursively create their elements
+  folderObj.childFolders.forEach((folder) => {
+    let childrenFolders = createSidebarStructure(folder);
+    if (childrenFolders) {
+      $ul.append(childrenFolders);
+    }
+  });
+
+  // Traverse folder notes and append to the current list
+  folderObj.folderNotes.forEach((note) => {
+    $ul.append(createNote(note));
+  });
+
+  return $li; // Return jQuery object with folders and files
+}
+
+function createFolder(folder) {
+  /**
+  * Creates a jQuery list element that includes a header, body, and an
+  * unordered list where new elements can be appended
+  * @param {Object} folder The folder to create the list element for
+  * @return {Object} A jQuery list element with the folder's info
+  */
+
+  // Create basic materialize collapsible menu template
+  let $li = $('<li>');
+  let $a = $('<a>')
+      .addClass('collapsible-header folder')
+      .attr('id', `folder_${folder.id}`) // Give folder its id in the database
+      .text(folder.name); // Give header the name of the folder
+  let $div = $('<div>')
+      .addClass('collapsible-body');
+  let $ul = $('<ul>')
+      .addClass('collapsible collapsible-accordion');
+  $div.append($ul);
+  $li.append($a).append($div);
+
+  return $li; // Return jQuery object with basic folder structure
+}
+
+function createNote(note) {
+  /**
+  * Creates a jQuery list element for a given note
+  * @param {Object} note The note to create the list element for
+  * @return {Object} A jQuery list element with the note's info
+  */
+
+  // Create basic note template
+  let $noteLi = $('<li>');
+  let $noteA = $('<a>')
+      .addClass('note')
+      .attr('id', `note_${note.id}`) // Give note its id in the database
+      .text(note.name); // Give note element the name of the note in database
+
+  return $noteLi.append($noteA); // Return jQuery object with basic note
+}
+
+function addSidebarFilesToPage(userWorkspace) {
+  /**
+  * Transforms a user's folders and notes as an object into HTML elements
+  * and displays them on the user's workspace page in the sidebar
+  * @param {Object} userWorkspace All of the user's workspace info from
+  *     querying the database
+  */
+
+  // Creates the structure for all of the folders and appends to the page
+  userWorkspace.folders.forEach((folder) => {
+    $('#folders').append(createSidebarStructure(folder));
+  });
+
+  // Creates all of the top level notes (not in a folder) and appends to the page
+  userWorkspace.notes.forEach((note) => {
+    $('#folders').append(createNote(note));
+  });
+}
+
+// An example of a workspace object returned from the database
+const userInfo = {
     "folders": [
         {
             "childFolders": [
                 {
-                    "childFolders": [],
+                    "childFolders": [{
+                      "childFolders": [],
+                      "folderNotes": [{
+                        "id": 13,
+                        "name": "Aidan's Dank Note",
+                        "note_id": 13,
+                        "parent_folder": 3
+                      }],
+                      "id": 14,
+                      "name": "This is another folder",
+                      "parent_folder": 3,
+                      "user_id": 2
+                    }],
                     "folderNotes": [
                         {
                             "content": "This is Matt Pestridge's note \n ## This is the second line.",
@@ -63,35 +165,4 @@ let userInfo = {
     ]
 };
 
-function createFolders(folderObj) {
-  let $li = $('<li>');
-  let $a = $('<a>')
-      .addClass('collapsible-header')
-      .text(folderObj.name);
-  let $div = $('<div>')
-      .addClass('collapsible-body');
-  let $ul = $('<ul>')
-      .addClass('collapsible collapsible-accordion');
-  $div.append($ul);
-  $li.append($a).append($div);
-  for (let prop in folderObj.childFolders) {
-    let childrenFolders = createFolders(folderObj.childFolders[prop]);
-    if (childrenFolders) {
-      $ul.append(childrenFolders);
-    }
-  }
-  for (let prop in folderObj.folderNotes) {
-    let $noteA = $('<a>').text(folderObj.folderNotes[prop].name);
-    $ul.append($('<li>').append($noteA));
-  }
-  return $li;
-}
-
-userInfo.folders.forEach((folder) => {
-  $('#folders').append(createFolders(folder));
-});
-
-userInfo.notes.forEach((note) => {
-  let $a = $('<a>').text(note.name);
-  $('#folders').append($('<li>').append($a));
-});
+addSidebarFilesToPage(userInfo); // Create sidebar navigation for the user
