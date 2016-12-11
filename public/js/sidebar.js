@@ -44,7 +44,10 @@ let userInfo = {
         },
         {
             "childFolders": [],
-            "folderNotes": [],
+            "folderNotes": [{
+              id: 50,
+              name: 'This is a note!'
+            }],
             "id": 2,
             "is_secure": true,
             "name": "Passwords Folder",
@@ -86,4 +89,9 @@ function createFolders(folderObj) {
 
 userInfo.folders.forEach((folder) => {
   $('#folders').append(createFolders(folder));
+});
+
+userInfo.notes.forEach((note) => {
+  let $a = $('<a>').text(note.name);
+  $('#folders').append($('<li>').append($a));
 });
