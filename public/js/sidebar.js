@@ -1,6 +1,6 @@
 'use strict';
 
-let userInfo = {
+const userInfo = {
     "folders": [
         {
             "childFolders": [
@@ -76,17 +76,8 @@ let userInfo = {
 };
 
 function createSidebarStructure(folderObj) {
-  let $li = $('<li>');
-  let $a = $('<a>')
-      .addClass('collapsible-header folder')
-      .attr('id', `folder_${folderObj.id}`)
-      .text(folderObj.name);
-  let $div = $('<div>')
-      .addClass('collapsible-body');
-  let $ul = $('<ul>')
-      .addClass('collapsible collapsible-accordion');
-  $div.append($ul);
-  $li.append($a).append($div);
+  let $li = createFolder(folderObj);
+  let $ul = $li.find('ul');
   folderObj.childFolders.forEach((folder) => {
     let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
@@ -100,7 +91,18 @@ function createSidebarStructure(folderObj) {
 }
 
 function createFolder(folder) {
-
+  let $li = $('<li>');
+  let $a = $('<a>')
+      .addClass('collapsible-header folder')
+      .attr('id', `folder_${folder.id}`)
+      .text(folder.name);
+  let $div = $('<div>')
+      .addClass('collapsible-body');
+  let $ul = $('<ul>')
+      .addClass('collapsible collapsible-accordion');
+  $div.append($ul);
+  $li.append($a).append($div);
+  return $li;
 }
 
 function createNote(note) {
