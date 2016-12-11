@@ -1,11 +1,17 @@
 'use strict';
 
-function sidebar() {
-
-}
+// function sidebarGenerator(ul, userInfo) {
+//   const folders = userInfo.folders;
+//   const notes = userInfo.notes;
+//
+//   folders.forEach((folder) => {
+//
+//   });
+//
+// }
 
 let userInfo = {
-    "folders": [
+    "childFolders": [
         {
             "childFolders": [
                 {
@@ -63,3 +69,92 @@ let userInfo = {
       }
     ]
 };
+
+let folderStructure;
+
+function createFolders(folderObj) {
+  let $li = $('<li>');
+  let $a = $('<a>')
+      .addClass('collapsible-header')
+      .text(folderObj.name);
+  let $div = $('<div>')
+      .addClass('collapsible-body');
+  let $ul = $('<ul>')
+      .addClass('collapsible collapsible-accordion');
+  $div.append($ul);
+  $li.append($a).append($div);
+  for (let prop in folderObj.childFolders) {
+    let childrenFolders = createFolders(folderObj.childFolders[prop]);
+    if (childrenFolders) {
+      $ul.append(childrenFolders);
+    }
+  }
+  return $li;
+}
+
+let test = createFolders(userInfo.childFolders[0]);
+console.log(test);
+$('#folders').append(test);
+
+
+//
+// function appendFolder(ul, folderObj) {
+//   let test; // create variable outside of there and then return after the loop
+//   for (let i = 0; i < folderObj.childFolders.length; i++) {
+//     let currentFolder = folderObj.childFolders[i];
+//     let $li = $('<li></li>');
+//     let $a = $('<a></a>')
+//               .addClass('collapsible-header')
+//               .text(currentFolder.name);
+//     $li.append($a);
+//     let $ul = $('<ul></ul>')
+//               .addClass('collapsible collapsible-header');
+//     let $div = $('<div></div>')
+//               .addClass('collapsible-body');
+//     $div.append($ul);
+//     $li.append($div);
+//     ul.append(appendFolder(currentFolder));
+//   }
+//   return $('<li>Test</li>'); // return create new file
+//
+//
+//
+//
+//
+//   // folderObj.childFolders.forEach((folder) => {
+//   //   // console.log(folder);
+//   //   let $li = $('<li></li>');
+//   //   let $a = $('<a></a>')
+//   //             .addClass('collapsible-header')
+//   //             .text(folder.name);
+//   //   $li.append($a);
+//   //   let $div = $('<div></div>')
+//   //             .addClass('collapsible-body');
+//   //   let $ul = $('<ul></ul>')
+//   //             .addClass('collapsible collapsible-header');
+//   //   console.log('ul', $ul);
+//   //   $div.append($ul);
+//   //   console.log('div', $div);
+//   //   $li.append($div);
+//   //   console.log('li', $li);
+//   //   // console.log($li);
+//   //   return ul.append(appendFolder($ul, folder));
+//   // });
+//   //
+//   // return ul;
+// }
+//
+//
+// let ul = $('.side-nav');
+//
+//
+//
+// let test = appendFolder(ul, userInfo);
+// console.log(test.children()[1]);
+// ul.append(test.children()[1]);
+// // console.log(ul);
+//
+// // let sidebar = $('.side-nav');
+// // let thing = appendFolder(sidebar, userInfo);
+// // console.log(thing);
+// // sidebar.append(thing);
