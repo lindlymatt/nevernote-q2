@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;
+const jwt = require('jsonwebtoken');
 const knex = require('./knex');
 const morgan = require('morgan');
 const path = require('path');
@@ -14,8 +15,12 @@ app.use(express.static(path.join('public')));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+// Authentication
+const tokens = require('./routes/tokens');
+app.use(tokens);
+
 // Stops anyone from accessing anything unless logged in.
-app.use((req, res) => {
+app.use((req, res, next) => {
   if(!req.cookies.token || req.cookies.token === undefined) {
     return res.status(401).send('Unauthorized.');
   }
@@ -57,7 +62,7 @@ app.use((err, _req, res, _next) => {
   }
 
   if (err.status) {
-    console.log(err)
+    console.log(err);
     return res.status(err.status).send(err);
   }
 
