@@ -11,8 +11,10 @@
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js" defer></script>
   <script src="../js/script.js" defer></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <!-- <script src='../js/simplemde/src/js'></script> -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script> -->
+
   <title>Document</title>
 </head>
 <body>
@@ -65,10 +67,15 @@
   </header>
   <main>
     <!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> -->
-  <textarea id="MyID">I'm a text area</textarea>
-  <script>
-    var simplemde = new SimpleMDE({ element: document.getElementById("MyID") });
-  </script>
+<div id="markdown-editor-sample"></div>
+
+<script>
+  // var markdownEditor = require('markdown-editor');
+  var editor = new MarkdownEditor('#markdown-editor-sample');
+  editor.render();
+</script>
+
+
   </main>
 </body>
 </html>

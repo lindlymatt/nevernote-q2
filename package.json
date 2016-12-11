@@ -19,8 +19,8 @@
     "joi": "^9.0.4",
     "jsonwebtoken": "^7.2.1",
     "knex": "^0.12.6",
+    "markdown-editor": "^1.0.1",
     "morgan": "^1.7.0",
-    "pg": "^6.1.0",
-    "simplemde": "^1.11.2"
+    "pg": "^6.1.0"
   }
 }
