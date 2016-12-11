@@ -77,6 +77,10 @@ function createFolders(folderObj) {
       $ul.append(childrenFolders);
     }
   }
+  for (let prop in folderObj.folderNotes) {
+    let $noteA = $('<a>').text(folderObj.folderNotes[prop].name);
+    $ul.append($('<li>').append($noteA));
+  }
   return $li;
 }
 
