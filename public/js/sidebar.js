@@ -77,15 +77,19 @@ function addSidebarFilesToPage(userWorkspace) {
   * @param {Object} userWorkspace All of the user's workspace info from
   *     querying the database
   */
+
+  // Creates the structure for all of the folders and appends to the page
   userWorkspace.folders.forEach((folder) => {
     $('#folders').append(createSidebarStructure(folder));
   });
 
+  // Creates all of the top level notes (not in a folder) and appends to the page
   userWorkspace.notes.forEach((note) => {
     $('#folders').append(createNote(note));
   });
 }
 
+// An example of a workspace object returned from the database
 const userInfo = {
     "folders": [
         {
@@ -161,4 +165,4 @@ const userInfo = {
     ]
 };
 
-addSidebarFilesToPage(userInfo);
+addSidebarFilesToPage(userInfo); // Create sidebar navigation for the user
