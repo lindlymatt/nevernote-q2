@@ -11,9 +11,10 @@
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js" defer></script>
+  <script src="../js/script.js" defer></script>
+  <script src="../js/sidebar.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-  <script src="../js/simplemde.js"></script>
   <script src="../js/script.js" defer></script>
   <title>Document</title>
 </head>
@@ -48,21 +49,8 @@
           <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
         </div>
       </li>
-      <li><a href="#!">Note 1</a></li>
-      <li><a href="#!">Note 2</a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Folder 1<i class="material-icons">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#!">First</a></li>
-                <li><a href="#!">Second</a></li>
-                <li><a href="#!">Third</a></li>
-                <li><a href="#!">Fourth</a></li>
-              </ul>
-            </div>
-          </li>
+      <li>
+        <ul id="folders" class="collapsible collapsible-accordion">
         </ul>
       </li>
     </ul>
