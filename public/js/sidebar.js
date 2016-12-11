@@ -5,7 +5,19 @@ let userInfo = {
         {
             "childFolders": [
                 {
-                    "childFolders": [],
+                    "childFolders": [{
+                      "childFolders": [],
+                      "folderNotes": [{
+                        "id": 13,
+                        "name": "Aidan's Dank Note",
+                        "note_id": 13,
+                        "parent_folder": 3
+                      }],
+                      "id": 14,
+                      "name": "This is another folder",
+                      "parent_folder": 3,
+                      "user_id": 2
+                    }],
                     "folderNotes": [
                         {
                             "content": "This is Matt Pestridge's note \n ## This is the second line.",
@@ -63,7 +75,7 @@ let userInfo = {
     ]
 };
 
-function createFolders(folderObj) {
+function createSidebarStructure(folderObj) {
   let $li = $('<li>');
   let $a = $('<a>')
       .addClass('collapsible-header folder')
@@ -76,42 +88,34 @@ function createFolders(folderObj) {
   $div.append($ul);
   $li.append($a).append($div);
   folderObj.childFolders.forEach((folder) => {
-    let childrenFolders = createFolders(folder);
+    let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
       $ul.append(childrenFolders);
     }
   });
-  // for (let prop in folderObj.childFolders) {
-  //   let childrenFolders = createFolders(folderObj.childFolders[prop]);
-  //   if (childrenFolders) {
-  //     $ul.append(childrenFolders);
-  //   }
-  // }
   folderObj.folderNotes.forEach((note) => {
-    let $noteA = $('<a>')
-        .addClass('note')
-        .attr('id', `note_${note.id}`)
-        .text(note.name);
-    $ul.append($('<li>').append($noteA));
+    $ul.append(createNote(note));
   });
-  // for (let prop in folderObj.folderNotes) {
-  //   let $noteA = $('<a>')
-  //       .addClass('note')
-  //       .attr('id', `note_${folderObj.folderNotes[prop].id}`)
-  //       .text(folderObj.folderNotes[prop].name);
-  //   $ul.append($('<li>').append($noteA));
-  // }
   return $li;
 }
 
-userInfo.folders.forEach((folder) => {
-  $('#folders').append(createFolders(folder));
-});
+function createFolder(folder) {
 
-userInfo.notes.forEach((note) => {
-  let $a = $('<a>')
+}
+
+function createNote(note) {
+  let $noteLi = $('<li>');
+  let $noteA = $('<a>')
       .addClass('note')
       .attr('id', `note_${note.id}`)
       .text(note.name);
-  $('#folders').append($('<li>').append($a));
+  return $noteLi.append($noteA);
+}
+
+userInfo.folders.forEach((folder) => {
+  $('#folders').append(createSidebarStructure(folder));
+});
+
+userInfo.notes.forEach((note) => {
+  $('#folders').append(createNote(note));
 });
