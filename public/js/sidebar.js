@@ -37,11 +37,12 @@ function createFolder(folder) {
   * @return {Object} A jQuery list element with the folder's info
   */
 
+  // Create basic materialize collapsible menu template
   let $li = $('<li>');
   let $a = $('<a>')
       .addClass('collapsible-header folder')
-      .attr('id', `folder_${folder.id}`)
-      .text(folder.name);
+      .attr('id', `folder_${folder.id}`) // Give folder its id in the database
+      .text(folder.name); // Give header the name of the folder
   let $div = $('<div>')
       .addClass('collapsible-body');
   let $ul = $('<ul>')
@@ -49,7 +50,7 @@ function createFolder(folder) {
   $div.append($ul);
   $li.append($a).append($div);
 
-  return $li;
+  return $li; // Return jQuery object with basic folder structure
 }
 
 function createNote(note) {
@@ -58,12 +59,15 @@ function createNote(note) {
   * @param {Object} note The note to create the list element for
   * @return {Object} A jQuery list element with the note's info
   */
+
+  // Create basic note template
   let $noteLi = $('<li>');
   let $noteA = $('<a>')
       .addClass('note')
-      .attr('id', `note_${note.id}`)
-      .text(note.name);
-  return $noteLi.append($noteA);
+      .attr('id', `note_${note.id}`) // Give note its id in the database
+      .text(note.name); // Give note element the name of the note in database
+
+  return $noteLi.append($noteA); // Return jQuery object with basic note
 }
 
 function addSidebarFilesToPage(userWorkspace) {
