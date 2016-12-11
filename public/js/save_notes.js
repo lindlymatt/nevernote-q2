@@ -19,7 +19,7 @@ $(document).ready(function() {
   });
 });
 
-function postVal(content) {
+function postNote(content) {
   const options = {
     contentType: 'application/JSON',
     data: JSON.stringify({name, content}),
@@ -40,3 +40,5 @@ function getNote(id) {
     console.log(note);
   });
 };
+
+export { postNote, getNote};

@@ -65,6 +65,10 @@ function createNote(note) {
   let $noteA = $('<a>')
       .addClass('note')
       .attr('id', `note_${note.id}`) // Give note its id in the database
+      .on('click', function(){
+        var noteId = `${note.id}`;
+        getNote(noteId);
+      })
       .text(note.name); // Give note element the name of the note in database
 
   return $noteLi.append($noteA); // Return jQuery object with basic note
@@ -166,3 +170,12 @@ const userInfo = {
 };
 
 addSidebarFilesToPage(userInfo); // Create sidebar navigation for the user
+
+
+function getNote(id) {
+  $.getJSON('/notes/' + id)
+  .done((note) => {
+    simplemde.value(note.content);
+    console.log(note);
+  });
+};

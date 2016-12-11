@@ -6,8 +6,11 @@ const knex = require('../knex');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
+router.get('/', function(req, res, next) {
+  console.log('cool duded');
+});
 
-router.get('/notes/:id', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   knex('notes')
   .where('id', req.params.id)
   .first()
