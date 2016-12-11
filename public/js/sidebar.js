@@ -9,18 +9,24 @@ function createSidebarStructure(folderObj) {
   * @return {Object} A jquery object of nested collapsible lists
   *     and list elements that are either folders or files
   */
-  let $li = createFolder(folderObj);
-  let $ul = $li.find('ul');
+
+  let $li = createFolder(folderObj); // Create basic folder template
+  let $ul = $li.find('ul'); // Select the list where elements will be appended
+
+  // Traverse children folders and recursively create their elements
   folderObj.childFolders.forEach((folder) => {
     let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
       $ul.append(childrenFolders);
     }
   });
+
+  // Traverse folder notes and append to the current list
   folderObj.folderNotes.forEach((note) => {
     $ul.append(createNote(note));
   });
-  return $li;
+
+  return $li; // Return jQuery object with folders and files
 }
 
 function createFolder(folder) {
@@ -30,6 +36,7 @@ function createFolder(folder) {
   * @param {Object} folder The folder to create the list element for
   * @return {Object} A jQuery list element with the folder's info
   */
+
   let $li = $('<li>');
   let $a = $('<a>')
       .addClass('collapsible-header folder')
@@ -41,6 +48,7 @@ function createFolder(folder) {
       .addClass('collapsible collapsible-accordion');
   $div.append($ul);
   $li.append($a).append($div);
+
   return $li;
 }
 
