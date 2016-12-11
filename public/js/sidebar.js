@@ -1,5 +1,54 @@
 'use strict';
 
+function createSidebarStructure(folderObj) {
+  let $li = createFolder(folderObj);
+  let $ul = $li.find('ul');
+  folderObj.childFolders.forEach((folder) => {
+    let childrenFolders = createSidebarStructure(folder);
+    if (childrenFolders) {
+      $ul.append(childrenFolders);
+    }
+  });
+  folderObj.folderNotes.forEach((note) => {
+    $ul.append(createNote(note));
+  });
+  return $li;
+}
+
+function createFolder(folder) {
+  let $li = $('<li>');
+  let $a = $('<a>')
+      .addClass('collapsible-header folder')
+      .attr('id', `folder_${folder.id}`)
+      .text(folder.name);
+  let $div = $('<div>')
+      .addClass('collapsible-body');
+  let $ul = $('<ul>')
+      .addClass('collapsible collapsible-accordion');
+  $div.append($ul);
+  $li.append($a).append($div);
+  return $li;
+}
+
+function createNote(note) {
+  let $noteLi = $('<li>');
+  let $noteA = $('<a>')
+      .addClass('note')
+      .attr('id', `note_${note.id}`)
+      .text(note.name);
+  return $noteLi.append($noteA);
+}
+
+function addUserSidebarFiles(userWorkspace) {
+  userWorkspace.folders.forEach((folder) => {
+    $('#folders').append(createSidebarStructure(folder));
+  });
+
+  userWorkspace.notes.forEach((note) => {
+    $('#folders').append(createNote(note));
+  });
+}
+
 const userInfo = {
     "folders": [
         {
@@ -75,49 +124,4 @@ const userInfo = {
     ]
 };
 
-function createSidebarStructure(folderObj) {
-  let $li = createFolder(folderObj);
-  let $ul = $li.find('ul');
-  folderObj.childFolders.forEach((folder) => {
-    let childrenFolders = createSidebarStructure(folder);
-    if (childrenFolders) {
-      $ul.append(childrenFolders);
-    }
-  });
-  folderObj.folderNotes.forEach((note) => {
-    $ul.append(createNote(note));
-  });
-  return $li;
-}
-
-function createFolder(folder) {
-  let $li = $('<li>');
-  let $a = $('<a>')
-      .addClass('collapsible-header folder')
-      .attr('id', `folder_${folder.id}`)
-      .text(folder.name);
-  let $div = $('<div>')
-      .addClass('collapsible-body');
-  let $ul = $('<ul>')
-      .addClass('collapsible collapsible-accordion');
-  $div.append($ul);
-  $li.append($a).append($div);
-  return $li;
-}
-
-function createNote(note) {
-  let $noteLi = $('<li>');
-  let $noteA = $('<a>')
-      .addClass('note')
-      .attr('id', `note_${note.id}`)
-      .text(note.name);
-  return $noteLi.append($noteA);
-}
-
-userInfo.folders.forEach((folder) => {
-  $('#folders').append(createSidebarStructure(folder));
-});
-
-userInfo.notes.forEach((note) => {
-  $('#folders').append(createNote(note));
-});
+addUserSidebarFiles(userInfo);
