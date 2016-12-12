@@ -53,25 +53,44 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
 
 // POST: Creates a new folder.
 router.post('/', ev(validations.post), (req, res, next) => {
-  const { name, parent_folder, is_secure } = req.body;
-  // user_id = req.body.user_id;
+  let { name, parent_folder, is_secure } = req.body;
 
-  if(!parent_folder) {
-    parent_folder === null;
-  }
-
-  let newFolder = { name, user_id: 3, parent_folder, is_secure };
   knex('folders')
-    .insert(newFolder, ['id', 'name'])
-    .then(result => {
-      res.status(200).send(result);
+    .where('folders.user_id', req.body.userId)
+    .then((folders) => {
+      if (Number.isInteger(parent_folder)) {
+        const parentFolderInFolders = folders.some((folder) => {
+          return parent_folder === folder.id;
+        });
+
+        if (!parentFolderInFolders) {
+          return res.status(404).send('Parent folder not found');
+        }
+      } else {
+        parent_folder = null;
+      }
+
+      let newFolder = {
+        name,
+        is_secure,
+        user_id: req.body.userId,
+        parent_folder
+      };
+      knex('folders')
+        .insert(newFolder, ['id', 'name'])
+        .then(result => {
+          res.status(200).send(result);
+        })
+        .catch(err => {
+          next(err);
+        });
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
-    })
+    });
 });
 
-// PATCH w/ ID: Updates a user with the ID.
+// PATCH w/ ID: Updates a user's folder that has the given ID.
 router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const id = req.params.id;
   const { name, parent_folder, is_secure } = req.body;
@@ -88,7 +107,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     });
 });
 
-// DELETE w/ ID: Deletes an individual user by ID.
+// DELETE w/ ID: Deletes a folder by ID.
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   const id = req.params.id;
 
