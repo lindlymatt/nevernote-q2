@@ -126,6 +126,7 @@ a:active {
 /* Modal Pop-up */
 
 #faded-background {
+  display: none;
   position: fixed;
   background-color: black;
   top: 0;
