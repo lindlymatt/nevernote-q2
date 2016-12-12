@@ -68,7 +68,13 @@ function createNote(note) {
       .on('click', function(){
         var noteId = `${note.id}`;
         getNote(noteId);
-      })
+        var noteName = 'my note'; //get from name div
+        var noteContent = simplemde.value();
+        var interval = 1000 * 10;
+        setInterval(function() {
+          patchNote(name, localStorage.smde_content, noteId);
+          }, interval);
+        })
       .text(note.name); // Give note element the name of the note in database
 
   return $noteLi.append($noteA); // Return jQuery object with basic note
@@ -93,7 +99,7 @@ function addSidebarFilesToPage(userWorkspace) {
   });
 }
 
-// An example of a workspace object returned from the database
+//return users workspace object
 var userId = 2;
 
 const userInfo =
@@ -108,4 +114,17 @@ function getNote(id) {
   .done((note) => {
     simplemde.value(note.content);
   });
+};
+
+//send patch request to note
+function patchNote(name, content, id) {
+  const options = {
+    contentType: 'application/JSON',
+    data: JSON.stringify({name, content}),
+    dataType: 'json',
+    type: 'PATCH',
+    url: '/notes/' + id
+  }
+  $.ajax(options)
+  .done();
 };

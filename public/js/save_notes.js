@@ -1,20 +1,12 @@
 'use strict';
 
-var noteContent;
-var noteId;
-var name = 'note name';
-
 $(document).ready(function() {
-  console.log('ready');
-  var $button = $('button');
-  noteId = 2;
-  if(noteId) {
-    getNote(noteId);
-  };
+  var noteId = 2; //change to getting id from token
+  var noteName;
+  var noteContent;
 
   $button.on('click', function() {
-    noteContent = simplemde.value();
-    console.log(noteContent);
+    var noteContent = simplemde.value();
     postVal(noteContent);
   });
 });
@@ -31,14 +23,3 @@ function postNote(content) {
   $.ajax(options)
   .done(console.log('done'));
 };
-
-function getNote(id) {
-  $.getJSON('/notes/' + noteId)
-  .done((note) => {
-    // window.location.href = 'test.html/notes/10';
-    simplemde.value(note.content);
-    console.log(note);
-  });
-};
-
-export { postNote, getNote};
