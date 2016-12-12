@@ -15,7 +15,7 @@ $(document).ready(function() {
       return postNote($name, noteContent, $parent);
     }
   });
-  function getParent(type) {
+  function getParent() {
     var $workspace = $('#workspace').children();
     if($workspace.hasClass('inside')){
       var $inside = $('.inside');
