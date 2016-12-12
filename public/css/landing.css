@@ -19,7 +19,7 @@ body {
 
   background-color: #D8D9DB;
   margin-left:0;
-  height: 3000px;
+  height: auto;
 
 }
 
@@ -158,4 +158,57 @@ span {
 
 #secondSalt {
   height: 150px;
+}
+
+#thirdSalt {
+  height: 600px;
+}
+
+#pencil {
+  margin-left: 18vw;
+  margin-bottom: 10vw;
+  color: #FF5252;
+
+}
+
+#monitor {
+  margin-bottom: 10vw;
+  color: #FF5252;
+  margin-left: 18vw;
+
+}
+
+#notes {
+  color: #FF5252;
+  margin-bottom: 10vw;
+  margin-left: 18vw;
+}
+
+#firstCard {
+  margin-left: 12vw;
+  width: 25vw;
+  height: auto;
+  background-color: #D8D9DB;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 21px;
+}
+
+#secondCard {
+  width: 25.3vw;
+  margin-left: 4vw;
+  height: auto;
+  background-color: #D8D9DB;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 21px;
+
+}
+
+#thirdCard {
+  width: 25vw;
+  height: auto;
+  margin-left: 13vw;
+  background-color: #D8D9DB;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 21px;
+
 }
