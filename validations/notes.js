@@ -34,7 +34,7 @@ module.exports.patch = {
           .min(1)
           .max(50),
     content: Joi.string()
-  }).or('firstName', 'email', 'password'),
+  }).or('parentFolder', 'name', 'content'),
 
   params: Joi.object().keys({
     id: Joi.number()
