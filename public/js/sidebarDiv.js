@@ -2,94 +2,57 @@
 
 function createSidebarStructure(folderObj) {
   /**
-  * Generates a jQuery Object of collapsible lists that acts as
-  * the users navigation for their files and folders with the
-  * uppermost folder being the argument passed in
+  * Generates a jQuery Object of divs that acts as the users navigation
+  * for their files and folders with the uppermost folder being the
+  * argument passed in
   * @param {Object} folderObj The uppermost folder of the list
-  * @return {Object} A jquery object of nested collapsible lists
-  *     and list elements that are either folders or files
+  * @return {Object} A jquery object of nested divs that are either folders
+  *     or files
   */
 
-  let $li = createFolder(folderObj); // Create basic folder template
-  let $ul = $li.find('ul'); // Select the list where elements will be appended
+  let $folderDiv = createFolder(folderObj);
 
-  // Traverse children folders and recursively create their elements
   folderObj.childFolders.forEach((folder) => {
     let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
-      $ul.append(childrenFolders);
+      $folderDiv.append(childrenFolders);
     }
   });
 
-  // Traverse folder notes and append to the current list
   folderObj.folderNotes.forEach((note) => {
-    $ul.append(createNote(note));
+    $folderDiv.append(createNote(note));
   });
 
-  return $li; // Return jQuery object with folders and files
+  return $folderDiv;
 }
 
 function createFolder(folder) {
   /**
-  * Creates a jQuery list element that includes a header, body, and an
-  * unordered list where new elements can be appended
-  * @param {Object} folder The folder to create the list element for
-  * @return {Object} A jQuery list element with the folder's info
+  * Creates a jQuery div element for a given folder
+  * @param {Object} folder The folder to create the div element for
+  * @return {Object} A jQuery div element with the folder's info
   */
 
-  // // Create basic materialize collapsible menu template
-  // let $li = $('<li>');
-  // let $a = $('<a>')
-  //     .addClass('collapsible-header folder')
-  //     .attr('id', `folder_${folder.id}`) // Give folder its id in the database
-  //     .text(folder.name); // Give header the name of the folder
-  // let $div = $('<div>')
-  //     .addClass('collapsible-body');
-  // let $ul = $('<ul>')
-  //     .addClass('collapsible collapsible-accordion');
-  // $div.append($ul);
-  // $li.append($a).append($div);
-  //
-  // return $li; // Return jQuery object with basic folder structure
+  let $folderDiv = $('<div>')
+      .addClass('folder');
+  let $folderh5 = $('<h5>')
+      .html(`<i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> ${folder.name}`);
 
-  let $folderDiv = $('<div>');
-  let $folderh5 = $('<h5>');
-  let $folderI = $('<i>')
-      .addClass('fa fa-folder-open-o fa-fw')
-      .attr('aria-hidden', true)
-      .attr('id', `folder_${folder.id}`)
-      .text(folder.name);
-
-  $folderh5.append($folderI);
   return $folderDiv.append($folderh5);
 }
 
 function createNote(note) {
   /**
-  * Creates a jQuery list element for a given note
-  * @param {Object} note The note to create the list element for
-  * @return {Object} A jQuery list element with the note's info
+  * Creates a jQuery div element for a given note
+  * @param {Object} note The note to create the div element for
+  * @return {Object} A jQuery div element with the note's info
   */
 
-  // Create basic note template
-  // let $noteLi = $('<li>');
-  // let $noteA = $('<a>')
-  //     .addClass('note')
-  //     .attr('id', `note_${note.id}`) // Give note its id in the database
-  //     .text(note.name); // Give note element the name of the note in database
-  //
-  // return $noteLi.append($noteA); // Return jQuery object with basic note
+  let $noteDiv = $('<div>')
+      .addClass('note');
+  let $noteh5 = $('<h5>')
+      .html(`<i class="fa fa-sticky-note-o fa-fw" aria-hidden="true"></i> ${note.name}`);
 
-  // new
-  let $noteDiv = $('<div>');
-  let $noteh5 = $('<h5>');
-  let $noteI = $('<i>')
-      .addClass('fa fa-sticky-note-o fa-fw')
-      .attr('aria-hidden', true)
-      .attr('id', `note_${note.id}`)
-      .text(note.name);
-
-  $noteh5.append($noteI);
   return $noteDiv.append($noteh5);
 }
 
@@ -103,12 +66,12 @@ function addSidebarFilesToPage(userWorkspace) {
 
   // Creates the structure for all of the folders and appends to the page
   userWorkspace.folders.forEach((folder) => {
-    $('#folders').append(createSidebarStructure(folder));
+    $('#workspace').append(createSidebarStructure(folder));
   });
 
   // Creates all of the top level notes (not in a folder) and appends to the page
   userWorkspace.notes.forEach((note) => {
-    $('#folders').append(createNote(note));
+    $('#workspace').append(createNote(note));
   });
 }
 
