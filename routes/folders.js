@@ -18,11 +18,11 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 router.get('/', (req, res, next) => {
   // Queries and gets all folders.
   knex('folders')
-    .then(results => {
+    .then((results) => {
       // Sends results back to the user.
-      res.send(results);
+      res.send(camelizeKeys(results));
     })
-    .catch(err => {
+    .catch((err) => {
       // Sends the error to the next available middleware.
       next(err);
     });
@@ -37,14 +37,14 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
     .where('folders.id', id)
     // .andWhere('folders.user_id', uid)
     .first()
-    .then(result => {
+    .then((result) => {
       if(!result) {
         // If there's no folder found, then send back a 404.
         return res.status(404).send('Not Found.');
       }
 
       // Once found, send back a 200 with the folder information.
-      res.status(200).send(result);
+      res.status(200).send(camelizeKeys(result));
     })
     .catch(err => {
       next(err);
@@ -53,35 +53,35 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
 
 // POST: Creates a new folder.
 router.post('/', ev(validations.post), (req, res, next) => {
-  let { name, parent_folder, is_secure } = req.body;
+  let { name, parentFolder, isSecure } = req.body;
 
   knex('folders')
     .where('folders.user_id', req.body.userId)
     .then((folders) => {
-      if (Number.isInteger(parent_folder)) {
+      if (Number.isInteger(parentFolder)) {
         const parentFolderInFolders = folders.some((folder) => {
-          return parent_folder === folder.id;
+          return parentFolder === folder.id;
         });
 
         if (!parentFolderInFolders) {
           return res.status(404).send('Parent folder not found');
         }
       } else {
-        parent_folder = null;
+        parentFolder = null;
       }
 
       let newFolder = {
         name,
-        is_secure,
+        is_secure: isSecure,
+        parent_folder: parentFolder,
         user_id: req.body.userId,
-        parent_folder
       };
       knex('folders')
         .insert(newFolder, ['id', 'name'])
-        .then(result => {
-          res.status(200).send(result);
+        .then((result) => {
+          res.status(200).send(camelizeKeys(result));
         })
-        .catch(err => {
+        .catch((err) => {
           next(err);
         });
     })
@@ -93,16 +93,19 @@ router.post('/', ev(validations.post), (req, res, next) => {
 // PATCH w/ ID: Updates a user's folder that has the given ID.
 router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const id = req.params.id;
-  const { name, parent_folder, is_secure } = req.body;
+  const { name, parentFolder, isSecure } = req.body;
 
-  let updatedFolder = { name, parent_folder, is_secure };
+  let updatedFolder = {
+    name,
+    parent_folder: parentFolder,
+    is_secure: isSecure };
   knex('folders')
     .where('folders.id', id)
     .update(updatedFolder, ['name'])
-    .then(result => {
-      res.status(200).send(result);
+    .then((result) => {
+      res.status(200).send(camelizeKeys(result));
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
@@ -114,8 +117,8 @@ router.delete('/:id', ev(validations.delete), (req, res, next) => {
   knex('folders')
     .where('folders.id', id)
     .del(['name'])
-    .then(result => {
-      res.status(200).send('Success!');
+    .then((result) => {
+      res.status(200).send(camelizeKeys(result));
     })
     .catch(err => {
       next(err);

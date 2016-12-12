@@ -13,7 +13,7 @@ module.exports.get = {
 
 module.exports.post = {
   body: Joi.object().keys({
-    parent_folder: Joi.number()
+    parentFolder: Joi.number()
           .integer()
           .positive(),
     name: Joi.string()
@@ -21,21 +21,21 @@ module.exports.post = {
           .min(1)
           .max(20)
           .required(),
-    is_secure: Joi.boolean()
+    isSecure: Joi.boolean()
   })
 };
 
 module.exports.patch = {
   body: Joi.object().keys({
-    parent_folder: Joi.number()
+    parentFolder: Joi.number()
           .integer()
           .positive(),
     name: Joi.string()
           .trim()
           .min(1)
           .max(20),
-    is_secure: Joi.boolean()
-  }).or(['parent_folder', 'name', 'is_secure']),
+    isSecure: Joi.boolean()
+  }).or(['parentFolder', 'name', 'isSecure']),
 
   params: Joi.object().keys({
     id: Joi.number()
