@@ -67,9 +67,22 @@ nav {
   box-shadow: 0px 1px 1px 0px #284950;
 }
 
-a {
+/* unvisited link */
+a:link {
+  color: #FBF7EB;
   text-decoration: none;
-  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: #7A7863;
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  color: #C6A78A;
+  text-decoration: none;
 }
 
 .row {
@@ -146,16 +159,16 @@ a {
   letter-spacing: -.5px;
   display: inline-block;
   float: left;
-  height: 90.5vh;
+  height: 92vh;
   width: 15vw;
   background: #013038;
   padding-left: 10px;
   overflow: auto;
-  box-shadow: 1px 0px 1px 0px #013038;
+  box-shadow: 1px 0px 0px 0px #013038;
 }
 
 #search-tag {
-  margin: 5px 5px 15px 0;
+  margin: 5px 5px 5px 0;
   border-radius: 10px;
   height: 30px;
   width: 84%;
