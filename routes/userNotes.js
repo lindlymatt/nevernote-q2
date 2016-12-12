@@ -99,4 +99,21 @@ router.patch('/:id', (req, res, next) => {
   }
 });
 
+router.delete('/:id', (req, res, next) => {
+  const user = req.body.userId;
+  knex('user_notes')
+    .where('user_notes.user_id', user)
+    .andWhere('user_notes.note_id', req.params.id)
+    .del(['user_id', 'note_id', 'read_only'])
+    .then((deletedNote) => {
+      if (deletedNote.length === 0) {
+        return res.status(404).send('Not Found');
+      }
+      res.json(deletedNote);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
