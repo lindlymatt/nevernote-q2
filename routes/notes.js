@@ -39,11 +39,27 @@ router.post('/', ev(validations.post), (req, res, next) => {
     newNote.parent_folder = req.body.parentFolder;
   }
 
+  let newUserNote = {
+    'user_id': req.body.userId,
+  };
+
+  if (typeof(req.body.readOnly) !== 'undefined') {
+    newUserNote.read_only = req.body.readOnly;
+  }
+
   knex('notes')
     .insert(newNote, '*')
     .then((note) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.send(camelizeKeys(note[0]));
+      newUserNote.note_id = note[0].id;
+      knex('user_notes')
+        .insert(newUserNote)
+        .then((userNote) => {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.send(camelizeKeys(note[0]));
+        })
+        .catch((err) => {
+          next(err);
+        });
     })
     .catch((err) => {
       next(err);
@@ -52,7 +68,6 @@ router.post('/', ev(validations.post), (req, res, next) => {
 
 router.patch('/:id', ev(validations.patch), (req, res, next) => {
   let noteUpdates = {};
-
   if (typeof(req.body.name) !== 'undefined') {
     noteUpdates.name = req.body.name;
   }
@@ -79,7 +94,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
 
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   knex('notes')
-    .where('id', req.params.id)
+    .where('id', req.body.id)
     .first()
     .then((note) => {
       if (!note) {

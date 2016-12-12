@@ -1,5 +1,18 @@
 'use strict';
 
+// var simplemde = document.getElementById("iframe").contentWindow.simplemde;
+var simplemde;
+$(document).ready(function() {
+  $('iframe').on('load', () => {
+    simplemde = document.getElementById("iframe").contentWindow.simplemde;
+    $.getJSON('/workspace')
+    .done((workspace) => {
+      console.log(simplemde);
+      addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
+    });
+  });
+});
+
 function createSidebarStructure(folderObj) {
   /**
   * Generates a jQuery Object of divs that acts as the users navigation
@@ -55,9 +68,33 @@ function createNote(note) {
   */
 
   let $noteDiv = $('<div>')
-      .addClass('note');
+      .addClass('note')
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
+      .on('click', function(event){
+        console.log(event.target);
+        console.log('clicked');
+        console.log(simplemde);
+        var noteId = `${note.id}`;
+        getNote(noteId);
+        var noteName = $('#note_' + noteId).text();
+        var siblings = $(event.target).parent().siblings();
+        let parentId;
+        for (let i = 0; i < siblings.length; i++) {
+          if ($(siblings[i]).is('h5')) {
+            parentId = $(siblings[i]).attr('id').split('_')[1];
+          }
+        }
+        if (!parentId) {
+          parentId = null;
+        }
+        console.log(parentId);
+        var noteContent = simplemde.value();
+        var interval = 1000 * 5;
+        setInterval(function() {
+          patchNote(noteName, localStorage.smde_content, noteId, parentId);
+        }, interval);
+        })
       .text(' ' + note.name);
   let $noteI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
@@ -87,80 +124,26 @@ function addSidebarFilesToPage(userWorkspace) {
   });
 }
 
-// An example of a workspace object returned from the database
-const userInfo = {
-    "folders": [
-        {
-            "childFolders": [
-                {
-                    "childFolders": [{
-                      "childFolders": [],
-                      "folderNotes": [{
-                        "id": 13,
-                        "name": "Aidan's Dank Note",
-                        "note_id": 13,
-                        "parent_folder": 3
-                      }],
-                      "id": 14,
-                      "name": "This is another folder",
-                      "parent_folder": 3,
-                      "user_id": 2
-                    }],
-                    "folderNotes": [
-                        {
-                            "content": "This is Matt Pestridge's note \n ## This is the second line.",
-                            "created_at": "2016-12-10T20:28:40.197Z",
-                            "id": 2,
-                            "name": "Pestridge Test Note",
-                            "note_id": 3,
-                            "parent_folder": 3,
-                            "read_only": false,
-                            "updated_at": "2016-12-10T20:28:40.197Z",
-                            "user_id": 2
-                        }
-                    ],
-                    "id": 3,
-                    "is_secure": false,
-                    "name": "I gave my wife to Lindly",
-                    "parent_folder": 4,
-                    "user_id": 2
-                },
-                {
-                    "childFolders": [],
-                    "folderNotes": [],
-                    "id": 5,
-                    "is_secure": false,
-                    "name": "New Foldaa",
-                    "parent_folder": 4,
-                    "user_id": 2
-                }
-            ],
-            "folderNotes": [],
-            "id": 4,
-            "is_secure": false,
-            "name": "Lindly over Pestridge",
-            "parent_folder": null,
-            "user_id": 2
-        },
-        {
-            "childFolders": [],
-            "folderNotes": [{
-              id: 50,
-              name: 'This is a note!'
-            }],
-            "id": 2,
-            "is_secure": true,
-            "name": "Passwords Folder",
-            "parent_folder": null,
-            "user_id": 2
-        }
-    ],
-    "notes": [
-      {
-        id: 20,
-        name: 'My Random Note'
-      }
-    ]
+//return users workspace object
+// var userId = 2;
+
+//send get request for note
+function getNote(id) {
+  $.getJSON('/notes/' + id)
+  .done((note) => {
+    simplemde.value(note.content);
+  });
 };
 
-addSidebarFilesToPage(userInfo); // Create sidebar navigation for the user
+//send patch request to note
+function patchNote(name, content, id, parentFolder) {
+  const options = {
+    contentType: 'application/JSON',
+    data: JSON.stringify({name, content, parentFolder}),
+    dataType: 'json',
+    type: 'PATCH',
+    url: '/notes/' + id
+  }
+  $.ajax(options)
+  .done();
+};
