@@ -17,10 +17,11 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 // GET: All users.
 router.get('/', (req, res, next) => {
   knex('users')
-    .then(results => {
-      res.status(200).send(results);
+    .select(['id', 'first_name', 'email', 'created_at', 'updated_at'])
+    .then((results) => {
+      res.status(200).send(camelizeKeys(results));
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
@@ -38,15 +39,19 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
       // After determining if the ID exists and is valid; find it.
       return knex('users')
         .where('users.id', id)
+        .select(['id', 'first_name', 'email', 'created_at', 'updated_at'])
         .first()
-        .then(result => {
-          res.status(200).send(result);
+        .then((result) => {
+          if (!result) {
+            return next();
+          }
+          res.status(200).send(camelizeKeys(result));
         })
-        .catch(err => {
+        .catch((err) => {
           next(err);
         });
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
@@ -56,16 +61,17 @@ router.post('/', ev(validations.post), (req, res, next) => {
   const { firstName, email, password } = req.body;
 
   let newUser = { firstName, email };
-  bcrypt.hash(password, 10).then(result => {
+  bcrypt.hash(password, 10).then((result) => {
     newUser.hashed_password = result;
     return knex('users')
       .insert(decamelizeKeys(newUser))
-      .then(result => {
+      .returning(['id', 'first_name', 'email', 'created_at', 'updated_at'])
+      .then((result) => {
         delete newUser.hashed_password;
-        res.status(200).send(newUser);
+        res.status(200).send(camelizeKeys(result[0]));
       });
   })
-  .catch(err => {
+  .catch((err) => {
     next(err);
   });
 });
@@ -81,7 +87,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     // Query and make sure the ID is fine.
     return knex('users')
       .max('id')
-      .then(results => {
+      .then((results) => {
         if (!results || !id || id <= 0 || id > results) {
           return res.status(401).send('Unauthorized Access.');
         }
@@ -89,15 +95,16 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
         return knex('users')
           .update(decamelizeKeys(newUser))
           .where('id', id)
-          .then(updated => {
+          .returning(['id', 'first_name', 'email', 'created_at', 'updated_at'])
+          .then((updated) => {
             delete newUser.hashed_password;
-            res.status(200).send(camelizeKeys(newUser));
+            res.status(200).send(camelizeKeys(updated[0]));
           });
       })
-      .catch(err => {
+      .catch((err) => {
         next(err);
       });
-  })
+  });
 });
 
 // DELETE w/ ID: Deletes an individual user by ID.
@@ -106,7 +113,7 @@ router.delete('/:id', ev(validations.delete), (req, res, next) => {
 
   knex('users')
     .max('id')
-    .then(results => {
+    .then((results) => {
       if (!results || !id || id <= 0 || id > results) {
         return res.status(401).send('Unauthorized Access.');
       }
@@ -114,11 +121,11 @@ router.delete('/:id', ev(validations.delete), (req, res, next) => {
       return knex('users')
         .del([ 'first_name', 'email' ])
         .where('users.id', id)
-        .then(deleted => {
+        .then((deleted) => {
           res.status(200).send(deleted[0]);
         });
     })
-    .catch(err => {
+    .catch((err) => {
       next(err);
     });
 });
