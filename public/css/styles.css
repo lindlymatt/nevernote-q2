@@ -139,8 +139,20 @@ a:active {
 
 /* Navigation Elements */
 .logo {
-  position: inherit;
-  text-align: center;
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+}
+
+.logo-color1 {
+
+}
+
+.logo-color2 {
+
 }
 
 .workspace-title {
