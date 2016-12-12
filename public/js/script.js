@@ -34,8 +34,8 @@ $(document).ready(function() {
     });
 
     $('#workspace').click(event => {
-        $('#workspace').find('*').removeClass('inside');
         if($(event.target).is('h5')) {
+            $('#workspace').find('*').removeClass('inside');
             $(event.target).addClass('inside');
         }
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 }
             }
         }
-        if (!isFolder) {
+        if (!isFolder && $(event.target).is('h5')) {
             if($(event.target).text().length < 10) {
                 $('.logo').css('left', '50%');
                 $('#note-text').text($(event.target).text());
