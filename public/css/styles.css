@@ -45,6 +45,7 @@ table {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  color: #FBF7EB;
 }
 
 
@@ -60,7 +61,8 @@ nav {
   padding: 10px;
   padding-bottom: 1px;
   height: 68px;
-  background-color: green;
+  background-color: #284950;
+  box-shadow: 0px 1px 1px 0px #284950;
 }
 
 .row {
@@ -117,16 +119,21 @@ nav {
   float: left;
   height: 1000vh;
   width: 15vw;
-  background: orange;
+  background: #013038;
   padding-left: 10px;
   overflow: hidden;
+  box-shadow: 1px 0px 1px 0px #013038;
 }
 
 #search-tag {
   margin: 5px 5px 15px 0;
-  border-radius: 3px;
+  border-radius: 10px;
   height: 30px;
   width: 84%;
+}
+
+.highlight:hover {
+  color: #A3856B;
 }
 
 .fa-search {
@@ -153,10 +160,11 @@ nav {
   display: inline-block;
   height: 100vh;
   width: 85vw;
+  background: #013038;
 }
 
 iframe {
-  border: 1px black solid;
+  /*border: 1px black solid;*/
   width: 100%;
   height: 100%;
 }
