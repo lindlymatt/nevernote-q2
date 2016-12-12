@@ -28,6 +28,10 @@ $(document).ready(function() {
     $('#modal-submit-button').on('click', () => {
         $('#faded-background').hide();
     });
+    
+    $('#modal-close-button').on('click', () => {
+        $('#faded-background').hide();
+    });
 
     $('#workspace').click(event => {
         let isFolder = $(event.target).parent().hasClass('folder');
