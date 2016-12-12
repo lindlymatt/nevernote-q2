@@ -81,30 +81,67 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const id = req.params.id;
   const { firstName, email, password } = req.body;
 
-  let newUser = { firstName, email };
-  bcrypt.hash(password, 10).then(result => {
-    newUser.hashed_password = result;
-    // Query and make sure the ID is fine.
-    return knex('users')
-      .max('id')
-      .then((results) => {
-        if (!results || !id || id <= 0 || id > results) {
-          return res.status(401).send('Unauthorized Access.');
-        }
-        // After determining if the ID exists and is valid; find it.
-        return knex('users')
-          .update(decamelizeKeys(newUser))
-          .where('id', id)
-          .returning(['id', 'first_name', 'email', 'created_at', 'updated_at'])
-          .then((updated) => {
-            delete newUser.hashed_password;
-            res.status(200).send(camelizeKeys(updated[0]));
+  let changes = {};
+  if (firstName) {
+    changes.first_name = firstName;
+  }
+
+  if (email) {
+    changes.email = email;
+  }
+
+  if (password) {
+    bcrypt.hash(password, 10)
+      .then((result) => {
+        changes.hashed_password = result;
+        knex('users')
+          .where('users.id', id)
+          .then((user) => {
+            if (!user) {
+              return res.status(401).send('Unauthorized Access');
+            }
+
+            knex('users')
+              .update(changes, ['id', 'first_name', 'email', 'created_at', 'updated_at'])
+              .where('users.id', id)
+              .then((updatedUser) => {
+                delete changes.hashed_password;
+                res.status(200).send(camelizeKeys(updatedUser[0]));
+              })
+              .catch((err) => {
+                next(err);
+              });
+          })
+          .catch((err) => {
+            next(err);
           });
       })
       .catch((err) => {
         next(err);
       });
-  });
+  } else {
+    knex('users')
+      .where('users.id', id)
+      .then((user) => {
+        if (!user) {
+          return res.status(401).send('Unauthorized Access');
+        }
+
+        knex('users')
+          .update(changes, ['id', 'first_name', 'email', 'created_at', 'updated_at'])
+          .where('users.id', id)
+          .then((updatedUser) => {
+            delete changes.hashed_password;
+            res.status(200).send(camelizeKeys(updatedUser[0]));
+          })
+          .catch((err) => {
+            next(err);
+          });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 });
 
 // DELETE w/ ID: Deletes an individual user by ID.
