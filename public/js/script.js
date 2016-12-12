@@ -30,7 +30,8 @@ $(document).ready(function() {
     });
 
     $('#workspace').click(event => {
-        $(event.target).css('background-color', 'white');
-        $(event.target).css('color', 'black');
+        console.log($(event.target));
+            // $(event.target).addClass('inside');
+        // }
     });
 });
