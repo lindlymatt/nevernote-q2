@@ -65,6 +65,38 @@ $(document).ready(function() {
             }
         }
     });
+    let emailDropdown = $("#email-dropdown");
+    let helpDropdown = $("#help-dropdown");
+    let sortDropdown = $("#sort-dropdown");
 
+    $('#user-text').click((event) => {
+      emailDropdown.toggleClass('show');
+    });
 
+    $('#help-text').click((event) => {
+      helpDropdown.toggleClass('show');
+    });
+
+    $('#sort-text').click((event) => {
+      sortDropdown.toggleClass('show');
+    });
+    /* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+// function myFunction() {
+//     $("#sort-dropdown").toggleClass("show");
+// }
+
+// Close the dropdown menu if the user clicks outside of it
+// $(window).click = function(event) {
+//   if ($(!event.target).matches($('.dropa'))) {
+//
+//     var dropdowns = $(".dropdown-content");
+//     for (var i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// };
 });
