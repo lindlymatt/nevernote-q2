@@ -30,21 +30,25 @@ router.post('/token', (req, res, next) => {
     email,
     password
   } = decamelizeKeys(req.body);
-
   knex('users')
     .where('email', email)
     .first()
     .then(data => {
       if (data) {
-        bcrypt.compare(password, data.hashed_password, (e, r) => {
-          if (r === true) {
-            let token = jwt.sign({
-              userId: data.id, firstName: data.first_name
-            }, process.env.JWT_SECRET);
-            res.cookie('token', token, { httpOnly: true });
-            return res.status(200).send('Success!');
-          }
-          res.status(401).send('Unauthorized.');
+        bcrypt.compare(password, data.hashed_password)
+          .then((match) => {
+            if (match === true) {
+              let token = jwt.sign({
+                userId: data.id,
+                firstName: data.first_name
+              }, process.env.JWT_SECRET);
+              res.cookie('token', token, { httpOnly: true });
+              return res.status(200).send('Success!');
+            }
+            res.status(401).send('Unauthorized.');
+        })
+        .catch((err) => {
+          res.status(401).send('Unauthorized');
         });
       } else {
         res.status(404).send('Not Found');
