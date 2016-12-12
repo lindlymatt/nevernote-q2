@@ -32,7 +32,7 @@
   <nav>
     <div class="row">
       <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> Matt's Workspace</h1>
-      <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
+      <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span id="note-text" class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
       <div class="dropdown">
         <a href="#/" class="right-align top-item dropa" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
@@ -56,7 +56,7 @@
       <a id="new-note" href="#/" class="left-align menu-item">NEW NOTE</a>
       <a id="new-folder" href="#/" class="left-align menu-item">NEW FOLDER</a>
       <div class="dropdown">
-        <a href="#/" class="left-align menu-item dropa">SORT PREFERENCES<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
+        <a href="#/" id="sort-text" class="left-align menu-item dropa">SORT PREFERENCES<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
         <div id="sort-dropdown" class="dropdown-content">
           <a href="#">Do Something</a>
           <a href="#">Do Something Else</a>
@@ -69,7 +69,7 @@
   <!-- Start the Application Interface -->
   <main>
     <div id="workspace">
-      <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i class="fa fa-search fa-fw" aria-hidden="true"></i>
+      <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i id="search-icon" class="fa fa-search fa-fw" aria-hidden="true"></i>
     </div>
     <div id="editor">
       <iframe src="simpleMDE.html">

@@ -34,6 +34,11 @@ $(document).ready(function() {
     });
 
     $('#workspace').click(event => {
+        $('#workspace').find('*').removeClass('inside');
+        if($(event.target).is('h5')) {
+            $(event.target).addClass('inside');
+        }
+
         let isFolder = $(event.target).parent().hasClass('folder');
         if (isFolder) {
             if($(event.target).children().first().is('i')) {
@@ -48,13 +53,32 @@ $(document).ready(function() {
                 }
             }
         }
+        if (!isFolder) {
+            if($(event.target).text().length < 10) {
+                $('.logo').css('left', '50%');
+                $('#note-text').text($(event.target).text());
+            }
+            else {
+                $('.colon').css('font-size', '2rem');
+                $('.logo').css('left', '50%').css('font-size', '2rem');
+                $('#note-text').text($(event.target).text());
+            }
+        }
     });
     let emailDropdown = $("#email-dropdown");
     let helpDropdown = $("#help-dropdown");
     let sortDropdown = $("#sort-dropdown");
 
-    emailDropdown.click(function() {
-      $(this).toggleClass("show");
+    $('#user-text').click((event) => {
+      emailDropdown.toggleClass('show');
+    });
+
+    $('#help-text').click((event) => {
+      helpDropdown.toggleClass('show');
+    });
+
+    $('#sort-text').click((event) => {
+      sortDropdown.toggleClass('show');
     });
     /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -63,7 +87,7 @@ toggle between hiding and showing the dropdown content */
 // }
 
 // Close the dropdown menu if the user clicks outside of it
-// $(window).onclick = function(event) {
+// $(window).click = function(event) {
 //   if ($(!event.target).matches($('.dropa'))) {
 //
 //     var dropdowns = $(".dropdown-content");
