@@ -15,6 +15,10 @@ require('dotenv').config();
 
 app.use(express.static(path.join('public')));
 app.use(cookieParser());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
 app.use(bodyParser.json());
 
 // Authentication
