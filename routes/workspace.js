@@ -7,12 +7,12 @@ const {camelizeKeys} = require('humps');
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
-router.get('/:user_id', (req, res, next) => {
+router.get('/', (req, res, next) => {
   var userFolders;
   var userNotes;
   Promise.all([
     knex('folders')
-    .where('user_id', req.params.user_id)
+    .where('user_id', req.body.id)
     .orderBy('name')
     .then((folders) => {
       userFolders = folders;

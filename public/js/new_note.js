@@ -8,12 +8,10 @@ $(document).ready(function() {
     var $parent;
     getParent();
     if($formType === 'Folder Name: '){
-      getParent('folder');
       return postFolder($name, $parent);
     }
     else if($formType === 'Note Name: '){
       var noteContent = '';
-      getParent('note');
       return postNote($name, noteContent, $parent);
     }
   });

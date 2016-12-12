@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 app.disable('x-powered-by');
 
-// require('dotenv').config();
+require('dotenv').config();
 
 app.use(express.static(path.join('public')));
 app.use(cookieParser());
