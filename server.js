@@ -36,10 +36,10 @@ app.use((req, res, next) => {
 });
 
 // Require the routes and define them here.
-const notes = require('./routes/notes');
-const users = require('./routes/users');
-const folders = require('./routes/folders');
 const workspace = require('./routes/workspace');
+const users = require('./routes/users');
+const notes = require('./routes/notes');
+const folders = require('./routes/folders');
 
 // Use the routes to navigate throughout the requests.
 app.use('/', workspace);
