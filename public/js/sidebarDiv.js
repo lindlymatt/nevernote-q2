@@ -76,14 +76,14 @@ function createNote(note) {
         console.log(simplemde);
         var noteId = `${note.id}`;
         getNote(noteId);
-        var noteName = 'my note'; //get from name div
+        var noteName = $('#note_' + noteId).text();
         var noteContent = simplemde.value();
         var interval = 1000 * 5;
         setInterval(function() {
           console.log(noteId);
-          patchNote(name, localStorage.smde_content, noteId);
+          patchNote(noteName, localStorage.smde_content, noteId);
         }, interval);
-        });
+        })
       .text(' ' + note.name);
   let $noteI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
