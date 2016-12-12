@@ -386,12 +386,13 @@ iframe {
 }
 
 #help-dropdown {
-  left: ;
+  left: 63.25%;
   top: 5%;
 }
 
 #sort-dropdown {
-
+  left: 10%;
+  top: 10.5%;
 }
 
 .dropbtn {
