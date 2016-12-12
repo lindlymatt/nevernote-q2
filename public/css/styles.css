@@ -102,6 +102,7 @@ a {
 /* Modal Pop-up */
 
 #faded-background {
+  display: none;
   position: fixed;
   background-color: black;
   top: 0;
@@ -139,6 +140,60 @@ a {
   top: 4%;
   color: #FBF7EB;
   z-index: 3;
+}
+
+#new-icon {
+  display: inline-block;
+  margin: 8px 5px 5px 15px;
+  height: 100px;
+  width: 100px;
+}
+
+#icon-text {
+  font-size: 1.5em;
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  color: black;
+  display: inline-block;
+}
+
+#icon-description {
+  font-size: 1em;
+  position: absolute;
+  top: 23%;
+  left: 20%;
+  color: black;
+  display: inline-block;
+}
+
+#form-description {
+  font-size: 1em;
+  position: absolute;
+  top: 55%;
+  left: 4%;
+  color: black;
+  display: inline-block;
+}
+
+#form-text {
+  position: absolute;
+  top: 65%;
+  height: 10%;
+  margin: 0 6% 0 4%;
+  width: 90%;
+}
+
+#modal-submit-button {
+  font-size: 1em;
+  font-family: 'PT Sans', sans-serif;
+  background-color: #FBF7EB;
+  position: absolute;
+  top: 83%;
+  left: 74%;
+  border-radius: 3px;
+  width: 20%;
+  height: 10%;
 }
 
 
