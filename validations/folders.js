@@ -13,17 +13,14 @@ module.exports.get = {
 
 module.exports.post = {
   body: Joi.object().keys({
-    user_id: Joi.number()
-          .integer()
-          .positive()
-          .required(),
     parent_folder: Joi.number()
           .integer()
           .positive(),
     name: Joi.string()
           .trim()
           .min(1)
-          .max(20),
+          .max(20)
+          .required(),
     is_secure: Joi.boolean()
   })
 };
