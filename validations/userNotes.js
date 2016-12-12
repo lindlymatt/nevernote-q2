@@ -8,6 +8,9 @@ module.exports.post = {
           .integer()
           .positive()
           .required(),
+    foreignUser: Joi.number()
+          .integer()
+          .positive(),
     readOnly: Joi.boolean()
   })
 };

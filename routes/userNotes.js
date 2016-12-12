@@ -20,14 +20,16 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', ev(validations.post), (req, res, next) => {
-  const user = req.body.userId;
+  // Provide a forgeignUser key if you want to give a different user other than the one logged access to a note
+  const loggedInUser = req.body.userId;
   const {
+    foreignUser,
     noteId,
     readOnly
   } = req.body;
 
   let userNote = {
-    user_id: user,
+    user_id: foreignUser || loggedInUser,
     note_id: noteId
   };
 
@@ -44,7 +46,7 @@ router.post('/', ev(validations.post), (req, res, next) => {
       }
 
       knex('user_notes')
-        .where('user_notes.user_id', user)
+        .where('user_notes.user_id', userNote.user_id)
         .andWhere('user_notes.note_id', noteId)
         .then((existingUserNote) => {
           if (existingUserNote.length !== 0) {
