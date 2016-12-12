@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
 const ev = require('express-validation');
-// const validations = require('../validations/notes');
+const validations = require('../validations/userNotes');
 // const { camelizeKeys, decamelizeKeys } = require('humps');
 
 router.get('/', (req, res, next) => {
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', ev(validations.post), (req, res, next) => {
   const user = req.body.userId;
   const {
     noteId,
@@ -66,7 +66,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const user = req.body.userId;
 
   const { readOnly } = req.body;
@@ -99,7 +99,7 @@ router.patch('/:id', (req, res, next) => {
   }
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', ev(validations.delete), (req, res, next) => {
   const user = req.body.userId;
   knex('user_notes')
     .where('user_notes.user_id', user)
