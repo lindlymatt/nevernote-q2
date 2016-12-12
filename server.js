@@ -46,12 +46,14 @@ const workspace = require('./routes/workspace');
 const users = require('./routes/users');
 const notes = require('./routes/notes');
 const folders = require('./routes/folders');
+const userNotes = require('./routes/userNotes.js');
 
 // Use the routes to navigate throughout the requests.
 app.use('/workspace', workspace);
 app.use('/users', users);
 app.use('/notes', notes);
 app.use('/folders', folders);
+app.use('/usernotes', userNotes);
 
 // Error Functions Handling
 app.use((_req, res) => {
