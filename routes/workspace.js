@@ -10,16 +10,17 @@ router.use(bodyParser.json());
 router.get('/', (req, res, next) => {
   var userFolders;
   var userNotes;
+  console.log(req.body);
   Promise.all([
     knex('folders')
-    .where('user_id', req.body.id)
+    .where('user_id', req.body.userId)
     .orderBy('name')
     .then((folders) => {
       userFolders = folders;
     }),
     knex('notes')
     .join('user_notes', 'notes.id', '=', 'user_notes.note_id')
-    .where('user_id', req.params.user_id)
+    .where('user_id', req.body.userId)
     .select('*')
     .orderBy('name')
     .then((notes) => {

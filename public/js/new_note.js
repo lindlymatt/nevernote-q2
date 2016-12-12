@@ -1,6 +1,7 @@
 'use strict';
 
 $(document).ready(function() {
+  
   var $submit = $('#modal-submit-button');
   $submit.on('click', function() {
     var $formType = $('#form-description').text();

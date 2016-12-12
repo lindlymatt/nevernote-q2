@@ -1,5 +1,15 @@
 'use strict';
 
+
+$(document).ready(function() {
+    $.getJSON('/workspace')
+    .done((workspace) => {
+      addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
+      console.log('in here');
+    });
+    console.log('going');
+});
+
 function createSidebarStructure(folderObj) {
   /**
   * Generates a jQuery Object of divs that acts as the users navigation
@@ -99,12 +109,6 @@ function addSidebarFilesToPage(userWorkspace) {
 
 //return users workspace object
 // var userId = 2;
-
-const userInfo =
-  $.getJSON('/workspace')
-  .done((workspace) => {
-    addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
-  });
 
 //send get request for note
 function getNote(id) {
