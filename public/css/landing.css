@@ -166,22 +166,43 @@ span {
 
 #pencil {
   margin-left: 18vw;
-  margin-bottom: 10vw;
+  margin-bottom: 23vw;
   color: #FF5252;
 
 }
 
+#create {
+  margin-left: 5vw;
+  color: #212121;
+  text-align: center;
+
+}
+
+#edit {
+  margin-left: 3vw;
+  color: #212121;
+  text-align: center;
+
+}
+
 #monitor {
-  margin-bottom: 10vw;
+  margin-bottom: 23vw;
   color: #FF5252;
   margin-left: 18vw;
+
+}
+
+#view {
+  padding-left: 3vw;
+  color: #212121;
+  margin-left: 1vw;
 
 }
 
 #notes {
   color: #FF5252;
-  margin-bottom: 10vw;
-  margin-left: 18vw;
+  margin-bottom: 23.5vw;
+  margin-left: 18.5vw;
 }
 
 #firstCard {
