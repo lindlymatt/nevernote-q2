@@ -10,13 +10,6 @@ const { camelizeKeys, decamelizeKeys } = require('humps');
 
 router.use(bodyParser.json());
 
-<<<<<<< HEAD
-router.get('/', function(req, res, next) {
-  console.log('cool duded');
-});
-
-router.get('/:id', function(req, res, next) {
-=======
 router.get('/:id', ev(validations.get), (req, res, next) => {
   knex('notes')
     .where('id', req.params.id)
@@ -72,7 +65,6 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     noteUpdates.parent_folder = req.body.parentFolder;
   }
 
->>>>>>> 588094edfe640d921241183cd1f0d9955030f152
   knex('notes')
     .update(noteUpdates, '*')
     .where('id', req.params.id)
@@ -85,44 +77,6 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     });
 });
 
-<<<<<<< HEAD
-router.post('/', (req, res, next) => {
-  var {content, name} = req.body;
-  knex('notes')
-  .insert({
-    content,
-    name
-  }, '*')
-  .then((note) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send(note[0]);
-  })
-});
-
-router.patch('/:id', (req, res, next) => {
-  var {name, content} = req.body;
-  knex('notes')
-  .where('id', req.params.id)
-  .update({
-    content,
-    name
-  }, '*')
-  .then((note) => {
-    res.send(note);
-  })
-});
-
-router.delete('/:id', (req, res, next) => {
-  knex('notes')
-  .where('id', req.params.id)
-  .del()
-  .then((note) => {
-    res.sendStatus(200);
-  })
-  .catch((err) => {
-    next(err);
-  })
-=======
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   knex('notes')
     .where('id', req.params.id)
@@ -146,7 +100,6 @@ router.delete('/:id', ev(validations.delete), (req, res, next) => {
     .catch((err) => {
       next(err);
     });
->>>>>>> 588094edfe640d921241183cd1f0d9955030f152
 });
 
 module.exports = router;
