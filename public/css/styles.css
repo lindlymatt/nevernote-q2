@@ -306,7 +306,7 @@ a:active {
 .menu-item {
   font-size: .8em;
   padding: 5px;
-  margin-right: 45px;
+  margin-right: 15px;
 }
 
 .user-profile {
@@ -335,6 +335,7 @@ a:active {
 }
 
 #workspace h5:hover {
+  cursor: pointer;
   color: #A3856B;
 }
 
@@ -361,7 +362,7 @@ a:active {
   /*padding: 5px;*/
   margin: 12px;
   margin-left: 10px;
-  width: 100%;
+  tom width: 100%;
 }
 
 #editor {
@@ -382,6 +383,12 @@ iframe {
 
 @media only screen and (max-width: 960px) {
   .logo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  #search-icon {
     display: none;
   }
 }
