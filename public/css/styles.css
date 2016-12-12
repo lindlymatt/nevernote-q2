@@ -60,6 +60,7 @@ body {
   overflow-y: auto;
   color: #FBF7EB;
   background-color: #013038;
+  min-width: 579px;
 }
 
 nav {
@@ -364,10 +365,14 @@ iframe {
   height: 100%;
 }
 
-@media only screen and (min-width: 768px) {
-
+@media only screen and (max-width: 960px) {
+  .logo {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 600px) {
-
+  /*.logo {
+    display: none;
+  }*/
 }
