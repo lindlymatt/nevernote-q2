@@ -69,6 +69,8 @@ function createNote(note) {
 
   let $noteDiv = $('<div>')
       .addClass('note')
+  let $noteh5 = $('<h5>')
+      .attr('id', `note_${note.id}`)
       .on('click', function(){
         console.log('clicked');
         console.log(simplemde);
@@ -82,8 +84,6 @@ function createNote(note) {
           patchNote(name, localStorage.smde_content, noteId);
         }, interval);
         });
-  let $noteh5 = $('<h5>')
-      .attr('id', `note_${note.id}`)
       .text(' ' + note.name);
   let $noteI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
