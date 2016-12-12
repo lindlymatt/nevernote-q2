@@ -50,4 +50,31 @@ router.post('/', ev(validations.post), (req, res, next) => {
     });
 });
 
+router.patch('/:id', ev(validations.patch), (req, res, next) => {
+  let noteUpdates = {};
+
+  if (typeof(req.body.name) !== 'undefined') {
+    noteUpdates.name = req.body.name;
+  }
+
+  if (typeof(req.body.content) !== 'undefined') {
+    noteUpdates.content = req.body.content;
+  }
+
+  if (typeof(req.body.parentFolder) !== 'undefined') {
+    noteUpdates.parent_folder = req.body.parentFolder;
+  }
+
+  knex('notes')
+    .update(noteUpdates, '*')
+    .where('id', req.params.id)
+    .then((updatedNote) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.send(camelizeKeys(updatedNote[0]));
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
