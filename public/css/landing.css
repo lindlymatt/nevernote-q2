@@ -4,20 +4,43 @@
   #navigation {
     padding-left: 0;
     color: black;
+    box-shadow: 0px 10px 50px 100px #284950;
+    background-color: #284950;
+
+
   }
+}
+
+#modal1 {
+  background-color: #D8CFAE;
+}
+
+#modal2 {
+  background-color: #D8CFAE;
+}
+
+#navigation {
+  padding-left: 0;
+  color: black;
+  box-shadow: 0px 10px 50px 100px #284950;
+  background-color: #284950;
+
+
 }
 
 .navText {
   color: black;
+
 }
 
 #navLogo {
   color: black;
+
 }
 
 body {
 
-  background-color: #D8D9DB;
+  background-color: #284950;
   margin-left:0;
   height: auto;
 
@@ -25,6 +48,8 @@ body {
 
 .parallax {
   height: 170%%;
+  box-shadow: 0px 1px 5px -1px #284950;
+
 }
 
 .ripple{
@@ -89,7 +114,7 @@ span {
 }
 
 .b2 {
-  background-color: #F5F5F5;
+  background-color: #D8CFAE;
 }
 
 .b3 {
@@ -104,13 +129,11 @@ span {
 .button-land {
   display: inline-block;
   color: black;
-  margin: 0.3em;
-  padding: 1.2em 5em;
   overflow: hidden;
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  border-radius: 3px;
+  border-radius: 0;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
@@ -157,50 +180,71 @@ span {
    }
 
 #secondSalt {
-  height: 150px;
+  height: 80px;
+  background-color: #284950;
 }
 
 #thirdSalt {
   height: 600px;
+  background-color: #284950;
+
 }
 
 #pencil {
   margin-left: 18vw;
   margin-bottom: 23vw;
-  color: #FF5252;
+  color: #E18B50;
 
 }
 
 #create {
-  margin-left: 5vw;
-  color: #212121;
-  text-align: center;
+  color: #E18B50;
+  font-size: 48px;
+  font-family: 'Cinzel', serif;
 
 }
 
+#recall {
+  width: auto;
+  margin-top: 300vw;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-left: 4vw;
+}
+
+#pencilText {
+  margin-top: -293vw;
+}
+
 #edit {
-  margin-left: 3vw;
-  color: #212121;
+  margin-left: 2vw;
+  color: #E18B50;
   text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+
 
 }
 
 #monitor {
   margin-bottom: 23vw;
-  color: #FF5252;
+  color: #E18B50;
   margin-left: 18vw;
 
 }
 
 #view {
-  padding-left: 3vw;
-  color: #212121;
+  padding-left: 2vw;
+  color: #E18B50;
   margin-left: 1vw;
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+
 
 }
 
 #notes {
-  color: #FF5252;
+  color: #E18B50;
   margin-bottom: 23.5vw;
   margin-left: 18.5vw;
 }
@@ -209,7 +253,7 @@ span {
   margin-left: 12vw;
   width: 25vw;
   height: auto;
-  background-color: #D8D9DB;
+  background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 21px;
 }
@@ -218,7 +262,7 @@ span {
   width: 25.3vw;
   margin-left: 4vw;
   height: auto;
-  background-color: #D8D9DB;
+  background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 21px;
 
@@ -228,8 +272,40 @@ span {
   width: 25vw;
   height: auto;
   margin-left: 13vw;
-  background-color: #D8D9DB;
+  background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 21px;
+
+}
+
+
+.logo {
+ position: absolute;
+ top: 6.5%;
+ margin-left: 1vw;
+ /* bring your own prefixes */
+ transform: translate(-50%, -50%);
+ font-size: 3rem;
+ font-family: 'Cinzel', serif;
+}
+
+.logo-color1 {
+ color: #E18B50 ;
+ /*text-shadow: .05rem .05rem #FBF7EB ;*/
+}
+
+.logo-color2 {
+ color: #FBF7EB ;
+ margin-left: -6.5vw;
+}
+
+.colon {
+ font-size: 3.5rem;
+ margin-left: -1vw;
+}
+
+#columns {
+  background-color: #284950;
+  height: auto;
 
 }
