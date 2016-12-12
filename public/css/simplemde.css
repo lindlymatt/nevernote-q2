@@ -1,6 +1,7 @@
 .editor-toolbar {
-  height: 6vh !important;
   background-color: #FBF7EB;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .CodeMirror {

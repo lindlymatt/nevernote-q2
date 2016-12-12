@@ -30,8 +30,19 @@ $(document).ready(function() {
     });
 
     $('#workspace').click(event => {
-        console.log($(event.target));
-            // $(event.target).addClass('inside');
-        // }
+        let isFolder = $(event.target).parent().hasClass('folder');
+        if (isFolder) {
+            if($(event.target).children().first().is('i')) {
+                $(event.target).children().first().toggleClass('fa-folder-o');
+                $(event.target).children().first().toggleClass('fa-folder-open-o');
+            }
+            let children = $(event.target).parent().children();
+            for (let i = 0; i < children.length; i++) {
+                let child = children[i];
+                if ($(child).is('div')) {
+                    $(child).toggle();
+                }
+            }
+        }
     });
 });
