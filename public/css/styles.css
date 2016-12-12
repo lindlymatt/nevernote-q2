@@ -75,19 +75,25 @@ a {
   text-decoration: none;
 }
 
+
 /* unvisited link */
+
 a:link {
   color: #FBF7EB;
   text-decoration: none;
 }
 
+
 /* mouse over link */
+
 a:hover {
   color: #7A7863;
   text-decoration: none;
 }
 
+
 /* selected link */
+
 a:active {
   color: #C6A78A;
   text-decoration: none;
@@ -133,7 +139,7 @@ a:active {
 
 #modal {
   position: absolute;
-  background-color: #666666;
+  background-color: #2B504C;
   border-radius: 10px;
   top: 30%;
   left: 30%;
@@ -227,6 +233,7 @@ a:active {
 
 
 /* Navigation Elements */
+
 .logo {
   position: absolute;
   top: 6.5%;
