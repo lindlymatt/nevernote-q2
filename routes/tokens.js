@@ -8,7 +8,7 @@
 var express = require('express');
 var router = express.Router();
 var ev = require('express-validation');
-var validations = require('../validations/users');
+var validations = require('../validations/tokens');
 var knex = require('../knex');
 var bcrypt = require('bcrypt-as-promised');
 var jwt = require('jsonwebtoken');
@@ -25,7 +25,7 @@ router.get('/token', (req, res, next) => {
   });
 });
 
-router.post('/token', (req, res, next) => {
+router.post('/token', ev(validations.post), (req, res, next) => {
   const {
     email,
     password
