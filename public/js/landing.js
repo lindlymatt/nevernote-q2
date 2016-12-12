@@ -36,9 +36,9 @@
 
 $(document).ready(function() {
     console.log( "ready!" );
-    $('#sickk').on('click', function() {
-      alert($('#email').val());
-    });
+    // $('#sickk').on('click', function() {
+    //   alert($('#email').val());
+    // });
 
     $('.tooltipped').tooltip({delay: 50});
 
