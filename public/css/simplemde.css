@@ -1,5 +1,6 @@
 .editor-toolbar {
   background-color: #FBF7EB;
+  border-radius: 7px;
 }
 
 .CodeMirror {

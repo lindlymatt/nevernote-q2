@@ -9,8 +9,8 @@
   <script src="https://use.fontawesome.com/ff8b645e3b.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
-  <script type="text/javascript" src="../js/sidebar.js"></script>
   <script type="text/javascript" src="../js/new_note.js"></script>
+  <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         <img id="new-icon" src="../img/new-folder-icon.png" />
         <h5 id="icon-text">Create New RE:Folder</h5>
         <h5 id="icon-description">Enter your new folder name, and then hit the save button to create it!</h5>
-        <img width="100%" src="../img/divider.jpg" />
+        <img id="divider" width="100%" src="../img/divider.jpg" />
         <h5 id="form-description">Folder Name: </h5>
         <input id="form-text" type="text" name="new-item" />
         <button id="modal-submit-button" type="submit">SUBMIT</button>
@@ -34,7 +34,7 @@
       <h1 class="left-align workspace-title"><i class="fa fa-apple fa-fw" aria-hidden="true"></i> Matt's Workspace</h1>
       <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
-      <a href="#/" class="right-align top-item" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
+      <a href="#/" class="right-align top-item" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
       <img class="user-profile right-align" src="../img/mpestridge.png" />
       <a href="#/" class="right-align top-item" id="help-text">HELP<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
 
@@ -50,42 +50,6 @@
   <main>
     <div id="workspace">
       <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i class="fa fa-search fa-fw" aria-hidden="true"></i>
-      <div class="folder">
-        <h5><i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> Matt's Folder</h5>
-        <div class="folder">
-          <h5><i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> Matt's Tier 1 Folder</h5>
-          <div class="folder">
-            <h5><i class="fa fa-folder-o fa-fw" aria-hidden="true"></i> Matt's Tier 2 Folder</h5>
-          </div>
-          <div class="note">
-            <h5><i class="fa fa-folder-o fa-fw" aria-hidden="true"></i> Matt's Tier 2 Note</h5>
-          </div>
-        </div>
-        <div class="note">
-          <h5><i class="fa fa-sticky-note-o fa-fw" aria-hidden="true"></i> Matt's Tier 1 Note</h5>
-        </div>
-      </div>
-      <div class="note">
-        <h5><i class="fa fa-sticky-note-o fa-fw" aria-hidden="true"></i> Matt's Note</h5>
-      </div>
-      <div class="folder">
-        <h5><i class="fa fa-folder-o fa-fw" aria-hidden="true"></i> Matt's Folder</h5>
-      </div>
-      <div class="folder">
-        <h5><i class="fa fa-folder-o fa-fw" aria-hidden="true"></i> Matt's Folder</h5>
-      </div>
-      <div class="folder">
-        <h5><i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> Matt's Folder</h5>
-        <div class="folder">
-          <h5><i class="fa fa-folder-o fa-fw" aria-hidden="true"></i> Matt's Tier 1 Folder</h5>
-        </div>
-      </div>
-      <div class="folder">
-        <h5><i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> Matt's Folder</h5>
-      </div>
-      <div class="folder">
-        <h5><i class="fa fa-lock fa-fw" aria-hidden="true"></i> Matt's Secured  Folder</h5>
-      </div>
     </div>
     <div id="editor">
       <iframe src="simpleMDE.html">
