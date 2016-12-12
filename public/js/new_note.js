@@ -1,8 +1,10 @@
 'use strict';
 
+var $parent;
+var $currentFolder;
 $(document).ready(function() {
   var $submit = $('#modal-submit-button');
-  var $parent;
+
   $submit.on('click', function() {
     var $formType = $('#form-description').text();
     var $name = $('#form-text').val();
@@ -15,23 +17,27 @@ $(document).ready(function() {
       return postNote($name, noteContent, $parent);
     }
   });
-  function getParent() {
-    var $workspace = $('#workspace').children();
-    if($workspace.hasClass('inside')){
-      var $inside = $('.inside');
-      if($inside.has('.folder')){
-        return $parent = $inside.attr('id').slice(6);
-      }
-      else if($inside.has('.note')){
-        //go to parent. do same as above ^
-        return $parent = $inside.parent().attr('id').slice(4);
-      }
-    }
-    else{
-      return $parent = null;
-    }
-  };
 });
+
+function getParent() {
+  if ($('*').hasClass('inside')) {
+    var $inside = $('.inside');
+    $currentFolder = $inside.parent().parent();
+    var $insideEle = $('.inside').get(0).id;
+    if ($inside.parent().has('.folder')){
+      $parent = $inside.attr('id').slice(7);
+      return;
+    }
+    else if ($inside.parent().has('.note')){
+      //go to parent. do same as above ^
+      $parent = $inside.parent().attr('id').slice(4);
+      return;
+    }
+  }
+  else {
+    return $parent = null;
+  }
+};
 
 //post new note
 function postNote(name, content, parentId) {
@@ -49,14 +55,18 @@ function postNote(name, content, parentId) {
 
 //post new folder
 function postFolder(name, parentId) {
-  const request = {
-    contentType: 'application/JSON',
-    data: JSON.stringify({name, parentId}),
-    dataType: 'json',
-    type: 'POST',
-    url: '/folders'
-  }
-  console.log(request);
-  $.ajax(request)
-  .done(console.log('done!'));
+  $.post('/folders', { name: name, parentFolder: $parent }, response => {
+      var fId = response[0].id;
+      let $folderDiv = $('<div>')
+          .addClass('folder');
+      let $folderh5 = $('<h5>')
+          .attr('id', `folder_${fId}`)
+          .text(' ' + name);
+      let $folderI = $('<i>')
+          .addClass('fa fa-folder-o fa-fw')
+          .attr('aria-hidden', true);
+
+      $currentFolder.append($folderI);
+      return $currentFolder.append($folderh5);
+  });
 };
