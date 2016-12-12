@@ -32,7 +32,7 @@ app.use((req, res, next) => {
       return res.status(401).send('Unauthorized.');
     }
 
-    req.body.userId = req.cookies.token.userId;
+    req.body.userId = d.userId;
     next();
   });
 });
