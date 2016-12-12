@@ -45,10 +45,9 @@ router.post('/token', (req, res, next) => {
               res.cookie('token', token, { httpOnly: true });
               return res.status(200).send('Success!');
             }
-          res.status(401).send('Unauthorized.');
+            res.status(401).send('Unauthorized.');
         })
         .catch((err) => {
-          console.log(err);
           res.status(401).send('Unauthorized');
         });
       } else {
