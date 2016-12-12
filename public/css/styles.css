@@ -379,7 +379,8 @@ iframe {
 }
 
 /*Dropdown stylizing*/
-/* Dropdown Button */
+
+/* Dropdown Boxes */
 #email-dropdown {
   left: 83%;
   top: 5%;
@@ -391,7 +392,7 @@ iframe {
 }
 
 #sort-dropdown {
-  left: 10%;
+  left: 12%;
   top: 10.5%;
 }
 
@@ -403,11 +404,6 @@ iframe {
     border: none;
     cursor: pointer;
 }
-
-/* Dropdown button on hover & focus */
-/*.dropa:hover, .dropa:focus {
-    background-color: #E18B50;
-}*/
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -427,13 +423,28 @@ iframe {
 }
 
 /* Show the dropdown menu */
-.show {display:block;}
+.show {display: block;}
 
 /* Media Query Changes */
 
 @media only screen and (max-width: 960px) {
   .logo {
     display: none;
+  }
+
+  #email-dropdown {
+    left: 77%;
+    top: 5%;
+  }
+
+  #help-dropdown {
+    left: 51%;
+    top: 5%;
+  }
+
+  #sort-dropdown {
+    left: 13.5%;
+    top: 10.5%;
   }
 }
 
