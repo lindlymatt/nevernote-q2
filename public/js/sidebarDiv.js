@@ -133,6 +133,7 @@ function patchNote(name, content, id) {
     type: 'PATCH',
     url: '/notes/' + id
   }
+  console.log(options);
   $.ajax(options)
   .done();
 };

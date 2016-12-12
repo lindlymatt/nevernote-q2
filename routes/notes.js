@@ -52,7 +52,6 @@ router.post('/', ev(validations.post), (req, res, next) => {
 
 router.patch('/:id', ev(validations.patch), (req, res, next) => {
   let noteUpdates = {};
-
   if (typeof(req.body.name) !== 'undefined') {
     noteUpdates.name = req.body.name;
   }
