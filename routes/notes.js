@@ -77,4 +77,29 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     });
 });
 
+router.delete('/:id', ev(validations.delete), (req, res, next) => {
+  knex('notes')
+    .where('id', req.params.id)
+    .first()
+    .then((note) => {
+      if (!note) {
+        return res.status(404).send('Not Found');
+      }
+
+      knex('notes')
+        .del('*')
+        .where('id', req.params.id)
+        .then((deletedNote) => {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.send(camelizeKeys(deletedNote[0]));
+        })
+        .catch((err) => {
+          next(err);
+        });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
