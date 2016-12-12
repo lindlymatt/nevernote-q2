@@ -60,6 +60,7 @@ body {
   overflow-y: auto;
   color: #FBF7EB;
   background-color: #013038;
+  min-width: 579px;
 }
 
 nav {
@@ -139,7 +140,7 @@ a:active {
 
 #modal {
   position: absolute;
-  background-color: #2B504C;
+  background-color: #041E2B;
   border-radius: 10px;
   top: 30%;
   left: 30%;
@@ -270,9 +271,17 @@ a:active {
   font-family: 'Cinzel', serif;
 }
 
+.logo-small {
+  width: 3.25rem;
+  height: inherit;
+  margin-top: -1rem;
+  margin-bottom: -.3rem;
+  border-right: 1px #E18B50 solid;
+  padding-right: 5px;
+}
+
 .logo-color1 {
   color: #E18B50;
-  /*text-shadow: .05rem .05rem #FBF7EB;*/
 }
 
 .logo-color2 {
@@ -369,4 +378,10 @@ iframe {
 }
 
 
-/* Drop-down Support */
+/* Media Query Changes */
+
+@media only screen and (max-width: 960px) {
+  .logo {
+    display: none;
+  }
+}
