@@ -126,7 +126,6 @@ a:active {
 /* Modal Pop-up */
 
 #faded-background {
-  display: none;
   position: fixed;
   background-color: black;
   top: 0;
@@ -143,10 +142,14 @@ a:active {
   border-radius: 10px;
   top: 30%;
   left: 30%;
-  height: 40%;
-  width: 40%;
+  height: 40vh;
+  width: 40vw;
   z-index: 3;
+  font-size: 1vw;
 }
+
+
+/* Start Responsive Modal Design */
 
 #modal-text-box {
   position: absolute;
@@ -164,35 +167,44 @@ a:active {
   top: 4%;
   color: #FBF7EB;
   z-index: 3;
+  font-size: 1vw;
 }
 
 #new-icon {
   display: inline-block;
   margin: 8px 5px 5px 15px;
-  height: 100px;
-  width: 100px;
+  width: 15%;
 }
 
 #icon-text {
-  font-size: 1.5rem;
+  font-size: 1.3vw;
   position: absolute;
-  top: 8%;
+  top: 9%;
   left: 20%;
+  height: 10%;
   color: black;
   display: inline-block;
 }
 
 #icon-description {
-  font-size: 1rem;
   position: absolute;
-  top: 23%;
+  top: 24%;
   left: 20%;
+  height: 10%;
   color: black;
   display: inline-block;
+  font-size: .8vw;
+}
+
+#divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35%;
+  width: 100%;
 }
 
 #form-description {
-  font-size: 1rem;
   position: absolute;
   top: 55%;
   left: 4%;
@@ -203,14 +215,15 @@ a:active {
 #form-text {
   position: absolute;
   top: 65%;
+  left: 0;
   height: 10%;
   margin: 0 6% 0 4%;
   width: 90%;
 }
 
 #modal-submit-button {
-  font-size: 1rem;
   font-family: 'PT Sans', sans-serif;
+  font-size: 1.1vw;
   background-color: #FBF7EB;
   position: absolute;
   top: 83%;
