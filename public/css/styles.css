@@ -174,7 +174,7 @@ a:active {
 }
 
 #icon-text {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   position: absolute;
   top: 8%;
   left: 20%;
@@ -183,7 +183,7 @@ a:active {
 }
 
 #icon-description {
-  font-size: 1em;
+  font-size: 1rem;
   position: absolute;
   top: 23%;
   left: 20%;
@@ -192,7 +192,7 @@ a:active {
 }
 
 #form-description {
-  font-size: 1em;
+  font-size: 1rem;
   position: absolute;
   top: 55%;
   left: 4%;
@@ -209,7 +209,7 @@ a:active {
 }
 
 #modal-submit-button {
-  font-size: 1em;
+  font-size: 1rem;
   font-family: 'PT Sans', sans-serif;
   background-color: #FBF7EB;
   position: absolute;
