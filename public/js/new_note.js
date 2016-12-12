@@ -1,12 +1,11 @@
 'use strict';
 
 $(document).ready(function() {
-  
   var $submit = $('#modal-submit-button');
+  var $parent;
   $submit.on('click', function() {
     var $formType = $('#form-description').text();
     var $name = $('#form-text').val();
-    var $parent;
     getParent();
     if($formType === 'Folder Name: '){
       return postFolder($name, $parent);
