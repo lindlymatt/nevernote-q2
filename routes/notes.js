@@ -39,11 +39,27 @@ router.post('/', ev(validations.post), (req, res, next) => {
     newNote.parent_folder = req.body.parentFolder;
   }
 
+  let newUserNote = {
+    'user_id': req.body.userId,
+  };
+
+  if (typeof(req.body.readOnly) !== 'undefined') {
+    newUserNote.read_only = req.body.readOnly;
+  }
+
   knex('notes')
     .insert(newNote, '*')
     .then((note) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.send(camelizeKeys(note[0]));
+      newUserNote.note_id = note[0].id;
+      knex('user_notes')
+        .insert(newUserNote)
+        .then((userNote) => {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.send(camelizeKeys(note[0]));
+        })
+        .catch((err) => {
+          next(err);
+        });
     })
     .catch((err) => {
       next(err);
