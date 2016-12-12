@@ -140,19 +140,25 @@ a:active {
 /* Navigation Elements */
 .logo {
   position: absolute;
-  top: 6%;
+  top: 6.5%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
   font-size: 3rem;
+  font-family: 'Cinzel', serif;
 }
 
 .logo-color1 {
-
+  color: #E18B50;
+  /*text-shadow: .05rem .05rem #FBF7EB;*/
 }
 
 .logo-color2 {
+  color: #FBF7EB;
+}
 
+.colon {
+  font-size: 3.5rem;
 }
 
 .workspace-title {
