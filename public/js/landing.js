@@ -1,9 +1,28 @@
 'use strict';
 
+  var options = [
+  {selector: '#staggered-test', offset:1000, callback: function(el) {
+    Materialize.toast("This is our ScrollFire Demo!", 1500 );
+  } },
+  {selector: '#staggered-test', offset: 205, callback: function(el) {
+    Materialize.toast("Please continue scrolling!", 1500 );
+  } },
+  {selector: '#staggered-test', offset: 400, callback: function(el) {
+    Materialize.showStaggeredList($(el));
+  } },
+  {selector: '#image-test', offset: 500, callback: function(el) {
+    Materialize.fadeInImage($(el));
+  } }
+  ];
 
+Materialize.scrollFire(options);
 
 $(document).ready(function() {
     console.log( "ready!" );
+
+    $('.tooltipped').tooltip({delay: 50});
+
+
 
   $('.parallax').parallax();
   $('select').material_select();
@@ -52,7 +71,7 @@ $(document).on('click', '.ripple', function(e) {
 
   $('.modal').modal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
+      opacity: 0.5, // Opacity of modal background
       in_duration: 300, // Transition in duration
       out_duration: 200, // Transition out duration
       starting_top: '4%', // Starting top style attribute

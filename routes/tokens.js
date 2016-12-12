@@ -8,7 +8,7 @@
 var express = require('express');
 var router = express.Router();
 var ev = require('express-validation');
-var validations = require('../validations/users');
+var validations = require('../validations/tokens');
 var knex = require('../knex');
 var bcrypt = require('bcrypt-as-promised');
 var jwt = require('jsonwebtoken');
@@ -25,26 +25,30 @@ router.get('/token', (req, res, next) => {
   });
 });
 
-router.post('/token', (req, res, next) => {
+router.post('/token', ev(validations.post), (req, res, next) => {
   const {
     email,
     password
   } = decamelizeKeys(req.body);
-
   knex('users')
     .where('email', email)
     .first()
     .then(data => {
       if (data) {
-        bcrypt.compare(password, data.hashed_password, (e, r) => {
-          if (r === true) {
-            let token = jwt.sign({
-              userId: data.id, firstName: data.first_name
-            }, process.env.JWT_SECRET);
-            res.cookie('token', token, { httpOnly: true });
-            return res.status(200).send('Success!');
-          }
-          res.status(401).send('Unauthorized.');
+        bcrypt.compare(password, data.hashed_password)
+          .then((match) => {
+            if (match === true) {
+              let token = jwt.sign({
+                userId: data.id,
+                firstName: data.first_name
+              }, process.env.JWT_SECRET);
+              res.cookie('token', token, { httpOnly: true });
+              return res.status(200).send('Success!');
+            }
+            res.status(401).send('Unauthorized.');
+        })
+        .catch((err) => {
+          res.status(401).send('Unauthorized');
         });
       } else {
         res.status(404).send('Not Found');

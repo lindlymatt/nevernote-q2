@@ -19,6 +19,7 @@ body {
 
   background-color: #D8D9DB;
   margin-left:0;
+  height: 3000px;
 
 }
 
@@ -154,3 +155,7 @@ span {
      /*border-bottom: 1px solid #212121;
      box-shadow: 0 1px 0 0 #212121; */
    }
+
+#secondSalt {
+  height: 150px;
+}
