@@ -1,13 +1,16 @@
 'use strict';
 
-
+// var simplemde = document.getElementById("iframe").contentWindow.simplemde;
+var simplemde;
 $(document).ready(function() {
+  $('iframe').on('load', () => {
+    simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
+      console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
-      console.log('in here');
     });
-    console.log('going');
+  });
 });
 
 function createSidebarStructure(folderObj) {
@@ -65,23 +68,26 @@ function createNote(note) {
   */
 
   let $noteDiv = $('<div>')
-      .addClass('note');
+      .addClass('note')
+      .on('click', function(){
+        console.log('clicked');
+        console.log(simplemde);
+        var noteId = `${note.id}`;
+        getNote(noteId);
+        var noteName = 'my note'; //get from name div
+        var noteContent = simplemde.value();
+        var interval = 1000 * 5;
+        setInterval(function() {
+          console.log(noteId);
+          patchNote(name, localStorage.smde_content, noteId);
+        }, interval);
+        });
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .text(' ' + note.name);
   let $noteI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
-      .attr('aria-hidden', true)
-      .on('click', function(){
-        var noteId = `${note.id}`;
-        getNote(noteId);
-        var noteName = 'my note'; //get from name div
-        var noteContent = simplemde.value();
-        var interval = 1000 * 10;
-        setInterval(function() {
-          patchNote(name, localStorage.smde_content, noteId);
-          }, interval);
-        });
+      .attr('aria-hidden', true);
 
   $noteh5.prepend($noteI);
 
@@ -122,7 +128,7 @@ function getNote(id) {
 function patchNote(name, content, id) {
   const options = {
     contentType: 'application/JSON',
-    data: JSON.stringify({name, content}),
+    data: JSON.stringify({name, content, id}),
     dataType: 'json',
     type: 'PATCH',
     url: '/notes/' + id

@@ -67,7 +67,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
 
   knex('notes')
     .update(noteUpdates, '*')
-    .where('id', req.params.id)
+    .where('id', req.body.id)
     .then((updatedNote) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.send(camelizeKeys(updatedNote[0]));
@@ -79,7 +79,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
 
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   knex('notes')
-    .where('id', req.params.id)
+    .where('id', req.body.id)
     .first()
     .then((note) => {
       if (!note) {
