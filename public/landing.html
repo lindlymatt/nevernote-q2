@@ -8,6 +8,8 @@
 
     <script src="https://use.fontawesome.com/f406cdfc86.js"></script>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/landing.js" defer></script>
@@ -27,23 +29,20 @@
   </head>
 
   <body>
-    <nav id="navigation" class="transparent z-depth-0">
+    <nav id="navigation" class="z-depth-0">
       <div class="nav-wrapper">
-        <a href="#!" id="navLogo" class="brand-logo center"><img src="../img/ReNoteLogo.png" height="25%" width="25%"></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a class="navText" href="#modal1">Sign Up</a></li>
-          <li><a class="navText" href="#modal2">Log In</a></li>
-        </ul>
+        <a href="#!" id="navLogo" class="brand-logo center"><img src="../img/renote_logo_border_small.jpg" height="80%" width="80%"></a>
+
       </div>
     </nav>
     <container class="parallax-container valign-wrapper">
       <div class="parallax">
-        <img src="../img/books-1845614.jpg" height="70%" width="80%" alt="Notebook"></div>
+        <img src="../img/typewriter-801921.jpg" alt="Typewriter" height="inherit" width="60%"></div>
 
         <!-- Modal Trigger -->
           <div class="row">
-            <div class="col s6 offset-s0"><a href="#modal1" ><span class="ripple b2" data-ripple-color="#AEBFC6"><h5>Sign Up</h5></span></a></div>
-            <div class="col s6 offset s4"><a href="#modal2" ><span class="ripple b2" data-ripple-color="#AEBFC6"><h5>Log In</h5></span></a></div>
+            <div class="col s6 offset-s0"><a href="#modal1" ><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Sign Up</h5></span></a></div>
+            <div class="col s6 offset s4"><a href="#modal2" ><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Log In</h5></span></a></div>
           </div>
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
@@ -53,21 +52,21 @@
             <div class="row">
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="icon_prefix" type="text" class="validate" label="label">
+                <input id="firstName" type="text" class="validate" label="label">
                 <label for="icon_prefix">First Name</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">email</i>
-                <input id="icon_telephone" type="tel" class="validate">
+                <input id="signup_email" type="email" class="validate">
                 <label for="icon_telephone">Email</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">security</i>
-                <input id="icon_password" type="password" class="validate">
+                <input id="signupPassword" type="password" class="validate">
                 <label for="icon_telephone">password</label>
               </div>
             </div>
@@ -84,12 +83,12 @@
         <div id="modal2" class="modal">
           <div class="modal-content">
             <h4>Log Into RE: Note </h4>
-            <form class="col s3">
+            <form method="post" action="/token" class="col s3">
 
             <div class="row">
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">email</i>
-                <input id="icon_email" type="email" class="validate">
+                <input id="email" type="email" class="validate">
                 <label for="icon_telephone">Email</label>
               </div>
             </div>
@@ -100,10 +99,10 @@
                 <label for="icon_telephone">password</label>
               </div>
             </div>
-
+            <button type="submit" id="sickk">Submit</button>
           </form>
           </div>
-          <div class="modal-footer">
+          <div id="modalFooter" class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Forgot Password/Email</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
@@ -116,23 +115,21 @@
 
       <container id="secondSalt" class="parallax-container valign-wrapper">
         <div class="row">
-          <div class="col s1 offset-s1">
-            <h4>RE: </h4>
-          </div>
-          <div class="col s1 offset-s2">
-            <h4 id="suffix">Note </h4>
-          </div>
+            <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
+
         </div>
       </container>
 
       <container id="thirdSalt">
-        <div class="row">
+        <div id="columns" class="row">
           <div class="col s5 m4 offset-2">
             <div id="firstCard" class="card z-depth-0">
               <div class="card-image">
                 <img src="../img/notebook-1841548_640.jpg" width="50%" height="247" frameborder="0" class="giphy-embed" >
+
                 <span><h2 id="create">RE: Call</h2></span>
                 <span id="pencil" class="card-title"><i class="fa fa-pencil fa-3x"></i></span>
+
 
               </div>
               <div class="card-content">
