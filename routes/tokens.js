@@ -29,7 +29,7 @@ router.post('/token', ev(validations.post), (req, res, next) => {
   const {
     email,
     password
-  } = decamelizeKeys(req.body);
+  } = req.body;
   knex('users')
     .where('email', email)
     .first()
