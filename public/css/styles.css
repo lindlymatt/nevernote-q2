@@ -71,8 +71,26 @@ nav {
 }
 
 a {
-  text-decoration: none;
   color: #FBF7EB;
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #FBF7EB;
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: #7A7863;
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  color: #C6A78A;
+  text-decoration: none;
 }
 
 .row {
@@ -209,6 +227,28 @@ a {
 
 
 /* Navigation Elements */
+.logo {
+  position: absolute;
+  top: 6.5%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-family: 'Cinzel', serif;
+}
+
+.logo-color1 {
+  color: #E18B50;
+  /*text-shadow: .05rem .05rem #FBF7EB;*/
+}
+
+.logo-color2 {
+  color: #FBF7EB;
+}
+
+.colon {
+  font-size: 3.5rem;
+}
 
 .workspace-title {
   font-size: 1.4em;
@@ -243,13 +283,13 @@ a {
   letter-spacing: -.5px;
   display: inline-block;
   float: left;
-  height: 90.5vh;
+  height: 92vh;
   width: 15vw;
   background: #013038;
   padding-top: 4px;
   padding-left: 10px;
   overflow: auto;
-  box-shadow: 1px 0px 1px 0px #013038;
+  box-shadow: 1px 0px 0px 0px #013038;
 }
 
 #search-tag {
