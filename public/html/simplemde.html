@@ -12,7 +12,13 @@
 <body>
   <textarea></textarea>
   <script>
-    var simplemde = new SimpleMDE();
+    var simplemde = new SimpleMDE({
+      autosave: {
+        enabled: true,
+        uniqueId: 'content',
+        delay: '1000'
+      }
+    });
   </script>
 </body>
 
