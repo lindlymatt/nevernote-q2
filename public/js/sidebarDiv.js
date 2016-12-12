@@ -36,7 +36,13 @@ function createFolder(folder) {
   let $folderDiv = $('<div>')
       .addClass('folder');
   let $folderh5 = $('<h5>')
-      .html(`<i class="fa fa-folder-open-o fa-fw" aria-hidden="true"></i> ${folder.name}`);
+      .attr('id', `folder_${folder.id}`)
+      .text(' ' + folder.name);
+  let $folderI = $('<i>')
+      .addClass('fa fa-folder-open-o fa-fw')
+      .attr('aria-hidden', true);
+
+  $folderh5.prepend($folderI);
 
   return $folderDiv.append($folderh5);
 }
@@ -51,7 +57,13 @@ function createNote(note) {
   let $noteDiv = $('<div>')
       .addClass('note');
   let $noteh5 = $('<h5>')
-      .html(`<i class="fa fa-sticky-note-o fa-fw" aria-hidden="true"></i> ${note.name}`);
+      .attr('id', `note_${note.id}`)
+      .text(' ' + note.name);
+  let $noteI = $('<i>')
+      .addClass('fa fa-sticky-note-o fa-fw')
+      .attr('aria-hidden', true);
+
+  $noteh5.prepend($noteI);
 
   return $noteDiv.append($noteh5);
 }
