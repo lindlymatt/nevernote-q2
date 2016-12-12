@@ -299,6 +299,10 @@ a:active {
   box-shadow: 1px 0px 0px 0px #013038;
 }
 
+#workspace h5:hover {
+  color: #A3856B;
+}
+
 #search-tag {
   margin: 5px 5px 5px 5px;
   border-radius: 10px;
@@ -306,16 +310,10 @@ a:active {
   width: 84%;
 }
 
-.highlight:hover {
-  color: #A3856B;
+.inside {
+  background-color: white;
+  color: #013038;
 }
-
-
-/*.fa-search {
-  overflow: hidden;
-  width: 20%;
-  color: white;
-}*/
 
 .folder {
   /*padding: 5px;*/
