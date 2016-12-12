@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 function createSidebarStructure(folderObj) {
   /**
   * Generates a jQuery Object of collapsible lists that acts as
@@ -39,20 +37,31 @@ function createFolder(folder) {
   * @return {Object} A jQuery list element with the folder's info
   */
 
-  // Create basic materialize collapsible menu template
-  let $li = $('<li>');
-  let $a = $('<a>')
-      .addClass('collapsible-header folder')
-      .attr('id', `folder_${folder.id}`) // Give folder its id in the database
-      .text(folder.name); // Give header the name of the folder
-  let $div = $('<div>')
-      .addClass('collapsible-body');
-  let $ul = $('<ul>')
-      .addClass('collapsible collapsible-accordion');
-  $div.append($ul);
-  $li.append($a).append($div);
+  // // Create basic materialize collapsible menu template
+  // let $li = $('<li>');
+  // let $a = $('<a>')
+  //     .addClass('collapsible-header folder')
+  //     .attr('id', `folder_${folder.id}`) // Give folder its id in the database
+  //     .text(folder.name); // Give header the name of the folder
+  // let $div = $('<div>')
+  //     .addClass('collapsible-body');
+  // let $ul = $('<ul>')
+  //     .addClass('collapsible collapsible-accordion');
+  // $div.append($ul);
+  // $li.append($a).append($div);
+  //
+  // return $li; // Return jQuery object with basic folder structure
 
-  return $li; // Return jQuery object with basic folder structure
+  let $folderDiv = $('<div>');
+  let $folderh5 = $('<h5>');
+  let $folderI = $('<i>')
+      .addClass('fa fa-folder-open-o fa-fw')
+      .attr('aria-hidden', true)
+      .attr('id', `folder_${folder.id}`)
+      .text(folder.name);
+
+  $folderh5.append($folderI);
+  return $folderDiv.append($folderh5);
 }
 
 function createNote(note) {
