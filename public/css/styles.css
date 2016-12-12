@@ -59,13 +59,14 @@ nav {
   padding-top: 1px;
   padding: 10px;
   padding-bottom: 1px;
-  min-height: 10vh;
+  height: 68px;
   background-color: green;
 }
 
 .row {
   height: 30px;
-  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .left-align {
@@ -95,7 +96,7 @@ nav {
 /* Navigation Elements */
 
 .workspace-title {
-  font-size: 1.2em;
+  /*font-size: 1.2em;*/
   font-weight: 100;
   font-spacing: -.2px;
   padding: 5px;
@@ -110,72 +111,65 @@ nav {
 /* Workspace App and Editor */
 
 #workspace {
-  font-size: .9em;
+  font-size: 1vw;
   letter-spacing: -.5px;
   display: inline-block;
   float: left;
-  height: 92vh;
+  height: 1000vh;
   width: 15vw;
   background: orange;
   padding-left: 10px;
+  overflow: hidden;
 }
 
 #search-tag {
   margin: 5px 5px 15px 0;
   border-radius: 3px;
   height: 30px;
-  width: 87%;
+  width: 84%;
 }
 
 .fa-search {
-  width: 13%;
+  overflow: hidden;
+  width: 16%;
   color: white;
 }
 
 .folder {
   /*padding: 5px;*/
+  margin: 12px;
   margin-left: 10px;
-  padding-top: 5px;
   width: 100%;
 }
 
 .note {
   /*padding: 5px;*/
+  margin: 12px;
   margin-left: 10px;
-  padding-bottom: 5px;
-  padding-top: 5px;
   width: 100%;
-}
-
-.tier-1 {
-  margin-left: 10px;
-}
-
-.tier-2 {
-  margin-left: 20px;
 }
 
 #editor {
   display: inline-block;
-  height: 92vh;
+  height: 100vh;
   width: 85vw;
 }
 
 iframe {
+  border: 1px black solid;
   width: 100%;
   height: 100%;
 }
 
-
-/*.editor-toolbar {
+.editor-toolbar {
   height: 6vh !important;
 }
 
 .CodeMirror {
   max-width: 100%;
-  max-height: 86vh;
+  max-height: 93vh;
   width: 100%;
-  height: 86vh !important;
+  height: 93vh !important;
 }
 
 .fullscreen {
@@ -188,4 +182,4 @@ iframe {
 
 .editor-statusbar {
   display: none;
-}*/
+}
