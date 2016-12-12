@@ -82,7 +82,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
 
   knex('notes')
     .update(noteUpdates, '*')
-    .where('id', req.body.id)
+    .where('id', req.params.id)
     .then((updatedNote) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.send(camelizeKeys(updatedNote[0]));
