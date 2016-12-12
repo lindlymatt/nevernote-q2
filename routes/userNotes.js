@@ -66,4 +66,37 @@ router.post('/', (req, res, next) => {
     });
 });
 
+router.patch('/:id', (req, res, next) => {
+  const user = req.body.userId;
+
+  const { readOnly } = req.body;
+  if (readOnly) {
+    knex('user_notes')
+      .where('user_notes.user_id', user)
+      .andWhere('user_notes.note_id', req.params.id)
+      .then((userNote) => {
+        if (userNote.length === 0) {
+          res.status(404).send('Not Found');
+        }
+        knex('user_notes')
+          .where('user_notes.user_id', user)
+          .andWhere('user_notes.note_id', req.params.id)
+          .update({
+            read_only: readOnly
+          }, ['user_id', 'note_id', 'read_only'])
+          .then((updatedUserNote) => {
+            res.json(updatedUserNote);
+          })
+          .catch((err) => {
+            next(err);
+          });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  } else {
+    return res.status(204).send('Need Something to Change');
+  }
+});
+
 module.exports = router;
