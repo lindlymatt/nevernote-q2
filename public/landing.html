@@ -83,7 +83,7 @@
         <div id="modal2" class="modal">
           <div class="modal-content">
             <h4>Log Into RE: Note </h4>
-            <form class="col s3">
+            <form method="post" action="/token" class="col s3">
 
             <div class="row">
               <div class="input-field col s8 offset-s2">
@@ -99,10 +99,10 @@
                 <label for="icon_telephone">password</label>
               </div>
             </div>
-
+            <button type="submit" id="sickk">Submit</button>
           </form>
           </div>
-          <div class="modal-footer">
+          <div id="modalFooter" class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Forgot Password/Email</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Log In</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>

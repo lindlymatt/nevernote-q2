@@ -1,24 +1,44 @@
 'use strict';
 
-  var options = [
-  {selector: '#staggered-test', offset:1000, callback: function(el) {
-    Materialize.toast("This is our ScrollFire Demo!", 1500 );
-  } },
-  {selector: '#staggered-test', offset: 205, callback: function(el) {
-    Materialize.toast("Please continue scrolling!", 1500 );
-  } },
-  {selector: '#staggered-test', offset: 400, callback: function(el) {
-    Materialize.showStaggeredList($(el));
-  } },
-  {selector: '#image-test', offset: 500, callback: function(el) {
-    Materialize.fadeInImage($(el));
-  } }
-  ];
 
-Materialize.scrollFire(options);
+//   $('#modalFooter').submit((event) => {
+//     event.preventDefault();
+//
+//     const email = $('#email').val().trim();
+//     const password = $('#password').val();
+//
+//     if (!email) {
+//       return Materialize.toast('Email must not be blank', 3000);
+//     }
+//
+//     if (!password) {
+//       return Materialize.toast('Password must not be blank', 3000);
+//     }
+//
+//     const options = {
+//       contentType: 'application/json',
+//       data: JSON.stringify({ email, password }),
+//       dataType: 'json',
+//       type: 'POST',
+//       url: '/token'
+//     };
+//
+//     $.ajax(options)
+//       .done(() => {
+//         window.location.href = '/favorites.html';
+//       })
+//       .fail(($xhr) => {
+//         Materialize.toast($xhr.responseText, 3000);
+//       });
+//   });
+// })();
+
 
 $(document).ready(function() {
     console.log( "ready!" );
+    $('#sickk').on('click', function() {
+      alert($('#email').val());
+    });
 
     $('.tooltipped').tooltip({delay: 50});
 
