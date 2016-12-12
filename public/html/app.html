@@ -32,7 +32,7 @@
   <nav>
     <div class="row">
       <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> Matt's Workspace</h1>
-      <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
+      <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span id="note-text" class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
       <a href="#/" class="right-align top-item" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
       <img class="user-profile right-align" src="../img/mpestridge.png" />
@@ -49,7 +49,7 @@
   <!-- Start the Application Interface -->
   <main>
     <div id="workspace">
-      <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i class="fa fa-search fa-fw" aria-hidden="true"></i>
+      <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i id="search-icon" class="fa fa-search fa-fw" aria-hidden="true"></i>
     </div>
     <div id="editor">
       <iframe src="simpleMDE.html">
