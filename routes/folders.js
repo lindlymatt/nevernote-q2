@@ -90,7 +90,7 @@ router.post('/', ev(validations.post), (req, res, next) => {
     });
 });
 
-// PATCH w/ ID: Updates a user with the ID.
+// PATCH w/ ID: Updates a user's folder that has the given ID.
 router.patch('/:id', ev(validations.patch), (req, res, next) => {
   const id = req.params.id;
   const { name, parent_folder, is_secure } = req.body;
@@ -107,7 +107,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
     });
 });
 
-// DELETE w/ ID: Deletes an individual user by ID.
+// DELETE w/ ID: Deletes a folder by ID.
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   const id = req.params.id;
 

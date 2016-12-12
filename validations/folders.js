@@ -27,10 +27,6 @@ module.exports.post = {
 
 module.exports.patch = {
   body: Joi.object().keys({
-    user_id: Joi.number()
-          .integer()
-          .positive()
-          .required(),
     parent_folder: Joi.number()
           .integer()
           .positive(),
@@ -39,7 +35,7 @@ module.exports.patch = {
           .min(1)
           .max(20),
     is_secure: Joi.boolean()
-  }).or(['user_id', 'parent_folder', 'name', 'is_secure']),
+  }).or(['parent_folder', 'name', 'is_secure']),
 
   params: Joi.object().keys({
     id: Joi.number()
