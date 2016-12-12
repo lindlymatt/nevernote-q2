@@ -71,17 +71,29 @@ function createNote(note) {
       .addClass('note')
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
-      .on('click', function(){
+      .on('click', function(event){
+        console.log(event.target);
         console.log('clicked');
         console.log(simplemde);
         var noteId = `${note.id}`;
         getNote(noteId);
         var noteName = $('#note_' + noteId).text();
+        var siblings = $(event.target).parent().siblings();
+        let parentId;
+        for (let i = 0; i < siblings.length; i++) {
+          if ($(siblings[i]).is('h5')) {
+            parentId = $(siblings[i]).attr('id').split('_')[1];
+          }
+        }
+        if (!parentId) {
+          parentId = null;
+        }
+        console.log(parentId);
         var noteContent = simplemde.value();
         var interval = 1000 * 5;
         setInterval(function() {
           console.log(noteId);
-          patchNote(noteName, localStorage.smde_content, noteId);
+          patchNote(noteName, localStorage.smde_content, noteId, parentId);
         }, interval);
         })
       .text(' ' + note.name);
@@ -125,10 +137,10 @@ function getNote(id) {
 };
 
 //send patch request to note
-function patchNote(name, content, id) {
+function patchNote(name, content, id, parentFolder) {
   const options = {
     contentType: 'application/JSON',
-    data: JSON.stringify({name, content, id}),
+    data: JSON.stringify({name, content, parentFolder}),
     dataType: 'json',
     type: 'PATCH',
     url: '/notes/' + id
