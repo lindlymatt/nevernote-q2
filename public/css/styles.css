@@ -303,7 +303,7 @@ a:active {
   letter-spacing: -.5px;
   display: inline-block;
   float: left;
-  height: 92vh;
+  height: 89vh;
   width: 15vw;
   background: #013038;
   padding-top: 4px;
@@ -344,13 +344,13 @@ a:active {
 
 #editor {
   display: inline-block;
-  height: 92vh;
+  height: 89vh;
   width: 85vw;
   background: #013038;
 }
 
 iframe {
+  border-radius: 20px;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
