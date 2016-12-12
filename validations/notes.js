@@ -19,7 +19,7 @@ module.exports.post = {
     name: Joi.string()
           .trim()
           .min(1)
-          .max(50),
+          .max(20),
     content: Joi.string()
   })
 };
@@ -32,7 +32,7 @@ module.exports.patch = {
     name: Joi.string()
           .trim()
           .min(1)
-          .max(50),
+          .max(20),
     content: Joi.string()
   }).or('parentFolder', 'name', 'content'),
 
