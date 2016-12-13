@@ -7,21 +7,9 @@ $(document).ready(function() {
       // Initialize collapsible (uncomment the line below if you use the dropdown variation)
     // $('.collapsible').collapsible();
     // $('.dropdown-button').dropdown();
-    let container = $('#editor');
-    function createLauncherLink(container) {
-        var link = document.createElement("link");
-        link.setAttribute("rel", "import");
-        link.setAttribute("href", "simplemde.html");
-        console.log(link);
-        link.onload = function () {
-            console.log('hello');
-            container.appendChild(link.import.querySelector('#embedded-bod'));
-        };
+    $('#editor').load('simplemde.html');
+    console.log('we out here');
 
-    return link;
-    }
-
-    createLauncherLink(container);
 
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
