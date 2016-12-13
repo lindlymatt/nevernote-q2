@@ -4,7 +4,6 @@ var $parent;
 var $currentFolder;
 $(document).ready(function() {
   var $submit = $('#modal-submit-button');
-
   $submit.on('click', function() {
     var $formType = $('#form-description').text();
     var $name = $('#form-text').val();

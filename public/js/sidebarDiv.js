@@ -10,7 +10,20 @@ $(document).ready(function() {
       console.log(workspace);
       console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
-    });
+    }).done(() => {
+      var folderSubmit = $('#edit-folder');
+      var noteSubmit = $('.edit-note');
+      console.log('alriiiight');
+      folderSubmit.on('click', function() {
+        console.log('submitted');
+        //alter document
+        //send post
+      });
+      noteSubmit.on('click', function() {
+        //alter document
+        console.log('u submitted the note go u');
+      });
+    })
   });
 });
 
@@ -58,7 +71,6 @@ function createFolder(folder) {
             $('#icon-description').text('');
             $('#form-description').text('Folder Name: ');
             $('#faded-background').show();
-            $('#modal-submit-button').addClass('edit-folder');
         })
       .text(' ' + folder.name);
   let $folderI = $('<i>')
@@ -109,7 +121,7 @@ function createNote(note) {
             $('#icon-description').text('');
             $('#form-description').text('Note Name: ');
             $('#faded-background').show();
-            $('#modal-submit-button').addClass('edit-note');
+            $('#edit-folder').addClass('edit-note')
         })
       .text(' ' + note.name);
   let $noteI = $('<i>')

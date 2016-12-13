@@ -14,6 +14,7 @@
   <script type="text/javascript" src="../js/script.js"></script>
   <script type="text/javascript" src="../js/new_note.js"></script>
   <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
+  <script type="text/javascript" src="../js/edit_note.js" defer></script>
   <script type="text/javascript" src="../js/logout.js" defer></script>
 </head>
 
@@ -29,6 +30,22 @@
         <h5 id="form-description">Folder Name: </h5>
         <input id="form-text" type="text" name="new-item" />
         <button id="modal-submit-button" type="submit">SUBMIT</button>
+        <button id="modal-close-button">CLOSE</button>
+      </div>
+    </div>
+  </div>
+  <!-- edit note and folder name -->
+  <div id="faded-background" class="edit-name">
+    <div id="modal">
+      <h5 id="modal-title"><i class="fa fa-folder-open" aria-hidden="true"></i> Create New Folder</h5>
+      <div id="modal-text-box">
+        <img id="new-icon" src="../img/new-folder-icon.png" />
+        <h5 id="icon-text">Create New RE:Folder</h5>
+        <h5 id="icon-description">Enter your new folder name, and then hit the save button to create it!</h5>
+        <img id="divider" width="100%" src="../img/divider.jpg" />
+        <h5 id="form-description">Folder Name: </h5>
+        <input id="form-text" type="text" name="new-item" />
+        <button id="edit-folder" type="submit">SUBMIT</button>
         <button id="modal-close-button">CLOSE</button>
       </div>
     </div>
