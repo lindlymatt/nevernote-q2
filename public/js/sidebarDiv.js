@@ -7,6 +7,7 @@ $(document).ready(function() {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
+      console.log(workspace);
       console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
     });
@@ -52,7 +53,7 @@ function createFolder(folder) {
       .attr('id', `folder_${folder.id}`)
       .text(' ' + folder.name);
   let $folderI = $('<i>')
-      .addClass('fa fa-folder-open-o fa-fw')
+      .addClass('fa fa-folder-o fa-fw')
       .attr('aria-hidden', true);
 
   $folderh5.prepend($folderI);
