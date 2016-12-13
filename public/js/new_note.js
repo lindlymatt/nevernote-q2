@@ -49,8 +49,8 @@ function postNote(name, content, parentId) {
       let $folderh5 = $('<h5>')
           .attr('id', `folder_${fId}`)
           .text(' ' + name);
-      let $folderI = $('<i>')
-          .addClass('fa fa-folder-o fa-fw')
+      let $folderI = $('<i>');
+          .addClass('fa fa-folder-o fa-fw');
           .attr('aria-hidden', true);
 
       $folderh5.prepend($folderI);
