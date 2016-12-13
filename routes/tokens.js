@@ -43,6 +43,8 @@ router.post('/token', ev(validations.post), (req, res, next) => {
                 firstName: data.first_name
               }, process.env.JWT_SECRET);
               res.cookie('token', token, { httpOnly: true });
+              console.log(data);
+              res.cookie('userInfo', {name: data.first_name, email: data.email});
               return res.redirect('html/app.html');
               // return res.status(200).send('Success!');
             }
