@@ -121,6 +121,14 @@ function addSidebarFilesToPage(userWorkspace) {
   userWorkspace.notes.forEach((note) => {
     $('#workspace').append(createNote(note));
   });
+
+  //right click dropdown menu
+  $('h5').contextmenu({
+    // selector: '#context-menu'
+    callback: function() {
+      console.log('cool');
+    }
+  });
 }
 
 //return users workspace object
