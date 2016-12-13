@@ -22,7 +22,7 @@ $(document).ready(function() {
 function getParent() {
   if ($('*').hasClass('inside')) {
     var $inside = $('.inside');
-    $currentFolder = $inside.parent().parent();
+    $currentFolder = $inside;
     var $insideEle = $('.inside').get(0).id;
     if ($inside.parent().has('.folder')){
       $parent = $inside.attr('id').slice(7);
@@ -66,7 +66,9 @@ function postFolder(name, parentId) {
           .addClass('fa fa-folder-o fa-fw')
           .attr('aria-hidden', true);
 
-      $currentFolder.append($folderI);
-      return $currentFolder.append($folderh5);
+      $folderh5.prepend($folderI);
+      $folderDiv.append($folderh5);
+      $currentFolder.append($folderDiv);
+      return $folderh5.removeClass('inside');
   });
 };

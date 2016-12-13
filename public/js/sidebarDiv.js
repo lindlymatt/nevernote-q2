@@ -7,6 +7,7 @@ $(document).ready(function() {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
+      console.log(workspace);
       console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
     });
