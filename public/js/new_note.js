@@ -35,49 +35,92 @@ function getParent() {
     }
   }
   else {
-    return $parent = null;
+    $parent = null;
+    return;
   }
 };
 
 //post new note
 function postNote(name, content, parentId) {
-  $.post('/notes', { name: name, content: content, parentFolder: $parent }, res => {
-      console.log(response);
-      var nId = response.id;
+  if(parentId === null) {
+    $.post('/notes', { name: name }, res => {
+      let nId = res.id;
       let $folderDiv = $('<div>')
-          .addClass('folder');
+      .addClass('note');
       let $folderh5 = $('<h5>')
-          .attr('id', `folder_${fId}`)
-          .text(' ' + name);
-      let $folderI = $('<i>');
-          .addClass('fa fa-folder-o fa-fw');
-          .attr('aria-hidden', true);
+      .attr('id', `note_${nId}`)
+      .text(' ' + name);
+      let $folderI = $('<i>')
+      .addClass('fa fa-sticky-note-o fa-fw')
+      .attr('aria-hidden', true);
+
+      $folderh5.prepend($folderI);
+      $folderDiv.append($folderh5);
+      $('#workspace').append($folderDiv);
+      $folderh5.removeClass('inside');
+      return;
+    });
+  }
+  else {
+    $.post('/notes', { name: name, parentFolder: parentId }, res => {
+      let nId = res.id;
+      let $folderDiv = $('<div>')
+      .addClass('note');
+      let $folderh5 = $('<h5>')
+      .attr('id', `note_${nId}`)
+      .text(' ' + name);
+      let $folderI = $('<i>')
+      .addClass('fa fa-sticky-note-o fa-fw')
+      .attr('aria-hidden', true);
 
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $currentFolder.parent().append($folderDiv);
       $folderh5.removeClass('inside');
       return;
-  });
+    });
+  }
 };
 
 //post new folder
 function postFolder(name, parentId) {
-  $.post('/folders', { name: name, parentFolder: $parent }, response => {
-      var fId = response[0].id;
-      let $folderDiv = $('<div>')
-          .addClass('folder');
-      let $folderh5 = $('<h5>')
-          .attr('id', `folder_${fId}`)
-          .text(' ' + name);
-      let $folderI = $('<i>')
-          .addClass('fa fa-folder-o fa-fw')
-          .attr('aria-hidden', true);
+  if(parentId === null) {
+    $.post('/folders', { name: name }, response => {
+        var fId = response[0].id;
+        let $folderDiv = $('<div>')
+            .addClass('folder');
+        let $folderh5 = $('<h5>')
+            .attr('id', `folder_${fId}`)
+            .text(' ' + name);
+        let $folderI = $('<i>')
+            .addClass('fa fa-folder-o fa-fw')
+            .attr('aria-hidden', true);
 
-      $folderh5.prepend($folderI);
-      $folderDiv.append($folderh5);
-      $currentFolder.parent().append($folderDiv);
-      $folderh5.removeClass('inside');
-      return;
-  });
+        $folderh5.prepend($folderI);
+        $folderDiv.append($folderh5);
+        $('#workspace').append($folderDiv);
+        $folderh5.removeClass('inside');
+        return;
+    });
+  }
+  else {
+    $.post('/folders', { name: name, parentFolder: parentId }, response => {
+        var fId = response[0].id;
+        let $folderDiv = $('<div>')
+            .addClass('folder');
+        let $folderh5 = $('<h5>')
+            .attr('id', `folder_${fId}`)
+            .text(' ' + name);
+        let $folderI = $('<i>')
+            .addClass('fa fa-folder-o fa-fw')
+            .attr('aria-hidden', true);
+
+        $folderh5.prepend($folderI);
+        $folderDiv.append($folderh5);
+        $currentFolder.parent().append($folderDiv);
+        $currentFolder.children().show();
+        $folderh5.removeClass('inside');
+        return;
+    });
+  }
 };

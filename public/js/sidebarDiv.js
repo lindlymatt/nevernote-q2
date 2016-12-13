@@ -87,7 +87,6 @@ function createNote(note) {
         if (!parentId) {
           parentId = null;
         }
-        console.log(parentId);
         var noteContent = simplemde.value();
         var interval = 1000 * 60;
         setInterval(function() {
