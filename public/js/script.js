@@ -60,6 +60,7 @@ $(document).ready(function() {
             }
         }
         else if (!isFolder && $(event.target).is('h5')) {
+            $('#embedded-text').hide();
             $('#iframe').show();
             if($(event.target).text().length < 10) {
                 $('.logo').css('left', '50%');
@@ -73,6 +74,7 @@ $(document).ready(function() {
         }
         else {
             $('#iframe').hide();
+            $('#embedded-text').show();
             $('#workspace').find('*').removeClass('inside');
             $('#note-text').text('Note');
         }
