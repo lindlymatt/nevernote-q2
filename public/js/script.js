@@ -1,13 +1,14 @@
 'use strict';
 
 $(document).ready(function() {
-    
+
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
         $('#new-icon').attr('src', '../img/new-folder-icon.png');
         $('#icon-text').text('Create New RE:Folder');
         $('#icon-description').text('Enter your new folder name, and then hit the submit button to create it!');
         $('#form-description').text('Folder Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 
@@ -17,6 +18,7 @@ $(document).ready(function() {
         $('#icon-text').text('Create New RE:Note');
         $('#icon-description').text('Enter your new note name, and then hit the submit button to create it!');
         $('#form-description').text('Note Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 

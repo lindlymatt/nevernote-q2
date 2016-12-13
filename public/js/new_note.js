@@ -23,7 +23,6 @@ function getParent() {
   if ($('*').hasClass('inside')) {
     var $inside = $('.inside');
     $currentFolder = $inside;
-    var $insideEle = $('.inside').get(0).id;
     if ($inside.parent().has('.folder')){
       $parent = $inside.attr('id').slice(7);
       return;
