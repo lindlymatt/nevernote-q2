@@ -1,6 +1,7 @@
 'use strict';
 
 $(document).ready(function() {
+    
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
         $('#new-icon').attr('src', '../img/new-folder-icon.png');

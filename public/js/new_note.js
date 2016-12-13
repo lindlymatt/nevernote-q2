@@ -41,16 +41,22 @@ function getParent() {
 
 //post new note
 function postNote(name, content, parentId) {
-  const request = {
-    contentType: 'application/JSON',
-    data: JSON.stringify({name, content, parentId}),
-    dataType: 'json',
-    type: 'POST',
-    url: '/notes'
-  };
-  console.log(request);
-  $.ajax(request)
-  .done(console.log('done'));
+  $.post('/notes', { name: name, content: content parentFolder: $parent }, response => {
+      var nId = response[0].id;
+      let $noteDiv = $('<div>')
+          .addClass('note');
+      let $noteh5 = $('<h5>')
+          .attr('id', `note_${nId}`)
+          .text(' ' + name);
+      let $noteI = $('<i>')
+          .addClass('fa fa-sticky-note-o fa-fw')
+          .attr('aria-hidden', true);
+
+      $noteh5.prepend($noteI);
+      $noteDiv.append($noteh5);
+      $currentFolder.parent().append($noteDiv);
+      return;
+  });
 };
 
 //post new folder
@@ -68,7 +74,7 @@ function postFolder(name, parentId) {
 
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
-      $currentFolder.append($folderDiv);
-      return $folderh5.removeClass('inside');
+      $currentFolder.parent().append($folderDiv);
+      return;
   });
 };
