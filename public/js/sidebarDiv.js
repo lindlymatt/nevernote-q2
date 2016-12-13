@@ -7,6 +7,7 @@ $(document).ready(function() {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
+      console.log(workspace);
       console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
     });
@@ -52,7 +53,7 @@ function createFolder(folder) {
       .attr('id', `folder_${folder.id}`)
       .text(' ' + folder.name);
   let $folderI = $('<i>')
-      .addClass('fa fa-folder-open-o fa-fw')
+      .addClass('fa fa-folder-o fa-fw')
       .attr('aria-hidden', true);
 
   $folderh5.prepend($folderI);
@@ -72,9 +73,7 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event){
-        console.log(event.target);
         console.log('clicked');
-        console.log(simplemde);
         var noteId = `${note.id}`;
         getNote(noteId);
         var noteName = $('#note_' + noteId).text();
@@ -90,7 +89,7 @@ function createNote(note) {
         }
         console.log(parentId);
         var noteContent = simplemde.value();
-        var interval = 1000 * 5;
+        var interval = 1000 * 60;
         setInterval(function() {
           patchNote(noteName, localStorage.smde_content, noteId, parentId);
         }, interval);

@@ -68,19 +68,18 @@ function getWorkspace(folders, notes){
   for(var i = 0; i < folders.length; i++) {
     if(folders[i].parent_folder === null) {
       userStuff.folders.push(folders[i]);
+      folders.splice(i, 1);
     }
   };
 
   //inserting child folders
-  for(var i = 0; i < folders.length; i++) {
-    if(folders[i].parent_folder !== null) {
-      for(var x = 0; x < userStuff.folders.length; x++) {
-        if(folders[i].parent_folder === userStuff.folders[x].id) {
-          userStuff.folders[x].childFolders.push(folders[i]);
+    for(var i = 0; i < folders.length; i++) {
+        for(var x = 0; x < userStuff.folders.length; x++) {
+          if(folders[i].parent_folder === userStuff.folders[x].id) {
+            userStuff.folders[x].childFolders.push(folders[i]);
+          }
         }
       }
-    }
-  };
   return userStuff;
 };
 
