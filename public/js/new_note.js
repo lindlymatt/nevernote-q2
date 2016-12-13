@@ -1,6 +1,5 @@
 'use strict';
 
-var $parent;
 var $currentFolder;
 $(document).ready(function() {
   var $submit = $('#modal-submit-button');
@@ -8,7 +7,7 @@ $(document).ready(function() {
   $submit.on('click', function() {
     var $formType = $('#form-description').text();
     var $name = $('#form-text').val();
-    getParent();
+    let $parent = getParent();
     if($parent === undefined) {
       $parent === null;
     }
@@ -26,18 +25,19 @@ function getParent() {
     var $inside = $('.inside');
     $currentFolder = $inside;
     if ($inside.parent().has('.folder') && $inside.is('.folder')){
-      $parent = $inside.attr('id').slice(7);
-      return;
+      return $inside.attr('id').slice(7);
     }
-    else if($inside.has('.note')) {
-      $parent = $inside.parent().parent().find('h5').eq(0).attr('id').slice(7);
-      console.log($parent);
-      return;
+    else if(!($inside.parent().parent().has('#workspace')) && $inside.has('.note')) {
+      $currentFolder = $inside.parent();
+      return $inside.parent().parent().find('h5').eq(0).attr('id').slice(7);
+    }
+    else if($inside.parent().parent().has('#workspace') && $inside.has('.note')) {
+      $currentFolder = $('#workspace');
+      return null;
     }
   }
   else {
-    $parent = null;
-    return;
+    return null;
   }
 };
 
