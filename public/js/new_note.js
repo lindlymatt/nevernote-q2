@@ -32,7 +32,6 @@ function getParent() {
       return $inside.parent().parent().find('h5').eq(0).attr('id').slice(7);
     }
     else if($inside.parent().parent().has('#workspace') && $inside.has('.note')) {
-      $currentFolder = $('#workspace');
       return null;
     }
   }

@@ -7,8 +7,6 @@ $(document).ready(function() {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
-      console.log(workspace);
-      console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
     });
   });
@@ -29,12 +27,14 @@ function createSidebarStructure(folderObj) {
   folderObj.childFolders.forEach((folder) => {
     let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
+      childrenFolders.css('display', 'none');
       $folderDiv.append(childrenFolders);
     }
   });
 
   folderObj.folderNotes.forEach((note) => {
-    $folderDiv.append(createNote(note));
+    let $note = createNote(note).css('display', 'none');
+    $folderDiv.append($note);
   });
 
   return $folderDiv;

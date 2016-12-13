@@ -1,6 +1,7 @@
 'use strict';
 
 $(document).ready(function() {
+    $('#iframe').hide();
 
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
@@ -32,8 +33,16 @@ $(document).ready(function() {
 
     $('#workspace').click(event => {
         if($(event.target).is('h5')) {
+            if($(event.target).hasClass('.inside')) {
+                // $(event.target).removeClass('.inside');
+                $('#workspace').find('*').removeClass('inside');
+            } else {
+                $('#workspace').find('*').removeClass('inside');
+                $(event.target).addClass('inside');
+            }
+        }
+        else {
             $('#workspace').find('*').removeClass('inside');
-            $(event.target).addClass('inside');
         }
 
         let isFolder = $(event.target).parent().hasClass('folder');
@@ -50,7 +59,8 @@ $(document).ready(function() {
                 }
             }
         }
-        if (!isFolder && $(event.target).is('h5')) {
+        else if (!isFolder && $(event.target).is('h5')) {
+            $('#iframe').show();
             if($(event.target).text().length < 10) {
                 $('.logo').css('left', '50%');
                 $('#note-text').text($(event.target).text());
@@ -60,6 +70,11 @@ $(document).ready(function() {
                 $('.logo').css('left', '50%').css('font-size', '2rem');
                 $('#note-text').text($(event.target).text());
             }
+        }
+        else {
+            $('#iframe').hide();
+            $('#workspace').find('*').removeClass('inside');
+            $('#note-text').text('Note');
         }
     });
 
