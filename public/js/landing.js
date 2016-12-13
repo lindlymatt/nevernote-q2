@@ -32,7 +32,17 @@
 //       });
 //   });
 // })();
+/* Using jQuery */
+(function($) {
 
+    // Init ScrollMagic
+    var ctrl = new ScrollMagic.Controller({
+        globalSceneOptions: {
+            triggerHook: 'onLeave'
+        }
+    });
+
+})(jQuery);
 
 $(document).ready(function() {
     console.log( "ready!" );

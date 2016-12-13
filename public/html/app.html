@@ -3,14 +3,20 @@
 
 <head>
   <meta charset="utf-8">
-  <title>RE:Note, Matt's Binder</title>
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cinzel" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
+  <title>RE:Note</title>
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cinzel" rel="stylesheet" />
+  <link href="http://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/simplemde.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
   <script src="https://use.fontawesome.com/ff8b645e3b.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
   <script type="text/javascript" src="../js/new_note.js"></script>
   <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
+  <script type="text/javascript" src="../js/logout.js" defer></script>
+  <script type="text/javascript" src="../js/cookies.js" defer></script>
 </head>
 
 <body>
@@ -32,20 +38,20 @@
   <!-- Create the Navigation -->
   <nav>
     <div class="row">
-      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> Matt's Workspace</h1>
+      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> <span id="userName"></span> Workspace</h1>
       <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span id="note-text" class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
       <div class="dropdown">
-        <a href="#/" class="right-align top-item dropa" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
-        <div id="email-dropdown" class="dropdown-content">
-          <a href="#">Do Something</a>
+        <a href="#/" class="right-align top-item" id="user-text"><span id="userEmail"></span><i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
+        <div id="email-dropdown" class="dropdown-content dropdown">
+          <a id="logout" href="#">Logout</a>
           <a href="#">Do Something Else</a>
           <a href="#">Do Another Something</a>
         </div>
       </div>
       <img class="user-profile right-align" src="../img/mpestridge.png" />
       <div class="dropdown">
-        <a href="#/" class="right-align top-item dropa" id="help-text">HELP<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
+        <a href="#/" class="right-align top-item" id="help-text">HELP<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
         <div id="help-dropdown" class="dropdown-content">
           <a href="#">Do Something</a>
           <a href="#">Do Something Else</a>
@@ -57,11 +63,12 @@
       <a id="new-note" href="#/" class="left-align menu-item">NEW NOTE</a>
       <a id="new-folder" href="#/" class="left-align menu-item">NEW FOLDER</a>
       <div class="dropdown">
-        <a href="#/" id="sort-text" class="left-align menu-item dropa">SORT PREFERENCES<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
+        <a href="#/" id="sort-text" class="left-align menu-item">SORT PREFERENCES<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
         <div id="sort-dropdown" class="dropdown-content">
-          <a href="#">Do Something</a>
-          <a href="#">Do Something Else</a>
-          <a href="#">Do Another Something</a>
+          <a href="#">Name (a-z)</a>
+          <a href="#">Name (z-a)</a>
+          <a href="#">Creation Date</a>
+          <a href="#">Modification Date</a>
         </div>
       </div>
     </div>
@@ -73,12 +80,11 @@
       <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i id="search-icon" class="fa fa-search fa-fw" aria-hidden="true"></i>
     </div>
     <div id="editor">
-      <iframe src="simpleMDE.html" id="iframe">
+      <h1 id="embedded-text"></h1>
+      <iframe id="iframe" src="simplemde.html">
       </iframe>
     </div>
   </main>
-  <script>
-  </script>
 </body>
 
 </html>

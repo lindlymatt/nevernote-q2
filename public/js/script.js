@@ -1,18 +1,15 @@
 'use strict';
 
 $(document).ready(function() {
-    console.log("ready!");
-      // Initialize collapse button
-    // $(".button-collapse").sideNav();
-      // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-    // $('.collapsible').collapsible();
-    // $('.dropdown-button').dropdown();
+    $('#iframe').hide();
+
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
         $('#new-icon').attr('src', '../img/new-folder-icon.png');
         $('#icon-text').text('Create New RE:Folder');
         $('#icon-description').text('Enter your new folder name, and then hit the submit button to create it!');
         $('#form-description').text('Folder Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 
@@ -22,6 +19,7 @@ $(document).ready(function() {
         $('#icon-text').text('Create New RE:Note');
         $('#icon-description').text('Enter your new note name, and then hit the submit button to create it!');
         $('#form-description').text('Note Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 
@@ -34,9 +32,17 @@ $(document).ready(function() {
     });
 
     $('#workspace').click(event => {
-        $('#workspace').find('*').removeClass('inside');
         if($(event.target).is('h5')) {
-            $(event.target).addClass('inside');
+            if($(event.target).hasClass('.inside')) {
+                // $(event.target).removeClass('.inside');
+                $('#workspace').find('*').removeClass('inside');
+            } else {
+                $('#workspace').find('*').removeClass('inside');
+                $(event.target).addClass('inside');
+            }
+        }
+        else {
+            $('#workspace').find('*').removeClass('inside');
         }
 
         let isFolder = $(event.target).parent().hasClass('folder');
@@ -53,7 +59,9 @@ $(document).ready(function() {
                 }
             }
         }
-        if (!isFolder) {
+        else if (!isFolder && $(event.target).is('h5')) {
+            $('#embedded-text').hide();
+            $('#iframe').show();
             if($(event.target).text().length < 10) {
                 $('.logo').css('left', '50%');
                 $('#note-text').text($(event.target).text());
@@ -64,39 +72,43 @@ $(document).ready(function() {
                 $('#note-text').text($(event.target).text());
             }
         }
+        else {
+            $('#iframe').hide();
+            $('#embedded-text').show();
+            $('#workspace').find('*').removeClass('inside');
+            $('#note-text').text('Note');
+        }
     });
+
+//NOTE: functionality for dropdowns //
     let emailDropdown = $("#email-dropdown");
     let helpDropdown = $("#help-dropdown");
     let sortDropdown = $("#sort-dropdown");
 
-    $('#user-text').click((event) => {
+    $('#user-text').click(() => {
       emailDropdown.toggleClass('show');
     });
 
-    $('#help-text').click((event) => {
+    emailDropdown.mouseleave(() => {
+      emailDropdown.toggleClass('show');
+    });
+
+    $('#help-text').click(() => {
       helpDropdown.toggleClass('show');
     });
 
-    $('#sort-text').click((event) => {
+    helpDropdown.mouseleave(() => {
+      helpDropdown.toggleClass('show');
+    });
+
+    $('#sort-text').click(() => {
       sortDropdown.toggleClass('show');
     });
-    /* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-// function myFunction() {
-//     $("#sort-dropdown").toggleClass("show");
-// }
 
-// Close the dropdown menu if the user clicks outside of it
-// $(window).click = function(event) {
-//   if ($(!event.target).matches($('.dropa'))) {
-//
-//     var dropdowns = $(".dropdown-content");
-//     for (var i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// };
+    sortDropdown.mouseleave(() => {
+      sortDropdown.toggleClass('show');
+    });
+
+//NOTE: dynamically populate email address and workspace name//
+
 });

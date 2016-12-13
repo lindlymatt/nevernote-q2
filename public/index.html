@@ -1,190 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>RE: Note Landing Page</title>
 
-    <link rel="stylesheet" type="text/css" href="css/landing.css">
+<head>
+  <meta charset="UTF-8">
+  <title>RE: Note Landing Page</title>
 
-    <script src="https://use.fontawesome.com/f406cdfc86.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/landing.css">
 
+  <script src="https://use.fontawesome.com/f406cdfc86.js"></script>
+  <!-- Include ScrollMagic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/landing.js" defer></script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
 
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/landing.js" defer></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
 
-  </head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <body>
-    <nav id="navigation" class="z-depth-0">
-      <div class="nav-wrapper">
-        <a href="#!" id="navLogo" class="brand-logo center"><img src="../img/renote_logo_border_small.jpg" height="80%" width="80%"></a>
 
-      </div>
-    </nav>
-    <container class="parallax-container valign-wrapper">
-      <div class="parallax">
-        <img src="../img/typewriter-801921.jpg" alt="Typewriter" height="inherit" width="60%"></div>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
-        <!-- Modal Trigger -->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+  <nav id="navigation" class="z-depth-0">
+    <div class="nav-wrapper">
+      <a href="#!" id="navLogo" class="brand-logo center"><img src="img/renote_logo_border_small.jpg" height="80%" width="80%"></a>
+
+    </div>
+  </nav>
+  <container id="typwritersRock" class="parallax-container valign-wrapper">
+    <div class="parallax">
+      <img src="img/typewriter-801921.jpg" alt="Typewriter" height="inherit%" width="40%"></div>
+
+    <!-- Modal Trigger -->
+    <div class="row">
+      <div class="col s6 offset-s0"><a href="#modal1"><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Sign Up</h5></span></a></div>
+      <div class="col s6 offset s4"><a href="#modal2"><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Log In</h5></span></a></div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Sign Up</h4>
+        <form method="post" action="/users" class="col s3">
           <div class="row">
-            <div class="col s6 offset-s0"><a href="#modal1" ><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Sign Up</h5></span></a></div>
-            <div class="col s6 offset s4"><a href="#modal2" ><span class="ripple b2" data-ripple-color="#E5E8C9"><h5>Log In</h5></span></a></div>
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="firstName" type="text" class="validate" label="label" name="firstName">
+              <label for="fistName">First Name</label>
+            </div>
           </div>
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h4>Sign Up</h4>
-            <form method="post" action="/users" class="col s3">
-            <div class="row">
-              <div class="input-field col s8 offset-s2">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="firstName" type="text" class="validate" label="label" name="firstName">
-                <label for="fistName">First Name</label>
-              </div>
+          <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">email</i>
+              <input id="signup_email" type="email" class="validate" name="email">
+              <label for="email">Email</label>
             </div>
-            <div class="row">
-              <div class="input-field col s8 offset-s2">
-                <i class="material-icons prefix">email</i>
-                <input id="signup_email" type="email" class="validate" name="email">
-                <label for="email">Email</label>
-              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">security</i>
+              <input id="signupPassword" type="password" class="validate" name="password">
+              <label for="password">password</label>
             </div>
-            <div class="row">
-              <div class="input-field col s8 offset-s2">
-                <i class="material-icons prefix">security</i>
-                <input id="signupPassword" type="password" class="validate" name="password">
-                <label for="password">password</label>
-              </div>
-            </div>
-            <div id="footerModal" class="modal-footer">
-              <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          </div>
+          <div id="footerModal" class="modal-footer">
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 
 
-            </div>
+          </div>
 
-          </form>
+        </form>
+      </div>
+
+    </div>
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <h4>Log Into RE: Note</h4>
+        <form method="post" action="/token" class="col s3">
+
+          <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">email</i>
+              <input placeholder="email@email.com" id="email" type="email" class="validate" name="email">
+              <label for="icon_telephone">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">security</i>
+              <input id="password" type="password" class="validate" name="password">
+              <label for="password">password</label>
+            </div>
+          </div>
+          <div id="modalFooter" class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Forgot Password/Email</a>
+            <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Log In</button>
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </container>
+
+  <container id="secondSalt" class="parallax-container valign-wrapper">
+    <div class="row">
+      <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
+
+    </div>
+  </container>
+
+  <container id="thirdSalt">
+    <div id="columns" class="row">
+      <div class="col s5 m4 offset-2">
+        <div id="firstCard" class="card z-depth-0">
+          <div class="card-image">
+            <img src="img/notebook-1841548_640.jpg" width="50%" height="247" frameborder="0" class="giphy-embed">
+
+            <span><h2 id="create">RE: Call</h2></span>
+            <span id="pencil" class="card-title"><i class="fa fa-pencil fa-3x"></i></span>
+
+
+          </div>
+          <div class="card-content">
+            <p>Education was historically valued in Sierra Leone as a possession that conveyed and expressed elite status, with the revered, authoritative teacher being the gatekeeper. The erosion of teachers’ authority through government policies designed
+              to universalize access to education has called into question the once-certain high status of the educated. With the future now ambiguous, students and teachers undertake “practices of uncertainty,” engaging in symbolic boundary work to distinguish
+              themselves from the uneducated but at the same time undertaking the same manual labor as the unschooled. They socially level the elite and concurrently seek entrée to their networks, and react to an uncertain future with contradictory practices.
+              The work undertaken by students and teachers lies within and reinforces extant social values that emphasize the importance of both distinction and belonging, revealing education’s enduring value in the social imaginary. This explains the
+              tenacity of the idea of education even in a persistently desultory employment climate.</p>
           </div>
 
         </div>
-        <div id="modal2" class="modal">
-          <div class="modal-content">
-            <h4>Log Into RE: Note </h4>
-            <form method="post" action="/token" class="col s3">
+      </div>
+      <div class="col s5 m2">
+        <div id="secondCard" class="card z-depth-0">
+          <div class="card-image">
+            <img src="img/giphy.gif" width="50%" height="247" frameborder="0" class="giphy-embed">
+            <span><h2 id="edit">RE: Mark</h2></span>
 
-            <div class="row">
-              <div class="input-field col s8 offset-s2">
-                <i class="material-icons prefix">email</i>
-                <input value="test" id="email" type="email" class="validate" name="email">
-                <label for="icon_telephone">Email</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s8 offset-s2">
-                <i class="material-icons prefix">security</i>
-                <input id="password" type="password" class="validate" name="password">
-                <label for="password">password</label>
-              </div>
-            </div>
-            <div id="modalFooter" class="modal-footer">
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Forgot Password/Email</a>
-              <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat">Log In</button>
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-
-
-            </div>
-          </form>
+            <span id="monitor" class="card-title"><i class="fa fa-desktop fa-3x" aria-hidden="true"></i></span>
+          </div>
+          <div class="card-content">
+            <p>The fourth day after my arrival at Zodanga I made my first flight, and as a result of it I won a promotion which included quarters in the palace of Than Kosis.</p><br>
+            <p>
+              As I rose above the city I circled several times, as I had seen Kantos Kan do, and then throwing my engine into top speed I raced at terrific velocity toward the south, following one of the great waterways which enter Zodanga from that direction.</p><br>
+            <p>
+              I had traversed perhaps two hundred miles in a little less than an hour when I descried far below me a party of three green warriors racing madly toward a small figure on foot which seemed to be trying to reach the confines of one of the walled fields.</p><br>
+            <p>Dropping my machine rapidly toward them, and circling to the rear of the warriors, I soon saw that the object of their pursuit was a red Martian wearing the metal of the scout squadron to which I was attached. A short distance away lay his
+              tiny flier, surrounded by the tools with which he had evidently been occupied in repairing some damage when surprised by the green warriors.</p><br>
           </div>
 
         </div>
+      </div>
+      <div class="col s3 m1">
+        <div id="thirdCard" class="card z-depth-0">
+          <div class="card-image">
+            <img src="img/notes-686344_640.jpg" width="50%" height="247" frameborder="0" class="giphy-embed">
+            <span><h2 id="view">RE: View</h2></span>
 
-      </container>
+            <span id="notes" class="card-title"><i class="fa fa-sticky-note fa-3x" aria-hidden="true"></i></span>
+          </div>
+          <div class="card-content">
+            <p>Dorothy leaned her chin upon her hand and gazed thoughtfully at the Scarecrow. Its head was a small sack stuffed with straw, with eyes, nose, and mouth painted on it to represent a face. An old, pointed blue hat, that had belonged to some
+              Munchkin, was perched on his head, and the rest of the figure was a blue suit of clothes, worn and faded, which had also been stuffed with straw. On the feet were some old boots with blue tops, such as every man wore in this country, and
+              the figure was raised above the stalks of corn by means of the pole stuck up its back.</p><br>
 
-      <container id="secondSalt" class="parallax-container valign-wrapper">
-        <div class="row">
-            <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span class="logo-color2">Note</span></h1>
+            <p>While Dorothy was looking earnestly into the queer, painted face of the Scarecrow, she was surprised to see one of the eyes slowly wink at her. She thought she must have been mistaken at first, for none of the scarecrows in Kansas ever wink;
+              but presently the figure nodded its head to her in a friendly way. Then she climbed down from the fence and walked up to it, while Toto ran around the pole and barked.</p><br>
+
+            <p>"Good day," said the Scarecrow, in a rather husky voice.</p>
+
+
+          </div>
 
         </div>
-      </container>
+      </div>
+    </div>
+  </container>
 
-      <container id="thirdSalt">
-        <div id="columns" class="row">
-          <div class="col s5 m4 offset-2">
-            <div id="firstCard" class="card z-depth-0">
-              <div class="card-image">
-                <img src="../img/notebook-1841548_640.jpg" width="50%" height="247" frameborder="0" class="giphy-embed" >
+</body>
 
-                <span><h2 id="create">RE: Call</h2></span>
-                <span id="pencil" class="card-title"><i class="fa fa-pencil fa-3x"></i></span>
-
-
-              </div>
-              <div class="card-content">
-                <p>Education was historically valued in Sierra Leone as a possession that conveyed and expressed elite status, with the revered, authoritative teacher being the gatekeeper. The erosion of teachers’ authority through government policies designed to universalize access to education has called into question the once-certain high status of the educated. With the future now ambiguous, students and teachers undertake “practices of uncertainty,” engaging in symbolic boundary work to distinguish themselves from the uneducated but at the same time undertaking the same manual labor as the unschooled. They socially level the elite and concurrently seek entrée to their networks, and react to an uncertain future with contradictory practices. The work undertaken by students and teachers lies within and reinforces extant social values that emphasize the importance of both distinction and belonging, revealing education’s enduring value in the social imaginary. This explains the tenacity of the idea of education even in a persistently desultory employment climate.</p>
-              </div>
-
-            </div>
-          </div>
-          <div class="col s5 m2">
-            <div id="secondCard" class="card z-depth-0">
-              <div class="card-image">
-                <img src="../img/giphy.gif" width="50%" height="247" frameborder="0" class="giphy-embed" >
-                <span><h2 id="edit">RE: Mark</h2></span>
-
-                <span id="monitor" class="card-title"><i class="fa fa-desktop fa-3x" aria-hidden="true"></i></span>
-              </div>
-              <div class="card-content">
-                <p>The fourth day after my arrival at Zodanga I made my first flight, and as a result of it I won a promotion which included quarters in the palace of Than Kosis.</p><br>
-                <p>
-                As I rose above the city I circled several times, as I had seen Kantos Kan do, and then throwing my engine into top speed I raced at terrific velocity toward the south, following one of the great waterways which enter Zodanga from that direction.</p><br>
-                <p>
-                I had traversed perhaps two hundred miles in a little less than an hour when I descried far below me a party of three green warriors racing madly toward a small figure on foot which seemed to be trying to reach the confines of one of the walled fields.</p><br>
-                <p>Dropping my machine rapidly toward them, and circling to the rear of the warriors, I soon saw that the object of their pursuit was a red Martian wearing the metal of the scout squadron to which I was attached. A short distance away lay his tiny flier, surrounded by the tools with which he had evidently been occupied in repairing some damage when surprised by the green warriors.</p><br>
-
-              </div>
-
-            </div>
-          </div>
-          <div class="col s3 m1">
-            <div id="thirdCard" class="card z-depth-0">
-              <div class="card-image">
-                <img src="../img/notes-686344_640.jpg" width="50%" height="247" frameborder="0" class="giphy-embed" >
-                <span><h2 id="view">RE: View</h2></span>
-
-                <span id="notes" class="card-title"><i class="fa fa-sticky-note fa-3x" aria-hidden="true"></i></span>
-              </div>
-              <div class="card-content">
-                <p>Dorothy leaned her chin upon her hand and gazed thoughtfully at the Scarecrow.  Its head was a small sack stuffed with straw, with eyes, nose, and mouth painted on it to represent a face.  An old, pointed blue hat, that had belonged to some Munchkin, was perched on his head, and the rest of the figure was a blue suit of clothes, worn and faded, which had also been stuffed with straw.  On the feet were some old boots with blue tops, such as every man wore in this country, and the figure was raised above the stalks of corn by means of the pole stuck up its back.</p><br>
-
-                <p>While Dorothy was looking earnestly into the queer, painted face of the Scarecrow, she was surprised to see one of the eyes slowly wink at her. She thought she must have been mistaken at first, for none of the scarecrows in Kansas ever wink; but presently the figure nodded its head to her in a friendly way.  Then she climbed down from the fence and walked up to it, while Toto ran around the pole and barked.</p><br>
-
-                <p>"Good day," said the Scarecrow, in a rather husky voice.</p>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-      </container>
-
-
-
-  </body>
 </html>
