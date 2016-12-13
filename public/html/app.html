@@ -16,6 +16,7 @@
   <script type="text/javascript" src="../js/new_note.js"></script>
   <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
   <script type="text/javascript" src="../js/logout.js" defer></script>
+  <script type="text/javascript" src="../js/cookies.js" defer></script>
 </head>
 
 <body>
@@ -37,11 +38,11 @@
   <!-- Create the Navigation -->
   <nav>
     <div class="row">
-      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> Matt's Workspace</h1>
+      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> <span id="userName"></span> Workspace</h1>
       <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span id="note-text" class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
       <div class="dropdown">
-        <a href="#/" class="right-align top-item" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
+        <a href="#/" class="right-align top-item" id="user-text"><span id="userEmail"></span><i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
         <div id="email-dropdown" class="dropdown-content dropdown">
           <a id="logout" href="#">Logout</a>
           <a href="#">Do Something Else</a>
