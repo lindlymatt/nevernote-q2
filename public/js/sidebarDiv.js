@@ -51,9 +51,15 @@ function createFolder(folder) {
       .addClass('folder');
   let $folderh5 = $('<h5>')
       .attr('id', `folder_${folder.id}`)
-      .dblclick(function(){
-        console.log('u clicked it');
-      })
+      .dblclick(() => {
+            $('#modal-title').text('Edit Folder Name');
+            $('#new-icon').attr('src', '../img/edit-pencil-icon-md.png');
+            $('#icon-text').text('Edit Folder Name');
+            $('#icon-description').text('');
+            $('#form-description').text('Folder Name: ');
+            $('#faded-background').show();
+            $('#divider').hide();
+        })
       .text(' ' + folder.name);
   let $folderI = $('<i>')
       .addClass('fa fa-folder-o fa-fw')
@@ -96,8 +102,14 @@ function createNote(note) {
           patchNote(noteName, localStorage.smde_content, noteId, parentId);
         }, interval);
         })
-        .dblclick(function() {
-          console.log('good work');
+      .dblclick(() => {
+            $('#modal-title').text('Edit Note Name');
+            $('#new-icon').attr('src', '../img/edit-pencil-icon-md.png');
+            $('#icon-text').text('Enter the new note name, and then hit submit to save!');
+            $('#icon-description').text('');
+            $('#form-description').text('Note Name: ');
+            $('#faded-background').show();
+            $('#divider').hide();
         })
       .text(' ' + note.name);
   let $noteI = $('<i>')
