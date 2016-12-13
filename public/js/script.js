@@ -94,4 +94,7 @@ $(document).ready(function() {
     sortDropdown.mouseleave(() => {
       sortDropdown.toggleClass('show');
     });
+
+//NOTE: dynamically populate email address and workspace name//
+    
 });
