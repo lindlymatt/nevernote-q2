@@ -9,7 +9,7 @@ $(document).ready(function() {
     var $name = $('#form-text').val();
     let $parent = getParent();
     if($parent === undefined) {
-      $parent === null;
+      $parent = null;
     }
     if($formType === 'Folder Name: ') {
       return postFolder($name, $parent);
@@ -23,17 +23,33 @@ $(document).ready(function() {
 function getParent() {
   if ($('*').hasClass('inside')) {
     var $inside = $('.inside');
-    $currentFolder = $inside;
-    if ($inside.parent().has('.folder') && $inside.is('.folder')){
-      return $inside.attr('id').slice(7);
-    }
-    else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.note')) {
+    if ($inside.parent().parent().is('#workspace')) {
+      if($inside.has('.folder')) {
+        $currentFolder = $inside;
+        return $inside.attr('id').slice(7);
+      }
+      else if($inside.has('.note')) {
+        return null;
+      }
+    } else {
+      if ($inside.parent().is('.folder')) {
+        $currentFolder = $inside;
+        return $inside.attr('id').slice(7);
+      }
       $currentFolder = $inside.parent();
-      return $inside.parent().parent().find('h5').eq(0).attr('id').slice(7);
+      return $inside.parent().attr('id').slice(7);
     }
-    else if($inside.parent().parent().is('#workspace') && $inside.has('.note')) {
-      return null;
-    }
+    // else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.note')) {
+    //   $currentFolder = $inside.parent();
+    //   return $inside.parent().find('h5').eq(0).attr('id').slice(7);
+    // }
+    // else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.folder')) {
+    //   $currentFolder = $inside.parent();
+    //   return $inside.parent().find('h5').eq(0).attr('id').slice(7);
+    // }
+    // else if($inside.parent().parent().is('#workspace')) {
+    //   return null;
+    // }
   }
   else {
     return null;

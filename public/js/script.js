@@ -2,6 +2,19 @@
 
 $(document).ready(function() {
     $('#iframe').hide();
+    $('#workspace').one('ready')
+    let wsChild = $('#workspace').children().not('#search-tag').not('#search-icon');
+    console.log(wsChild);
+    if(wsChild.length < 5) {
+        $('#embedded-text').text('Low ammo.');
+    } else if (wsChild.length > 5 && wsChild.length < 15) {
+        $('#embedded-text').text('Food supply: shortening.');
+    } else if (wsChild.length > 15 && wsChild.length < 25) {
+        $('#embedded-text').text('You won the Oregon Trail.');
+    } else if (wsChild.length > 25 && wsChild.length < 40) {
+        $('#embedded-text').text('RE:Note CHAMPION!');
+    }
+
 
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
