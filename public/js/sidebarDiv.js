@@ -54,11 +54,11 @@ function createFolder(folder) {
       .dblclick(() => {
             $('#modal-title').text('Edit Folder Name');
             $('#new-icon').attr('src', '../img/edit-pencil-icon-md.png');
-            $('#icon-text').text('Edit Folder Name');
+            $('#icon-text').text('Enter your new folder name, and then hit submit to save!');
             $('#icon-description').text('');
             $('#form-description').text('Folder Name: ');
             $('#faded-background').show();
-            $('#divider').hide();
+            $('#modal-submit-button').addClass('edit-folder');
         })
       .text(' ' + folder.name);
   let $folderI = $('<i>')
@@ -105,11 +105,11 @@ function createNote(note) {
       .dblclick(() => {
             $('#modal-title').text('Edit Note Name');
             $('#new-icon').attr('src', '../img/edit-pencil-icon-md.png');
-            $('#icon-text').text('Enter the new note name, and then hit submit to save!');
+            $('#icon-text').text('Enter your new note name, and then hit submit to save!');
             $('#icon-description').text('');
             $('#form-description').text('Note Name: ');
             $('#faded-background').show();
-            $('#divider').hide();
+            $('#modal-submit-button').addClass('edit-note');
         })
       .text(' ' + note.name);
   let $noteI = $('<i>')
