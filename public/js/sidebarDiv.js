@@ -51,6 +51,9 @@ function createFolder(folder) {
       .addClass('folder');
   let $folderh5 = $('<h5>')
       .attr('id', `folder_${folder.id}`)
+      .dblclick(function(){
+        console.log('u clicked it');
+      })
       .text(' ' + folder.name);
   let $folderI = $('<i>')
       .addClass('fa fa-folder-o fa-fw')
@@ -92,6 +95,9 @@ function createNote(note) {
         setInterval(function() {
           patchNote(noteName, localStorage.smde_content, noteId, parentId);
         }, interval);
+        })
+        .dblclick(function() {
+          console.log('good work');
         })
       .text(' ' + note.name);
   let $noteI = $('<i>')
