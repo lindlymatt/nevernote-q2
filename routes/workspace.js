@@ -3,21 +3,17 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
-const {camelizeKeys} = require('humps');
-const bodyParser = require('body-parser');
-router.use(bodyParser.json());
 
 router.get('/', (req, res, next) => {
   const user = req.body.userId;
   knex('folders')
     .where('folders.user_id', user)
     .then((folders) => {
+
       let workspace = {
         "folders": [],
         "notes": []
       };
-
-      let count = 0;
 
       folders.map(folder => {
         folder.childFolders = [];
@@ -49,18 +45,22 @@ router.get('/', (req, res, next) => {
         .then((notes) => {
 
           notes.forEach((note) => {
-            let parentFolder;
-            for (let i = 0; i < folders.length; i++) {
-              let foundParent = findParentFolder(folders[i], note.parent_folder);
-              if (foundParent) {
-                parentFolder = foundParent;
-                break;
+            if (note.parent_folder) {
+              let parentFolder;
+              for (let i = 0; i < folders.length; i++) {
+                let foundParent = findParentFolder(folders[i], note.parent_folder);
+                if (foundParent) {
+                  parentFolder = foundParent;
+                  break;
+                }
               }
+              parentFolder.folderNotes.push(note);
+            } else {
+              workspace.notes.push(note);
             }
-            parentFolder.folderNotes.push(note);
           });
-          
-          res.json(folders);
+          workspace.folders.push(...folders);
+          res.json(workspace);
         })
         .catch((err) => {
           next(err);
