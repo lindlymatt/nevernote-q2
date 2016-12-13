@@ -5,13 +5,12 @@
   <meta charset="utf-8">
   <title>RE:Note, Matt's Binder</title>
   <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cinzel" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/simplemde.css">
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/simplemde.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
   <script src="https://use.fontawesome.com/ff8b645e3b.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-  <script src="../js/script.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
   <script type="text/javascript" src="../js/new_note.js"></script>
   <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
@@ -79,6 +78,8 @@
       <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i id="search-icon" class="fa fa-search fa-fw" aria-hidden="true"></i>
     </div>
     <div id="editor">
+      <iframe id="iframe" src="simplemde.html">
+      </iframe>
     </div>
   </main>
 </body>
