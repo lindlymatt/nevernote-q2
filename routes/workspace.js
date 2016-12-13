@@ -77,10 +77,8 @@ function getWorkspace(folders, notes){
         for(var x = 0; x < userStuff.folders.length; x++) {
           if(folders[i].parent_folder === userStuff.folders[x].id) {
             userStuff.folders[x].childFolders.push(folders[i]);
-            folders.splice(0, 1);
           }
         }
-        i--;
       }
   return userStuff;
 };
