@@ -27,11 +27,11 @@ function getParent() {
     if ($inside.parent().has('.folder') && $inside.is('.folder')){
       return $inside.attr('id').slice(7);
     }
-    else if(!($inside.parent().parent().has('#workspace')) && $inside.has('.note')) {
+    else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.note')) {
       $currentFolder = $inside.parent();
       return $inside.parent().parent().find('h5').eq(0).attr('id').slice(7);
     }
-    else if($inside.parent().parent().has('#workspace') && $inside.has('.note')) {
+    else if($inside.parent().parent().is('#workspace') && $inside.has('.note')) {
       return null;
     }
   }
@@ -42,6 +42,7 @@ function getParent() {
 
 //post new folder
 function postFolder(name, parentId) {
+  console.log('Folder: ', parentId);
   if(parentId === null) {
     $.post('/folders', { name: name }, response => {
         var fId = response[0].id;
@@ -83,6 +84,7 @@ function postFolder(name, parentId) {
 
 //post new note
 function postNote(name, parentId) {
+  console.log('Note: ', parentId);
   if(parentId === null) {
     $.post('/notes', { name: name }, res => {
       let nId = res.id;
