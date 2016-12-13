@@ -90,8 +90,9 @@ function createNote(note) {
         }
         console.log(parentId);
         var noteContent = simplemde.value();
-        var interval = 1000 * 5;
+        var interval = 1000 * 60;
         setInterval(function() {
+          console.log('interval');
           patchNote(noteName, localStorage.smde_content, noteId, parentId);
         }, interval);
         })
@@ -145,5 +146,5 @@ function patchNote(name, content, id, parentFolder) {
     url: '/notes/' + id
   }
   $.ajax(options)
-  .done();
+  .done(console.log(['patched', options]));
 };
