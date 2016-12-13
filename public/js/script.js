@@ -1,13 +1,15 @@
 'use strict';
 
 $(document).ready(function() {
-    
+    $('#iframe').hide();
+
     $('#new-folder').on('click', () => {
         $('#modal-title').text('Create New Folder');
         $('#new-icon').attr('src', '../img/new-folder-icon.png');
         $('#icon-text').text('Create New RE:Folder');
         $('#icon-description').text('Enter your new folder name, and then hit the submit button to create it!');
         $('#form-description').text('Folder Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 
@@ -17,6 +19,7 @@ $(document).ready(function() {
         $('#icon-text').text('Create New RE:Note');
         $('#icon-description').text('Enter your new note name, and then hit the submit button to create it!');
         $('#form-description').text('Note Name: ');
+        $('#form-text').val('');
         $('#faded-background').show();
     });
 
@@ -30,8 +33,16 @@ $(document).ready(function() {
 
     $('#workspace').click(event => {
         if($(event.target).is('h5')) {
+            if($(event.target).hasClass('.inside')) {
+                // $(event.target).removeClass('.inside');
+                $('#workspace').find('*').removeClass('inside');
+            } else {
+                $('#workspace').find('*').removeClass('inside');
+                $(event.target).addClass('inside');
+            }
+        }
+        else {
             $('#workspace').find('*').removeClass('inside');
-            $(event.target).addClass('inside');
         }
 
         let isFolder = $(event.target).parent().hasClass('folder');
@@ -48,7 +59,9 @@ $(document).ready(function() {
                 }
             }
         }
-        if (!isFolder && $(event.target).is('h5')) {
+        else if (!isFolder && $(event.target).is('h5')) {
+            $('#embedded-text').hide();
+            $('#iframe').show();
             if($(event.target).text().length < 10) {
                 $('.logo').css('left', '50%');
                 $('#note-text').text($(event.target).text());
@@ -58,6 +71,12 @@ $(document).ready(function() {
                 $('.logo').css('left', '50%').css('font-size', '2rem');
                 $('#note-text').text($(event.target).text());
             }
+        }
+        else {
+            $('#iframe').hide();
+            $('#embedded-text').show();
+            $('#workspace').find('*').removeClass('inside');
+            $('#note-text').text('Note');
         }
     });
 
