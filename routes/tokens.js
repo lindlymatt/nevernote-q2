@@ -61,7 +61,10 @@ router.post('/token', ev(validations.post), (req, res, next) => {
 
 router.delete('/token', (req, res, next) => {
   res.clearCookie('token');
-  res.status(200).send(true);
+  res.send({
+    redirectTo: '/index.html',
+    msg: 'If this works ima cry'
+  });
 });
 
 module.exports = router;
