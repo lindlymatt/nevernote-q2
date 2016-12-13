@@ -65,6 +65,8 @@ $(document).ready(function() {
             }
         }
     });
+
+//NOTE: functionality for dropdowns //
     let emailDropdown = $("#email-dropdown");
     let helpDropdown = $("#help-dropdown");
     let sortDropdown = $("#sort-dropdown");
