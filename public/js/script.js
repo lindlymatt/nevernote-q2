@@ -227,3 +227,39 @@ $(document).ready(function() {
       }
     });
 });
+
+function patchNote(name, content, id, parentFolder) {
+  if(parentFolder === -1) {
+    let data = { name, content };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else if(parentFolder === -1 && content === '') {
+    let data = { name };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else {
+    let data = { name, content, parentFolder };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+};
