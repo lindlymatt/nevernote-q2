@@ -140,6 +140,7 @@ $(document).ready(function() {
             currentItem.parent().empty();
             currentItem.parent().remove();
             $('#faded-background').hide();
+            $('#iframe').hide();
             deleteItem(type, id);
         }
         if($('#modal-title').text().includes('Edit')) {
@@ -158,6 +159,7 @@ $(document).ready(function() {
             }
             name = $('#form-text').val();
             $('#faded-background').hide();
+            $('#iframe').hide();
             patchName(type, name, id);
         }
         $('#faded-background').hide();
