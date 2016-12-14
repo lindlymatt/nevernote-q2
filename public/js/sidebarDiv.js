@@ -89,7 +89,7 @@ function createNote(note) {
         $.get(`/notes/${noteId}`, data => {
           clearInterval(window.interval);
           simplemde.value(data.content);
-          let noteId = res.id;
+          let noteId = data.id;
           let $current = $('*').find('.inside');
           $.get(`/notes/${noteId}`, data => {
             simplemde.value(data.content);
