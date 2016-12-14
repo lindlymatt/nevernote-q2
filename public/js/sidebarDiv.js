@@ -88,9 +88,14 @@ function createNote(note) {
           parentId = null;
         }
         var noteContent = simplemde.value();
-        var interval = 1000 * 60;
+        var interval = 1000 * 4;
         setInterval(function() {
-          patchNote(noteName, localStorage.smde_content, noteId, parentId);
+          console.log(parentId);
+          if (parentId) {
+            patchNote(noteName, localStorage.smde_content, noteId, parentId);
+          } else {
+            patchNote(noteName, localStorage.smde_content, noteId);
+          }
         }, interval);
         })
       .text(' ' + note.name);
