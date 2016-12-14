@@ -1,6 +1,9 @@
 'use strict';
 
 $(document).ready(function() {
+    $('iframe').on('load', () => {
+        simplemde = document.getElementById("iframe").contentWindow.simplemde;
+    });
     $('#iframe').hide();
 
     $('#new-folder').on('click', () => {
@@ -123,20 +126,40 @@ $(document).ready(function() {
 
     $('#modal-submit-button').on('click', () => {
         if($('#modal-title').text().includes('Deleting')) {
-            let currentItem = $('*').find('.inside').parent();
-            currentItem.empty();
-            currentItem.remove();
+            let id = 0;
+            let type = '';
+            let currentItem = $('*').find('.inside');
+            if(currentItem.parent().hasClass('folder')) {
+                id = currentItem.attr('id').slice(7);
+                type = 'folder';
+            }
+            else if(currentItem.parent().hasClass('note')) {
+                id = currentItem.attr('id').slice(5);
+                type = 'note';
+            }
+            currentItem.parent().empty();
+            currentItem.parent().remove();
+            $('#faded-background').hide();
+            deleteItem(type, id);
         }
         if($('#modal-title').text().includes('Edit')) {
+            let id = 0;
+            let type = '';
             let currentItem = $('*').find('.inside');
-            if($('*').parent().hasClass('folder')) {
+            if(currentItem.parent().hasClass('folder')) {
                 currentItem.html(`<i class="fa fa-folder-o fa-fw"></i> ${$('#form-text').val()}`);
+                id = currentItem.attr('id').slice(7);
+                type = 'folder';
             }
-            else if($('*').parent().hasClass('note')) {
+            else if(currentItem.parent().hasClass('note')) {
                 currentItem.html(`<i class="fa fa-sticky-note-o fa-fw"></i> ${$('#form-text').val()}`);
+                id = currentItem.attr('id').slice(5);
+                type = 'note';
             }
+            name = $('#form-text').val();
+            $('#faded-background').hide();
+            patchName(type, name, id);
         }
-        $('#faded-background').hide();
     });
 
     $('#modal-close-button').on('click', () => {
@@ -226,38 +249,50 @@ $(document).ready(function() {
     });
 });
 
-function patchNote(name, content, id, parentFolder) {
-  if(parentFolder === -1) {
-    let data = { name, content };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
+function patchName(type, name, id) {
+  if(type === 'folder') {
+      if(name === '') {
+        name = 'Untitled Folder';
+      }
+    type = 'folders';
   }
-  else if(parentFolder === -1 && content === '') {
-    let data = { name };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
+  else if(type === 'note') {
+      if(name === '') {
+        name = 'Untitled Note';
+      }
+    type = 'notes';
   }
-  else {
-    let data = { name, content, parentFolder };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
-  }
-};
+
+  let data = { name };
+  $.ajax({
+    url : `/${type}/${id}`,
+    data : JSON.stringify(data),
+    type : 'PATCH',
+    contentType : 'application/json',
+    processData: false,
+    dataType: 'json'
+  }).done(data => console.log(data));
+}
+
+function deleteItem(type, id) {
+    if(type === 'folder') {
+        $.ajax({
+            url: `folders/${id}`,
+            type: 'DELETE',
+            contentType:'application/json',
+            dataType: 'json',
+            success: function(result) {console.log(result)},
+            error: function(result) {console.log(result)}
+        });
+    }
+    else if(type === 'note') {
+        $.ajax({
+            url: `/notes/${id}`,
+            type: 'DELETE',
+            contentType:'application/json',
+            dataType: 'json',
+            success: function(result) {console.log(result)},
+            error: function(result) {console.log(result)}
+        });
+    }
+}
