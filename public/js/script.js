@@ -5,6 +5,9 @@ $(document).ready(function() {
         simplemde = document.getElementById("iframe").contentWindow.simplemde;
     });
     $('#iframe').hide();
+    $('#edit-name').hide();
+    $('#delete-item').hide();
+    $('#download-item').hide();
 
     $('#new-folder').on('click', () => {
         $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
@@ -140,6 +143,7 @@ $(document).ready(function() {
             currentItem.parent().empty();
             currentItem.parent().remove();
             $('#faded-background').hide();
+            $('#iframe').hide();
             deleteItem(type, id);
         }
         if($('#modal-title').text().includes('Edit')) {
@@ -158,6 +162,7 @@ $(document).ready(function() {
             }
             name = $('#form-text').val();
             $('#faded-background').hide();
+            $('#iframe').hide();
             patchName(type, name, id);
         }
         $('#faded-background').hide();
@@ -178,6 +183,9 @@ $(document).ready(function() {
 
         let isFolder = $(event.target).parent().hasClass('folder');
         if (isFolder) {
+            $('#edit-name').show();
+            $('#delete-item').show();
+            $('#download-item').hide();
             if($(event.target).children().first().is('i')) {
                 $(event.target).children().first().toggleClass('fa-folder-o');
                 $(event.target).children().first().toggleClass('fa-folder-open-o');
@@ -191,6 +199,9 @@ $(document).ready(function() {
             }
         }
         else if (!isFolder && $(event.target).is('h5')) {
+            $('#edit-name').show();
+            $('#delete-item').show();
+            $('#download-item').show();
             $('#embedded-text').hide();
             $('#iframe').show();
             if($(event.target).text().length < 10) {
@@ -204,6 +215,9 @@ $(document).ready(function() {
             }
         }
         else {
+            $('#edit-name').hide();
+            $('#delete-item').hide();
+            $('#download-item').hide();
             $('#iframe').hide();
             $('#embedded-text').show();
             $('#workspace').find('*').removeClass('inside');
@@ -220,24 +234,30 @@ $(document).ready(function() {
       emailDropdown.toggleClass('show');
     });
 
-    emailDropdown.mouseleave(() => {
-      emailDropdown.toggleClass('show');
+    emailDropdown.on('mouseenter', () => {
+        emailDropdown.on('mouseleave', () => {
+            emailDropdown.toggleClass('show');
+        });
     });
 
     $('#help-text').click(() => {
       helpDropdown.toggleClass('show');
     });
 
-    helpDropdown.mouseleave(() => {
-      helpDropdown.toggleClass('show');
+    helpDropdown.on('mouseenter', () => {
+        helpDropdown.on('mouseleave', () => {
+            helpDropdown.toggleClass('show');
+        });
     });
 
     $('#sort-text').click(() => {
       sortDropdown.toggleClass('show');
     });
 
-    sortDropdown.mouseleave(() => {
-      sortDropdown.toggleClass('show');
+    sortDropdown.on('mouseenter', () => {
+        sortDropdown.on('mouseleave', () => {
+            sortDropdown.toggleClass('show');
+        });
     });
 
 //NOTE: Add ability to download your notes
@@ -278,7 +298,7 @@ function patchName(type, name, id) {
 function deleteItem(type, id) {
     if(type === 'folder') {
         $.ajax({
-            url: `folders/${id}`,
+            url: `/folders/${id}`,
             type: 'DELETE',
             contentType:'application/json',
             dataType: 'json',
