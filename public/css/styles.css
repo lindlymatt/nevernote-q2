@@ -129,18 +129,17 @@ a:active {
 #faded-background {
   display: none;
   position: fixed;
-  background-color: black;
+  background: rgba(0, 0, 0, 0.7);
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.7;
   z-index: 5;
 }
 
 #modal {
   position: absolute;
-  background-color: #041E2B;
+  background: rgba(40, 73, 80, 1);
   border-radius: 10px;
   top: 30%;
   left: 30%;
