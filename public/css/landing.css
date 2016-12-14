@@ -7,6 +7,13 @@
   }
 }
 
+body {
+  background-color: #284950;
+  margin-left:0;
+  height: auto;
+}
+
+/* ------Modal Style----- */
 #modal1 {
   background-color: #D8CFAE;
 }
@@ -23,6 +30,24 @@
   background-color: #D8CFAE;
 }
 
+#signUpBtn {
+  margin-top: 1.5rem;
+}
+
+#signUpText {
+  margin: 1.55rem;
+  color: #FBF7EB;
+}
+
+#logInBtn {
+  margin-top: 1.5rem;
+}
+
+#logInText {
+  margin: 2.2rem;
+  color: #FBF7EB;
+}
+
 #navigation {
   padding-left: 0;
   color: black;
@@ -36,12 +61,8 @@
 
 #navLogo {
   color: black;
-}
-
-body {
-  background-color: #284950;
-  margin-left:0;
-  height: auto;
+  /*height: 10%;
+  width: 10%;*/
 }
 
 .parallax {
@@ -50,11 +71,7 @@ body {
 }
 
 #typewritersRock {
-  height: 500px;
-}
-
-#typewriterImg {
-  padding-right: 4.5rem;
+  height: 570px;
 }
 
 .ripple{
@@ -62,7 +79,6 @@ body {
   position: relative;
   box-sizing: border-box;
   transform: translate3d(0, 0, 0);
-
   display: inline-block;
   background: #03a9f4; //#03A9F4;
   width: 135px;
@@ -85,7 +101,7 @@ body {
 }
 
 h5 {
-  font-size: 6px;
+  font-size: 1px;
   color: black;
   text-align: center;
   margin: 0;
@@ -93,19 +109,9 @@ h5 {
 }
 
 span {
-  /*display: inline-block;
-  padding: 20px;
-  color: #eee;
-  cursor: pointer;
-  user-select: none;
-  transition: box-shadow .4s;
-  box-shadow: 0px 1px 4px transparent;
-  margin: 20px;*/
-
   &:hover {
     box-shadow: 0px 1px 4px rgba(0,0,0,0.8);
   }
-
   &:active {
     transition: .2s;
     box-shadow: 0px 1px 4px transparent;
@@ -130,10 +136,10 @@ span {
 
 
 .button-land {
-  display: inline-block;
+  /*display: inline-block;*/
   color: black;
   overflow: hidden;
-  position: relative;
+  /*position: relative;*/
   text-decoration: none;
   text-transform: uppercase;
   border-radius: 0;
@@ -145,7 +151,7 @@ span {
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
   border: none;
   font-size: 15px;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 /* label color */
@@ -174,74 +180,51 @@ span {
    /* icon prefix focus color */
    .input-field .prefix.active {
      color: #212121;
-     /*border-bottom: 1px solid #212121;
-     box-shadow: 0 1px 0 0 #212121; */
    }
 
 #secondSalt {
+  margin-top: 50px;
   height: 80px;
   background-color: #284950;
 }
 
-/*#thirdSalt {
-  height: 600px;
-  background-color: #284950;
-
-}*/
-
+/*----- Orange Icons----- */
 #pencil {
-  margin-left: 18vw;
-  margin-bottom: 23vw;
   color: #E18B50;
+  font-size: 1.25rem;
 }
 
-#create {
+#monitor {
+  color: #E18B50;
+  font-size: 1.25rem;
+}
+
+#notes {
+  color: #E18B50;
+  font-size: 1.25rem;
+}
+
+#reCall {
   color: #E18B50;
   font-size: 2.5rem;
   font-family: 'Cinzel', serif;
 }
 
-/*#recall {
-  width: auto;
-  margin-top: 300vw;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  margin-left: 4vw;
-}*/
-
-#pencilText {
-  margin-top: -293vw;
-}
-
-#edit {
-  margin-left: 2vw;
+#reMark {
   color: #E18B50;
   text-align: center;
   font-family: 'Cinzel', serif;
   font-size: 2.5rem;
 }
 
-#monitor {
-  margin-bottom: 23vw;
+#reView {
   color: #E18B50;
-  margin-left: 18vw;
-}
-
-#view {
-  padding-left: 2vw;
-  color: #E18B50;
-  margin-left: 1vw;
   font-family: 'Cinzel', serif;
   font-size: 2.5rem;
 }
 
-#notes {
-  color: #E18B50;
-}
 /* -----Cards style----- */
 #firstCard {
-  /*margin-left: 12vw;*/
-  /*width: 25vw;*/
   height: auto;
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
@@ -250,8 +233,6 @@ span {
 }
 
 #secondCard {
-  /*width: 25.3vw;*/
-  /*margin-left: 4vw;*/
   height: auto;
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
@@ -260,18 +241,26 @@ span {
 }
 
 #thirdCard {
-  /*width: 25vw;*/
   height: auto;
-  /*margin-left: 13vw;*/
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 1.15rem;
   color: #F5F5F5;
 }
 
+#notebookImg {
+  width: 100%;
+  height: 100%;
+}
+
+#markdownGif {
+  width: 100%;
+  height: 100%;
+}
+
 #notesImg {
-  width: auto;
-  height: 247px;
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -286,20 +275,13 @@ span {
 
 .logo-color1 {
  color: #E18B50;
- /*text-shadow: .05rem .05rem #FBF7EB ;*/
 }
 
 .logo-color2 {
  color: #FBF7EB;
 }
 
-.colon {
- font-size: 3.5rem;
- margin-left: -1vw;
-}
-
 #columns {
   background-color: #284950;
   height: auto;
-
 }
