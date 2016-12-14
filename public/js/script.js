@@ -4,6 +4,16 @@ $(document).ready(function() {
     $('#iframe').hide();
 
     $('#new-folder').on('click', () => {
+        $('#hidden-link').hide();
+        $('#link-place').hide();
+        $('#modal-close-button').removeAttr('style');
+        $('#modal-submit-button').removeAttr('style');
+        $('#icon-description').removeAttr('style');
+        $('#modal').removeAttr('style');
+        $('#modal-title').removeAttr('style');
+        $('#divider').show();
+        $('#form-description').show();
+        $('#form-text').show();
         $('#modal-title').text('Create New Folder');
         $('#new-icon').attr('src', '../img/new-folder-icon.png');
         $('#icon-text').text('Create New RE:Folder');
@@ -14,6 +24,16 @@ $(document).ready(function() {
     });
 
     $('#new-note').on('click', () => {
+        $('#hidden-link').hide();
+        $('#link-place').hide();
+        $('#modal-close-button').removeAttr('style');
+        $('#modal-submit-button').removeAttr('style');
+        $('#icon-description').removeAttr('style');
+        $('#modal').removeAttr('style');
+        $('#modal-title').removeAttr('style');
+        $('#divider').show();
+        $('#form-description').show();
+        $('#form-text').show();
         $('#modal-title').text('Create New Note');
         $('#new-icon').attr('src', '../img/new-note-icon.png');
         $('#icon-text').text('Create New RE:Note');
@@ -23,7 +43,87 @@ $(document).ready(function() {
         $('#faded-background').show();
     });
 
+    // <a id="edit-name" href="#">Edit Name</a>
+    // <a id="upload-image" href="#">Upload Image (Get Link)</a>
+    // <a id="delete-item" href="#">Delete Item</a>
+    $('#upload-image').on('click', () => {
+        $('#modal-close-button').removeAttr('style');
+        $('#modal-submit-button').hide();
+        $('#icon-description').removeAttr('style');
+        $('#modal').removeAttr('style');
+        $('#modal-title').removeAttr('style');
+        $('#divider').show();
+        $('#form-description').show();
+        $('#form-text').show();
+        $('#modal-title').text('Upload New Image');
+        $('#new-icon').attr('src', '../img/imgur-item-icon.png');
+        $('#icon-text').text('Get a Embeddable Link');
+        $('#icon-description').text('Please select the image upload form below, and upload your image for a link!');
+        $('#form-description').text('Image Uploader: ');
+        $('#form-text').attr('type', 'file').attr('accept', 'image/*').attr('onchange', 'onFileSelected(event)');
+        $('#faded-background').show();
+    });
+
+    $('#edit-name').on('click', () => {
+        $('#hidden-link').hide();
+        $('#link-place').hide();
+        $('#modal-close-button').removeAttr('style');
+        $('#modal-submit-button').removeAttr('style');
+        $('#icon-description').removeAttr('style');
+        $('#modal').removeAttr('style');
+        $('#modal-title').removeAttr('style');
+        $('#divider').show();
+        $('#form-description').show();
+        $('#form-text').show();
+        $('#modal-title').text('Edit Item Name');
+        $('#new-icon').attr('src', '../img/edit-item-icon.png');
+        $('#icon-text').text('Change Name');
+        $('#icon-description').text('Enter your new name, and then hit the submit button to change it!');
+        $('#form-description').text('New Valid Name: ');
+        $('#form-text').val('');
+        $('#faded-background').show();
+    });
+
+    $('#delete-item').on('click', () => {
+        $('#hidden-link').hide();
+        $('#link-place').hide();
+        var currentItem = $('*').find('.inside');
+        var currentType = '';
+        if($('*').find('.inside').parent().hasClass('.note')) {
+            currentType = '[Note]';
+        } else if($('*').find('.inside').parent().hasClass('.folder')) {
+            currentType = '[Folder]';
+        }
+        else {
+            currentType = '[NOTHING HERE]';
+        }
+        $('#modal-title').text(`Deleting a ${currentType}`);
+        $('#new-icon').attr('src', '../img/delete-item-icon.png');
+        $('#icon-text').text('Deleting:');
+        $('#icon-description').text(`${currentType} ${currentItem.text()}`).css('font-size', '2vw');
+        $('#divider').hide();
+        $('#form-description').hide();
+        $('#form-text').hide();
+        $('#modal').css('height', '13vw');
+        $('#modal-title').css('font-size', '.5vw');
+        $('#modal-submit-button').css('width', '15%').css('height', '20%').css('top', '73%');
+        $('#modal-close-button').css('width', '15%').css('height', '20%').css('top', '73%');
+
+        $('#faded-background').show();
+    });
+
     $('#modal-submit-button').on('click', () => {
+        if($('#modal-title').text().includes('Deleting')) {
+            let currentItem = $('*').find('.inside').parent();
+            currentItem.empty();
+            currentItem.remove();
+        }
+        if($('#modal-title').text().includes('Edit')) {
+            let currentItem = $('*').find('.inside').parent().hasClass('folder');
+            if(currentItem === true) {
+                $('*').find('.inside').html(`<i class="fa fa-folder-o fa-fw"></i> ${$('#form-text').val()}`)
+            }
+        }
         $('#faded-background').hide();
     });
 
