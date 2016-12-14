@@ -216,6 +216,48 @@ $(document).ready(function() {
       sortDropdown.toggleClass('show');
     });
 
-//NOTE: dynamically populate email address and workspace name//
-
+//NOTE: Add ability to download your notes
+    $('#download-item').on('click', () => {
+      const id = $('.inside').attr('id');
+      if (id.startsWith('note')) {
+        const noteId = id.split('_')[1];
+        window.location = '/notes/download/' + noteId;
+      }
+    });
 });
+
+function patchNote(name, content, id, parentFolder) {
+  if(parentFolder === -1) {
+    let data = { name, content };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else if(parentFolder === -1 && content === '') {
+    let data = { name };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else {
+    let data = { name, content, parentFolder };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+};
