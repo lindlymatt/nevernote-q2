@@ -110,6 +110,27 @@ function postNote(name, parentId) {
       let $folderI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
       .attr('aria-hidden', true);
+      $folderh5.on('click', () => {
+        simplemde.value('');
+        let noteId = note.id;
+        let noteName = $('#note_' + noteId).text().trim();
+        let dasParentId = -1;
+        let $current = $('*').find('.inside');
+        $.get(`/notes/${noteId}`, data => {
+          simplemde.value(data.content);
+          if($current.parent().parent().is($('#workspace'))) {
+            parentId = -1;
+          } else if($current.parent().hasClass('folder')){
+            parentId = $current.attr('id').slice(7);
+          }
+          else {
+            parentId = -1;
+          }
+        });
+        setInterval(function() {
+          patchNote(noteName, simplemde.value(), noteId, dasParentId);
+        }, 2000);
+      });
 
       $folderh5.click(function() {
         clearInterval(window.interval);
