@@ -73,6 +73,7 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event) {
+        simplemde.value('');
         let noteId = note.id;
         let noteName = $('#note_' + noteId).text().trim();
         let parentId = -1;

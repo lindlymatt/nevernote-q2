@@ -1,5 +1,6 @@
 'use strict';
 
+var simplemde = document.getElementById("iframe").contentWindow.simplemde;
 $(document).ready(function() {
     $('#iframe').hide();
 
@@ -167,6 +168,7 @@ $(document).ready(function() {
             }
         }
         else if (!isFolder && $(event.target).is('h5')) {
+            simplemde.value('');
             $('#embedded-text').hide();
             $('#iframe').show();
             if($(event.target).text().length < 10) {
