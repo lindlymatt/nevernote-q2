@@ -73,7 +73,9 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event){
+        console.log('you clicked');
         if($(event.target).hasClass('inside')) {
+          console.log('inside');
           var noteId = `${note.id}`;
           getNote(noteId);
           var noteName = $('#note_' + noteId).text();
@@ -164,4 +166,5 @@ function patchNote(name, content, id, parentFolder) {
     url: '/notes/' + id
   }
   $.ajax(options)
+  .done(console.log('patching'));
 };
