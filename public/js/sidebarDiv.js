@@ -74,10 +74,10 @@ function createNote(note) {
       .attr('id', `note_${note.id}`)
       .on('click', function(event){
         console.log('you clicked');
+        var noteId = `${note.id}`;
+        getNote(noteId);
         if($(event.target).hasClass('inside')) {
           console.log('inside');
-          var noteId = `${note.id}`;
-          getNote(noteId);
           var noteName = $('#note_' + noteId).text();
           var siblings = $(event.target).parent().siblings();
           let parentId;
@@ -167,5 +167,5 @@ function patchNote(name, content, id, parentFolder) {
     url: '/notes/' + id
   }
   $.ajax(options)
-  .done(console.log('patching'));
+  .done(console.log(['patching', options]));
 };
