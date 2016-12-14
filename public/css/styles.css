@@ -290,7 +290,7 @@ a:active {
 
 .logo {
   position: absolute;
-  top: 6.5%;
+  top: 44px;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
