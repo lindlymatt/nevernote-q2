@@ -153,6 +153,7 @@ function getNote(id) {
   $.getJSON('/notes/' + id)
   .done((note) => {
     simplemde.value(note.content);
+    console.log('gotten');
   });
 };
 
