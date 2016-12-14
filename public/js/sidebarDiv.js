@@ -104,6 +104,11 @@ function createNote(note) {
 
   $noteh5.prepend($noteI);
 
+  $noteDiv.attr('draggable', true);
+  $noteDiv.attr('ondragstart', 'dragAndDrop(event)');
+  $noteDiv.attr('ondrop', 'dropNote(event)');
+  $noteDiv.attr('ondragover', 'dragOver(event)');
+
   return $noteDiv.append($noteh5);
 }
 

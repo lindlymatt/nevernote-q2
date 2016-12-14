@@ -318,8 +318,6 @@ function deleteItem(type, id) {
     }
 }
 
-
-// NEW
 function dragAndDrop(event) {
   event.dataTransfer.setData('Text', $(event.target)[0].outerHTML);
   event.dataTransfer.dropEffect = 'move';
@@ -328,9 +326,20 @@ function dragAndDrop(event) {
 function dropElement(event) {
   event.preventDefault();
 
-  const data = event.dataTransfer.getData('Text');
-  const $element = $(data);
+  const fileDroppedInFolder = $(event.target).parent().hasClass('folder');
 
+  if (fileDroppedInFolder) {
+    const $element = $(event.dataTransfer.getData('Text'));
+    if ($element.hasClass('folder')) {
+      updateFolder($element, event);
+    } else if ($element.hasClass('note')) {
+      console.log('this rannnnnnn');
+      updateNote($element, event);
+    }
+  }
+}
+
+function updateFolder($element, event) {
   const oldElementId = $element.find('h5').attr('id');
 
   const oldFolderId = oldElementId.split('_')[1];
@@ -368,6 +377,47 @@ function dropElement(event) {
         parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
       }
     }).done((results) => {
+      console.log('folder updated');
+      console.log('updated');
+    });
+  }
+}
+
+function updateNote($element, event) {
+  const oldElementId = $element.find('h5').attr('id');
+
+  const oldNoteId = oldElementId.split('_')[1];
+  // console.log('this ran');
+
+  if (!$(event.target).attr('id').startsWith('note') && $(event.target).is('h5')) {
+    $element.on('click', function(event) {
+      clearInterval(window.interval);
+      simplemde.value("Loading...");
+      $.get(`/notes/${oldNoteId}`, data => {
+        simplemde.value(data.content);
+        interval = setInterval(function() {
+          patchNote(simplemde.value(), oldNoteId);
+        }, 2000);
+      });
+    });
+
+    $(event.target).parent().append($element);
+    $(`#${oldElementId}`).parent().remove();
+    console.log($(`#${oldElementId}`).parent());
+
+    let display = $(event.target).siblings().css('display');
+    $element.css('display', display);
+
+    $(event.target).parent().append($element);
+
+    $.ajax({
+      url: `/notes/${oldNoteId}`,
+      method: 'PATCH',
+      data: {
+        parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
+      }
+    }).done((results) => {
+      console.log('note updated');
       console.log('updated');
     });
   }
