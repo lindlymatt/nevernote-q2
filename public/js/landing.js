@@ -59,7 +59,7 @@ var progressCounter = 0;
         new ScrollMagic.Scene({
             triggerElement: $('#postColonLogo'),
             duration: 9000,
-            offset: 160
+            offset: 100
         })
         .setPin($('#postColonLogo'))
         .setTween($('.logo-color2'), 0.5, {scrollTo: {y: 50}})
@@ -76,40 +76,40 @@ var progressCounter = 0;
             var randomSelect = Math.floor(Math.random() * 12);
             switch (randomSelect) {
               case (0):
-                $('#postColonLogo').text("Vise");
+                $('#postColonLogo').text("VISE");
                 break;
               case (1):
-                $('#postColonLogo').text("Markable");
+                $('#postColonLogo').text("MARKABLE");
                 break;
               case (2):
-                $('#postColonLogo').text("View");
+                $('#postColonLogo').text("VIEW");
                 break;
               case (3):
-                $('#postColonLogo').text("Warding");
+                $('#postColonLogo').text("WARDING");
                 break;
               case (4):
-                $('#postColonLogo').text("Member");
+                $('#postColonLogo').text("MEMBER");
                 break;
               case (5):
-                $('#postColonLogo').text("Invent");
+                $('#postColonLogo').text("INVENT");
                 break;
               case (6):
                 $('#postColonLogo').text("New");
                 break;
               case (7):
-                $('#postColonLogo').text("Call");
+                $('#postColonLogo').text("CALL");
                 break;
               case (8):
-                $('#postColonLogo').text("Juvinate");
+                $('#postColonLogo').text("JUVINATE");
                 break;
               case (9):
                 $('#postColonLogo').text("Wire");
                 break;
               case (10):
-                $('#postColonLogo').text("Alize");
+                $('#postColonLogo').text("ALIZE");
                 break;
               case (11):
-                $('#postColonLogo').text("Note");
+                $('#postColonLogo').text("NOTE");
                 break;
               default:
                 console.log('nope');

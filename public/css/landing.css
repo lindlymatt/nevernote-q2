@@ -321,3 +321,23 @@ span {
 #thirdSalt {
   background-color: #554C4D;
 }
+
+#tagline {
+  color: #F5F5F5;
+  width: 100%;
+}
+
+#tagline {
+  padding-top: 4.2em;
+  z-index: 5;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 80px;
+  color: #212121;
+  text-shadow: 2px 2px #E18B50;
+  text-shadow: -1px -1px #E18B50;
+}
+
+#typewriterImg {
+  z-index: -1;
+  opacity: 0.8;
+}
