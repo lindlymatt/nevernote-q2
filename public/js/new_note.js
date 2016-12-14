@@ -64,6 +64,10 @@ function postFolder(name, parentId) {
 
         $folderh5.prepend($folderI);
         $folderDiv.append($folderh5);
+        $folderDiv.attr('draggable', true);
+        $folderDiv.attr('ondragstart', 'dragAndDrop(event)');
+        $folderDiv.attr('ondrop', 'dropElement(event)');
+        $folderDiv.attr('ondragover', 'dragOver(event)');
         $('#workspace').append($folderDiv);
         return;
     });
@@ -87,6 +91,10 @@ function postFolder(name, parentId) {
         }
         $folderh5.prepend($folderI);
         $folderDiv.append($folderh5);
+        $folderDiv.attr('draggable', true);
+        $folderDiv.attr('ondragstart', 'dragAndDrop(event)');
+        $folderDiv.attr('ondrop', 'dropElement(event)');
+        $folderDiv.attr('ondragover', 'dragOver(event)');
         $(`#folder_${parentId}`).parent().append($folderDiv);
         return;
     });

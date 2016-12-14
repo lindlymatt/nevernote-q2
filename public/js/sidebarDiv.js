@@ -58,12 +58,10 @@ function createFolder(folder) {
       .attr('aria-hidden', true);
 
   $folderh5.prepend($folderI);
-  // NEW
   $folderDiv.attr('draggable', true);
   $folderDiv.attr('ondragstart', 'dragAndDrop(event)');
   $folderDiv.attr('ondrop', 'dropElement(event)');
   $folderDiv.attr('ondragover', 'dragOver(event)');
-  // END
 
   return $folderDiv.append($folderh5);
 }

@@ -330,14 +330,12 @@ function dropElement(event) {
 
   const data = event.dataTransfer.getData('Text');
   const $element = $(data);
-  $element.css('display', 'none');
 
   const oldElementId = $element.find('h5').attr('id');
 
   const oldFolderId = oldElementId.split('_')[1];
 
   if ($(event.target).attr('id') !== oldElementId) {
-    let childElements = $element.find('h5');
 
     $element.find('h5').each((index, element) => {
       if ($(element).attr('id').includes('note')) {
@@ -346,20 +344,20 @@ function dropElement(event) {
           clearInterval(window.interval);
           simplemde.value("Loading...");
           $.get(`/notes/${noteId}`, data => {
-            clearInterval(window.interval);
             simplemde.value(data.content);
-            $.get(`/notes/${data.id}`, data => {
-              simplemde.value(data.content);
-              interval = setInterval(function() {
-                patchNote(simplemde.value(), noteId);
-              }, 2000);
-            });
+            interval = setInterval(function() {
+              patchNote(simplemde.value(), noteId);
+            }, 2000);
           });
         });
       }
     });
 
     $(`#${oldElementId}`).parent().remove();
+
+    let display = $(event.target).siblings().css('display');
+
+    $element.css('display', display);
 
     $(event.target).parent().append($element);
 
