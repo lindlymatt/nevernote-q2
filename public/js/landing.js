@@ -43,7 +43,7 @@ var progressCounter = 0;
     var ctrl = new ScrollMagic.Controller({
         globalSceneOptions: {
             // triggerHook: (0.35)
-            // newReverse: true
+            newReverse: true
 
         }
     });
@@ -118,27 +118,27 @@ var progressCounter = 0;
         });
     });
 
-    $('#pencilIcon').each(function() {
-
-
-        new ScrollMagic.Scene({
-            triggerElement: $('#postColonLogo'),
-            duration: 9000,
-            offset: 410
-        })
-        .setPin($('#pencilIcon'))
-        .addTo(ctrl)
-        .on("leave", function (event) {
-          console.log(event.type);
-          $('#pencilIcon').addClass("fa fa-pencil fa-3x");
-        })
-        .on("progress", function (event) {
-          console.log(event.type);
-          $('#pencilIcon').addClass("fa fa-pencil fa-3x");
-
-        });
-    });
-
+    // $('#pencilIcon').each(function() {
+    //
+    //
+    //     new ScrollMagic.Scene({
+    //         triggerElement: $('#postColonLogo'),
+    //         duration: 9000,
+    //         offset: 410
+    //     })
+    //     .setPin($('#pencilIcon'))
+    //     .addTo(ctrl)
+    //     .on("leave", function (event) {
+    //       console.log(event.type);
+    //       $('#pencilIcon').addClass("fa fa-pencil fa-3x");
+    //     })
+    //     .on("progress", function (event) {
+    //       console.log(event.type);
+    //       $('#pencilIcon').addClass("fa fa-pencil fa-3x");
+    //
+    //     });
+    // });
+    //
 
 })(jQuery);
 
