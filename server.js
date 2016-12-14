@@ -25,6 +25,9 @@ app.use(bodyParser.json());
 const tokens = require('./routes/tokens');
 app.use(tokens);
 
+const users = require('./routes/users');
+app.use('/users', users);
+
 // Stops anyone from accessing anything unless logged in.
 app.use((req, res, next) => {
   if(!req.cookies.token || req.cookies.token === undefined) {
@@ -43,14 +46,12 @@ app.use((req, res, next) => {
 
 // Require the routes and define them here.
 const workspace = require('./routes/workspace');
-const users = require('./routes/users');
 const notes = require('./routes/notes');
 const folders = require('./routes/folders');
 const userNotes = require('./routes/userNotes.js');
 
 // Use the routes to navigate throughout the requests.
 app.use('/workspace', workspace);
-app.use('/users', users);
 app.use('/notes', notes);
 app.use('/folders', folders);
 app.use('/usernotes', userNotes);
