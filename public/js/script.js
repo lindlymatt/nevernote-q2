@@ -334,7 +334,7 @@ function dropElement(event) {
 
   const oldElementId = $element.find('h5').attr('id');
 
-  const noteId = oldElementId.split('_')[1];
+  const folderId = oldElementId.split('_')[1];
 
   if ($(event.target).attr('id') !== oldElementId) {
     let childElements = $element.find('h5');
@@ -364,6 +364,17 @@ function dropElement(event) {
     $(`#${oldElementId}`).remove();
 
     $(event.target).parent().append($element);
+
+    $.ajax({
+      url: `/folders/${folderId}`,
+      method: 'PATCH',
+      data: {
+        parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
+      }
+    }).done((results) => {
+      console.log('updated');
+      console.log(results);
+    });
   }
 }
 
