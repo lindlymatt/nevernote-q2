@@ -133,8 +133,8 @@ $(document).ready(function() {
 
     $('#workspace').click(event => {
         if($(event.target).is('h5')) {
-            $(event.target).addClass('inside');
             $('*').find('.inside').removeClass('inside');
+            $(event.target).addClass('inside');
         }
         else {
             $('#workspace').find('*').removeClass('inside');
