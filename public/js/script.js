@@ -278,7 +278,7 @@ function patchName(type, name, id) {
 function deleteItem(type, id) {
     if(type === 'folder') {
         $.ajax({
-            url: `folders/${id}`,
+            url: `/folders/${id}`,
             type: 'DELETE',
             contentType:'application/json',
             dataType: 'json',
