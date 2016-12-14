@@ -53,6 +53,7 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
 
 // POST: Creates a new folder.
 router.post('/', ev(validations.post), (req, res, next) => {
+  console.log(req);
   let { name, parentFolder, isSecure } = req.body;
 
   knex('folders')

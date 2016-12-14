@@ -114,7 +114,7 @@ router.patch('/:id', ev(validations.patch), (req, res, next) => {
 
 router.delete('/:id', ev(validations.delete), (req, res, next) => {
   knex('notes')
-    .where('id', req.body.id)
+    .where('id', req.params.id)
     .first()
     .then((note) => {
       if (!note) {

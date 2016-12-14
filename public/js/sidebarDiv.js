@@ -87,18 +87,16 @@ function createNote(note) {
         let parentId = -1;
         let $current = $('*').find('.inside');
         $.get(`/notes/${noteId}`, data => {
+          clearInterval(window.interval);
           simplemde.value(data.content);
-          if($current.parent().parent().is($('#workspace'))) {
-            parentId = -1;
-          } else if($current.parent().hasClass('folder')){
-            parentId = $current.attr('id').slice(7);
-          }
-          else {
-            parentId = -1;
-          }
-          interval = setInterval(function() {
-            patchNote(noteName, simplemde.value(), noteId, parentId);
-          }, 2000);
+          let noteId = res.id;
+          let $current = $('*').find('.inside');
+          $.get(`/notes/${noteId}`, data => {
+            simplemde.value(data.content);
+            interval = setInterval(function() {
+              patchNote(simplemde.value(), noteId);
+            }, 2000);
+          });
         });
       })
       .text(' ' + note.name);
@@ -158,38 +156,18 @@ function getNote(id) {
 };
 
 //send patch request to note
-function patchNote(name, content, id, parentFolder) {
-  if(parentFolder === -1) {
-    let data = { name, content };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
+function patchNote(content, id) {
+  if(!content) {
+    content = ' ';
   }
-  else if(parentFolder === -1 && content === '') {
-    let data = { name };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
-  }
-  else {
-    let data = { name, content, parentFolder };
-    $.ajax({
-      url : `/notes/${id}`,
-      data : JSON.stringify(data),
-      type : 'PATCH',
-      contentType : 'application/json',
-      processData: false,
-      dataType: 'json'
-    });
-  }
+
+  let data = { content };
+  $.ajax({
+    url : `/notes/${id}`,
+    data : JSON.stringify(data),
+    type : 'PATCH',
+    contentType : 'application/json',
+    processData: false,
+    dataType: 'json'
+  });
 };
