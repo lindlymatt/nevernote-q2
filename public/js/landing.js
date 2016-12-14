@@ -32,15 +32,113 @@
 //       });
 //   });
 // })();
+
+var progressCounter = 0;
+
 /* Using jQuery */
 (function($) {
 
+    // var $noteText = $('.logo-color2');
     // Init ScrollMagic
     var ctrl = new ScrollMagic.Controller({
         globalSceneOptions: {
-            triggerHook: 'onLeave'
+            // triggerHook: (0.35)
+            // newReverse: true
+
         }
     });
+    // Create scene
+    $('.logo-color2').each(function() {
+
+      var tweenObj = $('#postColonLogo');
+      var tweenQuant = 1;
+      var tweenParams = {};
+      tweenParams.y = 400;
+      tweenParams.x = 400;
+
+        new ScrollMagic.Scene({
+            triggerElement: $('#postColonLogo'),
+            duration: 9000,
+            offset: 320
+        })
+        .setPin($('#postColonLogo'))
+        .setTween($('.logo-color2'), 0.5, {scrollTo: {y: 50}})
+        .addTo(ctrl)
+        .on("change update", function (event) {
+          console.log(event.type);
+          // $('#postColonLogo').text("Note");
+        })
+        .on("progress", function (event) {
+          console.log(event.type);
+          ++progressCounter;
+          if (progressCounter % 69 === 0) {
+
+            var randomSelect = Math.floor(Math.random() * 12);
+            switch (randomSelect) {
+              case (0):
+                $('#postColonLogo').text("Vise");
+                break;
+              case (1):
+                $('#postColonLogo').text("Markable");
+                break;
+              case (2):
+                $('#postColonLogo').text("View");
+                break;
+              case (3):
+                $('#postColonLogo').text("Warding");
+                break;
+              case (4):
+                $('#postColonLogo').text("Member");
+                break;
+              case (5):
+                $('#postColonLogo').text("Invent");
+                break;
+              case (6):
+                $('#postColonLogo').text("New");
+                break;
+              case (7):
+                $('#postColonLogo').text("Call");
+                break;
+              case (8):
+                $('#postColonLogo').text("Juvinate");
+                break;
+              case (9):
+                $('#postColonLogo').text("Wire");
+                break;
+              case (10):
+                $('#postColonLogo').text("Alize");
+                break;
+              case (11):
+                $('#postColonLogo').text("Note");
+                break;
+              default:
+                console.log('nope');
+            }
+          }
+        });
+    });
+
+    $('#pencilIcon').each(function() {
+
+
+        new ScrollMagic.Scene({
+            triggerElement: $('#postColonLogo'),
+            duration: 9000,
+            offset: 410
+        })
+        .setPin($('#pencilIcon'))
+        .addTo(ctrl)
+        .on("leave", function (event) {
+          console.log(event.type);
+          $('#pencilIcon').addClass("fa fa-pencil fa-3x");
+        })
+        .on("progress", function (event) {
+          console.log(event.type);
+          $('#pencilIcon').addClass("fa fa-pencil fa-3x");
+
+        });
+    });
+
 
 })(jQuery);
 
