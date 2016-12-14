@@ -72,33 +72,25 @@ function createNote(note) {
       .addClass('note')
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
-      .on('click', function(event){
-        console.log('you clicked');
-        var noteId = `${note.id}`;
-        getNote(noteId);
-        if($(event.target).hasClass('inside')) {
-          console.log('inside');
-          var noteName = $('#note_' + noteId).text();
-          var siblings = $(event.target).parent().siblings();
-          let parentId;
-          for (let i = 0; i < siblings.length; i++) {
-            if ($(siblings[i]).is('h5')) {
-              parentId = $(siblings[i]).attr('id').split('_')[1];
-            }
+      .on('click', function(event) {
+        let noteId = note.id;
+        let noteName = $('#note_' + noteId).text().trim();
+        let parentId = -1;
+        let $current = $('*').find('.inside');
+        $.get(`/notes/${noteId}`, data => {
+          simplemde.value(data.content);
+          if($current.parent().parent().is($('#workspace'))) {
+            parentId = -1;
+          } else if($current.parent().hasClass('folder')){
+            parentId = $current.attr('id').slice(7);
           }
-          if (!parentId) {
-            parentId = null;
+          else {
+            parentId = -1;
           }
-          var noteContent = simplemde.value();
-          var interval = 1000 * 60;
-          setInterval(function() {
-            if (parentId) {
-              patchNote(noteName, localStorage.smde_content, noteId, parentId);
-            } else {
-              patchNote(noteName, localStorage.smde_content, noteId);
-            }
-          }, interval);
-        }
+        });
+        setInterval(function() {
+          patchNote(noteName, simplemde.value(), noteId, parentId);
+        }, 2000);
       })
       .text(' ' + note.name);
   let $noteI = $('<i>')
@@ -159,13 +151,37 @@ function getNote(id) {
 
 //send patch request to note
 function patchNote(name, content, id, parentFolder) {
-  const options = {
-    contentType: 'application/JSON',
-    data: JSON.stringify({name, content, parentFolder}),
-    dataType: 'json',
-    type: 'PATCH',
-    url: '/notes/' + id
+  if(parentFolder === -1) {
+    let data = { name, content };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
   }
-  $.ajax(options)
-  .done(console.log(['patching', options]));
+  else if(parentFolder === -1 && content === '') {
+    let data = { name };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else {
+    let data = { name, content, parentFolder };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
 };
