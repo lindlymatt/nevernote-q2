@@ -88,7 +88,11 @@ function postFolder(name, parentId) {
             .addClass('fa fa-folder-o fa-fw')
             .attr('aria-hidden', true);
 
-        $currentFolder.children().show();
+        $currentFolder.parent().children().show();
+        if($currentFolder.parent().children().first().children().first().hasClass('fa-folder-o')) {
+          $currentFolder.parent().children().first().children().first().toggleClass('fa-folder-o');
+          $currentFolder.parent().children().first().children().first().toggleClass('fa-folder-open-o');
+        }
         $folderh5.prepend($folderI);
         $folderDiv.append($folderh5);
         $currentFolder.parent().append($folderDiv);
@@ -126,7 +130,6 @@ function postNote(name, parentId) {
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $('#workspace').append($folderDiv);
-      $folderh5.removeClass('inside');
       return;
     });
   }
@@ -155,10 +158,16 @@ function postNote(name, parentId) {
         });
       });
 
+      $currentFolder.parent().children().show();
+      $currentFolder.find('*').show();
+      if($currentFolder.parent().children().first().children().first().hasClass('fa-folder-o')) {
+        $currentFolder.parent().children().first().children().first().toggleClass('fa-folder-o');
+        $currentFolder.parent().children().first().children().first().toggleClass('fa-folder-open-o');
+      }
+      $currentFolder.parent().find('*').show();
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $currentFolder.parent().append($folderDiv);
-      $folderh5.removeClass('inside');
       return;
     });
   }
