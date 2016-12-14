@@ -58,7 +58,6 @@ function getParent() {
 
 //post new folder
 function postFolder(name, parentId) {
-  console.log('Folder: ', parentId);
   if(parentId === null) {
     $.post('/folders', { name: name }, response => {
         var fId = response[0].id;
@@ -100,7 +99,6 @@ function postFolder(name, parentId) {
 
 //post new note
 function postNote(name, parentId) {
-  console.log('Note: ', parentId);
   if(parentId === null) {
     $.post('/notes', { name: name }, res => {
       let nId = res.id;
@@ -114,8 +112,9 @@ function postNote(name, parentId) {
       .attr('aria-hidden', true);
 
       $folderh5.click(function() {
+        clearInterval(window.interval);
         simplemde.value(" ");
-        let noteId = note.id;
+        let noteId = res.id;
         let noteName = $('#note_' + noteId).text().trim();
         let parentId = -1;
         let $current = $('*').find('.inside');
@@ -129,10 +128,10 @@ function postNote(name, parentId) {
           else {
             parentId = -1;
           }
+          interval = setInterval(function() {
+            patchNote(noteName, simplemde.value(), noteId, parentId);
+          }, 2000);
         });
-        interval = setInterval(function() {
-          patchNote(noteName, simplemde.value(), noteId, parentId);
-        }, 2000);
       });
 
       $folderh5.prepend($folderI);
@@ -154,9 +153,10 @@ function postNote(name, parentId) {
       .addClass('fa fa-sticky-note-o fa-fw')
       .attr('aria-hidden', true);
 
-      $folderh5.click(function() {
+      $folderh5.on('click', function() {
+        clearInterval(window.interval);
         simplemde.value("Loading...");
-        let noteId = note.id;
+        let noteId = res.id;
         let noteName = $('#note_' + noteId).text().trim();
         let parentId = -1;
         let $current = $('*').find('.inside');
@@ -170,10 +170,10 @@ function postNote(name, parentId) {
           else {
             parentId = -1;
           }
+          interval = setInterval(function() {
+            patchNote(noteName, simplemde.value(), noteId, parentId);
+          }, 2000);
         });
-        interval = setInterval(function() {
-          patchNote(noteName, simplemde.value(), noteId, parentId);
-        }, 2000);
       });
 
       $folderh5.prepend($folderI);
@@ -195,6 +195,7 @@ function patchNote(name, content, id, parentFolder) {
       contentType : 'application/json',
       processData: false,
       dataType: 'json'
+    }).done((fuck) => {
     });
   }
   else if(parentFolder === -1 && content === '') {

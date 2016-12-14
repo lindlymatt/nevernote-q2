@@ -74,6 +74,7 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event) {
+        clearInterval(window.interval);
         simplemde.value("Loading...");
         let noteId = note.id;
         let noteName = $('#note_' + noteId).text().trim();
@@ -89,10 +90,10 @@ function createNote(note) {
           else {
             parentId = -1;
           }
+          interval = setInterval(function() {
+            patchNote(noteName, simplemde.value(), noteId, parentId);
+          }, 2000);
         });
-        interval = setInterval(function() {
-          patchNote(noteName, simplemde.value(), noteId, parentId);
-        }, 2000);
       })
       .text(' ' + note.name);
   let $noteI = $('<i>')
@@ -147,7 +148,6 @@ function getNote(id) {
   $.getJSON('/notes/' + id)
   .done((note) => {
     simplemde.value(note.content);
-    console.log('gotten');
   });
 };
 

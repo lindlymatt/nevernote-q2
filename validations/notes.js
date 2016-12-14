@@ -32,8 +32,8 @@ module.exports.patch = {
     name: Joi.string()
           .trim()
           .min(1)
-          .max(20)
-    // content: Joi.string()
+          .max(20),
+    content: Joi.string()
   }).or('parentFolder', 'name', 'content'),
 
   params: Joi.object().keys({
