@@ -58,7 +58,7 @@ app.use('/usernotes', userNotes);
 
 // Error Functions Handling
 app.use((_req, res) => {
-  res.sendStatus(404);
+  res.status(404).redirect('/404.html').send();
 });
 
 app.use((err, _req, res, _next) => {
