@@ -334,7 +334,7 @@ function dropElement(event) {
 
   const oldElementId = $element.find('h5').attr('id');
 
-  const folderId = oldElementId.split('_')[1];
+  const oldFolderId = oldElementId.split('_')[1];
 
   if ($(event.target).attr('id') !== oldElementId) {
     let childElements = $element.find('h5');
@@ -348,9 +348,7 @@ function dropElement(event) {
           $.get(`/notes/${noteId}`, data => {
             clearInterval(window.interval);
             simplemde.value(data.content);
-            let noteId = data.id;
-            let $current = $('*').find('.inside');
-            $.get(`/notes/${noteId}`, data => {
+            $.get(`/notes/${data.id}`, data => {
               simplemde.value(data.content);
               interval = setInterval(function() {
                 patchNote(simplemde.value(), noteId);
@@ -361,19 +359,18 @@ function dropElement(event) {
       }
     });
 
-    $(`#${oldElementId}`).remove();
+    $(`#${oldElementId}`).parent().remove();
 
     $(event.target).parent().append($element);
 
     $.ajax({
-      url: `/folders/${folderId}`,
+      url: `/folders/${oldFolderId}`,
       method: 'PATCH',
       data: {
         parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
       }
     }).done((results) => {
       console.log('updated');
-      console.log(results);
     });
   }
 }
