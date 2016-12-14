@@ -234,24 +234,30 @@ $(document).ready(function() {
       emailDropdown.toggleClass('show');
     });
 
-    emailDropdown.mouseleave(() => {
-      emailDropdown.toggleClass('show');
+    emailDropdown.on('mouseenter', () => {
+        emailDropdown.on('mouseleave', () => {
+            emailDropdown.toggleClass('show');
+        });
     });
 
     $('#help-text').click(() => {
       helpDropdown.toggleClass('show');
     });
 
-    helpDropdown.mouseleave(() => {
-      helpDropdown.toggleClass('show');
+    helpDropdown.on('mouseenter', () => {
+        helpDropdown.on('mouseleave', () => {
+            helpDropdown.toggleClass('show');
+        });
     });
 
     $('#sort-text').click(() => {
       sortDropdown.toggleClass('show');
     });
 
-    sortDropdown.mouseleave(() => {
-      sortDropdown.toggleClass('show');
+    sortDropdown.on('mouseenter', () => {
+        sortDropdown.on('mouseleave', () => {
+            sortDropdown.toggleClass('show');
+        });
     });
 
 //NOTE: Add ability to download your notes
