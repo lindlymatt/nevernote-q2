@@ -47,6 +47,8 @@ $(document).ready(function() {
     // <a id="upload-image" href="#">Upload Image (Get Link)</a>
     // <a id="delete-item" href="#">Delete Item</a>
     $('#upload-image').on('click', () => {
+        $('#hidden-link').show();
+        $('#link-place').show();
         $('#modal-close-button').removeAttr('style');
         $('#modal-submit-button').hide();
         $('#icon-description').removeAttr('style');
