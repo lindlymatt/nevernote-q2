@@ -301,18 +301,21 @@ function deleteItem(type, id) {
 
 // NEW
 function dragAndDrop(event) {
-  // console.log($(event.target).find('h5').attr('id'));
-  // console.log($(event.target)[0].outerHTML);
   event.dataTransfer.setData('Text', $(event.target)[0].outerHTML);
   event.dataTransfer.dropEffect = 'move';
 }
 
 function dropElement(event) {
   event.preventDefault();
-  // console.log($(event.target).attr('id'));
+
   const data = event.dataTransfer.getData('Text');
-  const element = $(data);
-  $(event.target).parent().append(element);
+  const $element = $(data);
+  $element.css('display', 'none');
+
+  const oldElementId = $element.find('h5').attr('id');
+  $(`#${oldElementId}`).remove();
+
+  $(event.target).parent().append($element);
 }
 
 function dragOver(event) {
