@@ -22,3 +22,7 @@
 .editor-statusbar {
   display: none;
 }
+
+.editor-preview-active-side {
+  height: 92.7%;
+}
