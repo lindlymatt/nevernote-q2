@@ -113,6 +113,28 @@ function postNote(name, parentId) {
       .addClass('fa fa-sticky-note-o fa-fw')
       .attr('aria-hidden', true);
 
+      $folderh5.click(function() {
+        simplemde.value(" ");
+        let noteId = note.id;
+        let noteName = $('#note_' + noteId).text().trim();
+        let parentId = -1;
+        let $current = $('*').find('.inside');
+        $.get(`/notes/${noteId}`, data => {
+          simplemde.value("Loading...");
+          if($current.parent().parent().is($('#workspace'))) {
+            parentId = -1;
+          } else if($current.parent().hasClass('folder')){
+            parentId = $current.attr('id').slice(7);
+          }
+          else {
+            parentId = -1;
+          }
+        });
+        interval = setInterval(function() {
+          patchNote(noteName, simplemde.value(), noteId, parentId);
+        }, 2000);
+      });
+
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $('#workspace').append($folderDiv);
@@ -132,11 +154,69 @@ function postNote(name, parentId) {
       .addClass('fa fa-sticky-note-o fa-fw')
       .attr('aria-hidden', true);
 
+      $folderh5.click(function() {
+        simplemde.value("Loading...");
+        let noteId = note.id;
+        let noteName = $('#note_' + noteId).text().trim();
+        let parentId = -1;
+        let $current = $('*').find('.inside');
+        $.get(`/notes/${noteId}`, data => {
+          simplemde.value(data.content);
+          if($current.parent().parent().is($('#workspace'))) {
+            parentId = -1;
+          } else if($current.parent().hasClass('folder')){
+            parentId = $current.attr('id').slice(7);
+          }
+          else {
+            parentId = -1;
+          }
+        });
+        interval = setInterval(function() {
+          patchNote(noteName, simplemde.value(), noteId, parentId);
+        }, 2000);
+      });
+
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $currentFolder.parent().append($folderDiv);
       $folderh5.removeClass('inside');
       return;
+    });
+  }
+};
+
+function patchNote(name, content, id, parentFolder) {
+  if(parentFolder === -1) {
+    let data = { name, content };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else if(parentFolder === -1 && content === '') {
+    let data = { name };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
+    });
+  }
+  else {
+    let data = { name, content, parentFolder };
+    $.ajax({
+      url : `/notes/${id}`,
+      data : JSON.stringify(data),
+      type : 'PATCH',
+      contentType : 'application/json',
+      processData: false,
+      dataType: 'json'
     });
   }
 };

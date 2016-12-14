@@ -2,6 +2,7 @@
 
 // var simplemde = document.getElementById("iframe").contentWindow.simplemde;
 var simplemde;
+var interval;
 $(document).ready(function() {
   $('iframe').on('load', () => {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
@@ -73,6 +74,7 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event) {
+        simplemde.value("Loading...");
         let noteId = note.id;
         let noteName = $('#note_' + noteId).text().trim();
         let parentId = -1;
@@ -88,7 +90,7 @@ function createNote(note) {
             parentId = -1;
           }
         });
-        setInterval(function() {
+        interval = setInterval(function() {
           patchNote(noteName, simplemde.value(), noteId, parentId);
         }, 2000);
       })
