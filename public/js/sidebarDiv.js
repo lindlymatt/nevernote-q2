@@ -73,31 +73,31 @@ function createNote(note) {
   let $noteh5 = $('<h5>')
       .attr('id', `note_${note.id}`)
       .on('click', function(event){
-        console.log('clicked');
-        var noteId = `${note.id}`;
-        getNote(noteId);
-        var noteName = $('#note_' + noteId).text();
-        var siblings = $(event.target).parent().siblings();
-        let parentId;
-        for (let i = 0; i < siblings.length; i++) {
-          if ($(siblings[i]).is('h5')) {
-            parentId = $(siblings[i]).attr('id').split('_')[1];
+        if($(event.target).hasClass('inside')) {
+          var noteId = `${note.id}`;
+          getNote(noteId);
+          var noteName = $('#note_' + noteId).text();
+          var siblings = $(event.target).parent().siblings();
+          let parentId;
+          for (let i = 0; i < siblings.length; i++) {
+            if ($(siblings[i]).is('h5')) {
+              parentId = $(siblings[i]).attr('id').split('_')[1];
+            }
           }
-        }
-        if (!parentId) {
-          parentId = null;
-        }
-        var noteContent = simplemde.value();
-        var interval = 1000 * 4;
-        setInterval(function() {
-          console.log(parentId);
-          if (parentId) {
-            patchNote(noteName, localStorage.smde_content, noteId, parentId);
-          } else {
-            patchNote(noteName, localStorage.smde_content, noteId);
+          if (!parentId) {
+            parentId = null;
           }
-        }, interval);
-        })
+          var noteContent = simplemde.value();
+          var interval = 1000 * 60;
+          setInterval(function() {
+            if (parentId) {
+              patchNote(noteName, localStorage.smde_content, noteId, parentId);
+            } else {
+              patchNote(noteName, localStorage.smde_content, noteId);
+            }
+          }, interval);
+        }
+      })
       .text(' ' + note.name);
   let $noteI = $('<i>')
       .addClass('fa fa-sticky-note-o fa-fw')
@@ -164,5 +164,4 @@ function patchNote(name, content, id, parentFolder) {
     url: '/notes/' + id
   }
   $.ajax(options)
-  .done();
 };
