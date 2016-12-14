@@ -321,18 +321,48 @@ function deleteItem(type, id) {
 
 // NEW
 function dragAndDrop(event) {
-  // console.log($(event.target).find('h5').attr('id'));
-  // console.log($(event.target)[0].outerHTML);
   event.dataTransfer.setData('Text', $(event.target)[0].outerHTML);
   event.dataTransfer.dropEffect = 'move';
 }
 
 function dropElement(event) {
   event.preventDefault();
-  // console.log($(event.target).attr('id'));
+
   const data = event.dataTransfer.getData('Text');
-  const element = $(data);
-  $(event.target).parent().append(element);
+  const $element = $(data);
+  $element.css('display', 'none');
+
+  const oldElementId = $element.find('h5').attr('id');
+
+  const noteId = oldElementId.split('_')[1];
+
+  let childElements = $element.find('h5');
+
+  $element.find('h5').each((index, element) => {
+    if ($(element).attr('id').includes('note')) {
+      let noteId = $(element).attr('id').split('_')[1];
+      $(element).on('click', function(event) {
+        clearInterval(window.interval);
+        simplemde.value("Loading...");
+        $.get(`/notes/${noteId}`, data => {
+          clearInterval(window.interval);
+          simplemde.value(data.content);
+          let noteId = data.id;
+          let $current = $('*').find('.inside');
+          $.get(`/notes/${noteId}`, data => {
+            simplemde.value(data.content);
+            interval = setInterval(function() {
+              patchNote(simplemde.value(), noteId);
+            }, 2000);
+          });
+        });
+      });
+    }
+  });
+
+  $(`#${oldElementId}`).remove();
+
+  $(event.target).parent().append($element);
 }
 
 function dragOver(event) {
