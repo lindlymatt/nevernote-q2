@@ -5,6 +5,7 @@ const router = express.Router();
 const knex = require('../knex');
 const bodyParser = require('body-parser');
 const ev = require('express-validation');
+const fs = require('fs');
 const validations = require('../validations/notes');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 
@@ -20,6 +21,25 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
       }
       res.send(camelizeKeys(note));
     }).catch((err) => {
+      next(err);
+    });
+});
+
+router.get('/download/:id', ev(validations.get), (req, res, next) => {
+  const user = req.body.userId;
+  knex('notes')
+    .innerJoin('user_notes', 'user_notes.note_id', 'notes.id')
+    .where('notes.id', req.params.id)
+    .andWhere('user_notes.user_id', user)
+    .first()
+    .then((note) => {
+      if (!note) {
+        return next();
+      }
+      res.set({'Content-Disposition': `attachment; filename=${note.name}.md`});
+      res.send(note.content);
+    })
+    .catch((err) => {
       next(err);
     });
 });
