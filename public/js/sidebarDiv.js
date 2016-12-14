@@ -58,6 +58,12 @@ function createFolder(folder) {
       .attr('aria-hidden', true);
 
   $folderh5.prepend($folderI);
+  // NEW
+  $folderDiv.attr('draggable', true);
+  $folderDiv.attr('ondragstart', 'dragAndDrop(event)');
+  $folderDiv.attr('ondrop', 'dropElement(event)');
+  $folderDiv.attr('ondragover', 'dragOver(event)');
+  // END
 
   return $folderDiv.append($folderh5);
 }
@@ -83,7 +89,7 @@ function createNote(note) {
         $.get(`/notes/${noteId}`, data => {
           clearInterval(window.interval);
           simplemde.value(data.content);
-          let noteId = res.id;
+          let noteId = data.id;
           let $current = $('*').find('.inside');
           $.get(`/notes/${noteId}`, data => {
             simplemde.value(data.content);

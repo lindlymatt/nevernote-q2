@@ -160,6 +160,7 @@ $(document).ready(function() {
             $('#faded-background').hide();
             patchName(type, name, id);
         }
+        $('#faded-background').hide();
     });
 
     $('#modal-close-button').on('click', () => {
@@ -272,7 +273,7 @@ function patchName(type, name, id) {
     processData: false,
     dataType: 'json'
   }).done(data => console.log(data));
-}
+};
 
 function deleteItem(type, id) {
     if(type === 'folder') {
@@ -295,4 +296,26 @@ function deleteItem(type, id) {
             error: function(result) {console.log(result)}
         });
     }
+}
+
+
+// NEW
+function dragAndDrop(event) {
+  // console.log($(event.target).find('h5').attr('id'));
+  // console.log($(event.target)[0].outerHTML);
+  event.dataTransfer.setData('Text', $(event.target)[0].outerHTML);
+  event.dataTransfer.dropEffect = 'move';
+}
+
+function dropElement(event) {
+  event.preventDefault();
+  // console.log($(event.target).attr('id'));
+  const data = event.dataTransfer.getData('Text');
+  const element = $(data);
+  $(event.target).parent().append(element);
+}
+
+function dragOver(event) {
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
 }
