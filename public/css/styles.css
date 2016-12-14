@@ -223,7 +223,34 @@ a:active {
   width: 90%;
 }
 
-#modal-submit-button {
+#hidden-link {
+  position: absolute;
+  top: 86%;
+  left: 4%;
+  color: black;
+  display: inline-block;
+}
+
+#link-place {
+  position: absolute;
+  top: 81%;
+  left: 11%;
+  height: 5vh;
+  width: 60%;
+  background-color: #d2c3c3;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#link-itself {
+  padding: 13px;
+  color: black;
+  font-size: 1vw;
+}
+
+#modal-submit-button, .edit-note, .edit-folder {
   font-family: 'PT Sans', sans-serif;
   font-size: 1.1vw;
   background-color: #FBF7EB;
@@ -370,6 +397,16 @@ a:active {
   height: 89vh;
   width: 85vw;
   background: #013038;
+}
+
+#embedded-text {
+  margin: 5% 14% 25% 0;
+  font-family: 'Cinzel', sans-serif;
+  text-align: center;
+  /*text-shadow: -1px -1px 0px rgba(255, 255, 255, 0.3), 1px 1px 0px rgba(0, 0, 0, 0.8);*/
+  color: #F5F5F5;
+  opacity: .4;
+  font: 5em 'Bitter';
 }
 
 iframe {
