@@ -8,7 +8,7 @@ $(document).ready(function() {
     var $formType = $('#form-description').text();
     var $name = $('#form-text').val();
     let $parent = getParent();
-    if($parent === undefined) {
+    if($parent === undefined || $parent === '') {
       $parent = null;
     }
     if($formType === 'Folder Name: ') {

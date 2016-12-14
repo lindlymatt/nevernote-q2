@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('#iframe').hide();
 
     $('#new-folder').on('click', () => {
+        $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
         $('#hidden-link').hide();
         $('#link-place').hide();
         $('#modal-close-button').removeAttr('style');
@@ -24,6 +25,7 @@ $(document).ready(function() {
     });
 
     $('#new-note').on('click', () => {
+        $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
         $('#hidden-link').hide();
         $('#link-place').hide();
         $('#modal-close-button').removeAttr('style');
@@ -47,6 +49,8 @@ $(document).ready(function() {
     // <a id="upload-image" href="#">Upload Image (Get Link)</a>
     // <a id="delete-item" href="#">Delete Item</a>
     $('#upload-image').on('click', () => {
+        $('#hidden-link').show();
+        $('#link-place').show();
         $('#modal-close-button').removeAttr('style');
         $('#modal-submit-button').hide();
         $('#icon-description').removeAttr('style');
@@ -60,11 +64,12 @@ $(document).ready(function() {
         $('#icon-text').text('Get a Embeddable Link');
         $('#icon-description').text('Please select the image upload form below, and upload your image for a link!');
         $('#form-description').text('Image Uploader: ');
-        $('#form-text').attr('type', 'file').attr('accept', 'image/*').attr('onchange', 'onFileSelected(event)');
+        $('#form-text').attr('type', 'file').attr('accept', 'image/*');
         $('#faded-background').show();
     });
 
     $('#edit-name').on('click', () => {
+        $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
         $('#hidden-link').hide();
         $('#link-place').hide();
         $('#modal-close-button').removeAttr('style');
@@ -89,9 +94,9 @@ $(document).ready(function() {
         $('#link-place').hide();
         var currentItem = $('*').find('.inside');
         var currentType = '';
-        if($('*').find('.inside').parent().hasClass('.note')) {
+        if($('*').find('.inside').parent().hasClass('note')) {
             currentType = '[Note]';
-        } else if($('*').find('.inside').parent().hasClass('.folder')) {
+        } else if($('*').find('.inside').parent().hasClass('folder')) {
             currentType = '[Folder]';
         }
         else {
@@ -119,9 +124,12 @@ $(document).ready(function() {
             currentItem.remove();
         }
         if($('#modal-title').text().includes('Edit')) {
-            let currentItem = $('*').find('.inside').parent().hasClass('folder');
-            if(currentItem === true) {
-                $('*').find('.inside').html(`<i class="fa fa-folder-o fa-fw"></i> ${$('#form-text').val()}`)
+            let currentItem = $('*').find('.inside');
+            if($('*').parent().hasClass('folder')) {
+                currentItem.html(`<i class="fa fa-folder-o fa-fw"></i> ${$('#form-text').val()}`);
+            }
+            else if($('*').parent().hasClass('note')) {
+                currentItem.html(`<i class="fa fa-sticky-note-o fa-fw"></i> ${$('#form-text').val()}`);
             }
         }
         $('#faded-background').hide();
