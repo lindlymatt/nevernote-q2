@@ -12,6 +12,7 @@ $(document).ready(function() {
         $('#icon-description').removeAttr('style');
         $('#modal').removeAttr('style');
         $('#modal-title').removeAttr('style');
+        $('#modal-submit-button').show();
         $('#divider').show();
         $('#form-description').show();
         $('#form-text').show();
@@ -25,6 +26,7 @@ $(document).ready(function() {
     });
 
     $('#new-note').on('click', () => {
+        $('#modal-submit-button').show();
         $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
         $('#hidden-link').hide();
         $('#link-place').hide();
@@ -69,6 +71,7 @@ $(document).ready(function() {
     });
 
     $('#edit-name').on('click', () => {
+        $('#modal-submit-button').show();
         $('#form-text').attr('type', 'text').removeAttr('accept').removeAttr('accept');
         $('#hidden-link').hide();
         $('#link-place').hide();
@@ -90,6 +93,7 @@ $(document).ready(function() {
     });
 
     $('#delete-item').on('click', () => {
+        $('#modal-submit-button').show();
         $('#hidden-link').hide();
         $('#link-place').hide();
         var currentItem = $('*').find('.inside');
