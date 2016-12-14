@@ -1,13 +1,9 @@
-
-
 @media only screen and (max-width : 992px) {
   #navigation {
     padding-left: 0;
     color: black;
     box-shadow: 0px 10px 50px 100px #284950;
     background-color: #284950;
-
-
   }
 }
 
@@ -21,12 +17,10 @@
 
 #modalFooter {
   background-color: #D8CFAE;
-
 }
 
 #footerModal {
   background-color: #D8CFAE;
-
 }
 
 #navigation {
@@ -34,36 +28,33 @@
   color: black;
   box-shadow: 0px 10px 50px 100px #284950;
   background-color: #284950;
-
-
 }
 
 .navText {
   color: black;
-
 }
 
 #navLogo {
   color: black;
-
 }
 
 body {
-
   background-color: #284950;
   margin-left:0;
   height: auto;
-
 }
 
 .parallax {
   height: 150%;
   box-shadow: 0px 1px 5px -1px #284950;
-
 }
 
-#typwritersRock {
-  height: 600px;
+#typewritersRock {
+  height: 500px;
+}
+
+#typewriterImg {
+  padding-right: 4.5rem;
 }
 
 .ripple{
@@ -97,21 +88,19 @@ h5 {
   font-size: 6px;
   color: black;
   text-align: center;
-
-
   margin: 0;
   user-select: none;
 }
 
 span {
-  display: inline-block;
+  /*display: inline-block;
   padding: 20px;
   color: #eee;
   cursor: pointer;
   user-select: none;
   transition: box-shadow .4s;
   box-shadow: 0px 1px 4px transparent;
-  margin: 20px;
+  margin: 20px;*/
 
   &:hover {
     box-shadow: 0px 1px 4px rgba(0,0,0,0.8);
@@ -159,8 +148,6 @@ span {
   text-align: center;
 }
 
-
-
 /* label color */
    .validate  {
      color: #212121;
@@ -173,8 +160,6 @@ span {
    .input-field:active {
      color: pink;
      border-bottom-color: #212121;
-
-
    }
    /* valid color */
    .input-field input[type=text].valid {
@@ -198,33 +183,31 @@ span {
   background-color: #284950;
 }
 
-#thirdSalt {
+/*#thirdSalt {
   height: 600px;
   background-color: #284950;
 
-}
+}*/
 
 #pencil {
   margin-left: 18vw;
   margin-bottom: 23vw;
   color: #E18B50;
-
 }
 
 #create {
   color: #E18B50;
-  font-size: 48px;
+  font-size: 2.5rem;
   font-family: 'Cinzel', serif;
-
 }
 
-#recall {
+/*#recall {
   width: auto;
   margin-top: 300vw;
   margin-bottom: 0;
   padding-bottom: 0;
   margin-left: 4vw;
-}
+}*/
 
 #pencilText {
   margin-top: -293vw;
@@ -235,16 +218,13 @@ span {
   color: #E18B50;
   text-align: center;
   font-family: 'Cinzel', serif;
-  font-size: 48px;
-
-
+  font-size: 2.5rem;
 }
 
 #monitor {
   margin-bottom: 23vw;
   color: #E18B50;
   margin-left: 18vw;
-
 }
 
 #view {
@@ -252,49 +232,47 @@ span {
   color: #E18B50;
   margin-left: 1vw;
   font-family: 'Cinzel', serif;
-  font-size: 48px;
-
-
+  font-size: 2.5rem;
 }
 
 #notes {
   color: #E18B50;
-  margin-bottom: 23.5vw;
-  margin-left: 18.5vw;
 }
-
+/* -----Cards style----- */
 #firstCard {
-  margin-left: 12vw;
-  width: 25vw;
+  /*margin-left: 12vw;*/
+  /*width: 25vw;*/
   height: auto;
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 21px;
+  font-size: 1.15rem;
   color: #F5F5F5;
 }
 
 #secondCard {
-  width: 25.3vw;
-  margin-left: 4vw;
+  /*width: 25.3vw;*/
+  /*margin-left: 4vw;*/
   height: auto;
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 21px;
+  font-size: 1.15rem;
   color: #F5F5F5;
-
 }
 
 #thirdCard {
-  width: 25vw;
+  /*width: 25vw;*/
   height: auto;
-  margin-left: 13vw;
+  /*margin-left: 13vw;*/
   background-color: #284950;
   font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 21px;
+  font-size: 1.15rem;
   color: #F5F5F5;
-
 }
 
+#notesImg {
+  width: auto;
+  height: 247px;
+}
 
 .logo {
  position: absolute;
@@ -307,13 +285,12 @@ span {
 }
 
 .logo-color1 {
- color: #E18B50 ;
+ color: #E18B50;
  /*text-shadow: .05rem .05rem #FBF7EB ;*/
 }
 
 .logo-color2 {
- color: #FBF7EB ;
- margin-left: -6.5vw;
+ color: #FBF7EB;
 }
 
 .colon {
