@@ -12,7 +12,50 @@ var ev = require('express-validation');
 var validations = require('../validations/users');
 var knex = require('../knex');
 var bcrypt = require('bcrypt-as-promised');
+const jwt = require('jsonwebtoken');
 const { camelizeKeys, decamelizeKeys } = require('humps');
+
+// POST: Creates a new user.
+router.post('/', ev(validations.post), (req, res, next) => {
+  const { firstName, email, password } = req.body;
+
+  let newUser = { firstName, email };
+  bcrypt.hash(password, 10).then((result) => {
+    newUser.hashed_password = result;
+    return knex('users')
+      .insert(decamelizeKeys(newUser))
+      .returning(['id', 'first_name', 'email', 'created_at', 'updated_at'])
+      .then((result) => {
+        delete newUser.hashed_password;
+        let token = jwt.sign({
+          userId: result[0].id,
+          firstName: result[0].first_name
+        }, process.env.JWT_SECRET);
+        res.cookie('token', token, { httpOnly: true });
+        res.cookie('userInfo', {name: result[0].first_name, email: result[0].email});
+        return res.redirect('html/app.html');
+      });
+  })
+  .catch((err) => {
+    next(err);
+  });
+});
+
+// Stops anyone from accessing anything unless logged in.
+router.use((req, res, next) => {
+  if(!req.cookies.token || req.cookies.token === undefined) {
+    return res.status(401).send('Unauthorized.');
+  }
+
+  jwt.verify(req.cookies.token, process.env.JWT_SECRET, (e, d) => {
+    if(e && d === undefined) {
+      return res.status(401).send('Unauthorized.');
+    }
+
+    req.body.userId = d.userId;
+    next();
+  });
+});
 
 // GET: All users.
 router.get('/', (req, res, next) => {
@@ -54,26 +97,6 @@ router.get('/:id', ev(validations.get), (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-});
-
-// POST: Creates a new user.
-router.post('/', ev(validations.post), (req, res, next) => {
-  const { firstName, email, password } = req.body;
-
-  let newUser = { firstName, email };
-  bcrypt.hash(password, 10).then((result) => {
-    newUser.hashed_password = result;
-    return knex('users')
-      .insert(decamelizeKeys(newUser))
-      .returning(['id', 'first_name', 'email', 'created_at', 'updated_at'])
-      .then((result) => {
-        delete newUser.hashed_password;
-        res.status(200).send(camelizeKeys(result[0]));
-      });
-  })
-  .catch((err) => {
-    next(err);
-  });
 });
 
 // PATCH w/ ID: Updates a user with the ID.

@@ -5,17 +5,19 @@ $(document).ready(function() {
   var $submit = $('#modal-submit-button');
 
   $submit.on('click', function() {
-    var $formType = $('#form-description').text();
-    var $name = $('#form-text').val();
-    let $parent = getParent();
-    if($parent === undefined || $parent === '') {
-      $parent = null;
-    }
-    if($formType === 'Folder Name: ') {
-      return postFolder($name, $parent);
-    }
-    else if($formType === 'Note Name: ') {
-      return postNote($name, $parent);
+    if($('#modal-title').text().includes('Create')) {
+      var $formType = $('#form-description').text();
+      var $name = $('#form-text').val();
+      let $parent = getParent();
+      if($parent === undefined || $parent === '') {
+        $parent = null;
+      }
+      if($formType === 'Folder Name: ') {
+        return postFolder($name, $parent);
+      }
+      else if($formType === 'Note Name: ') {
+        return postNote($name, $parent);
+      }
     }
   });
 });
@@ -23,33 +25,23 @@ $(document).ready(function() {
 function getParent() {
   if ($('*').hasClass('inside')) {
     var $inside = $('.inside');
+    $currentFolder = $inside;
     if ($inside.parent().parent().is('#workspace')) {
-      if($inside.parent().has('.folder')) {
-        $currentFolder = $inside;
+      if($inside.parent().hasClass('folder')) {
         return $inside.attr('id').slice(7);
       }
       else if($inside.has('.note')) {
         return null;
       }
     } else {
-      if ($inside.parent().is('.folder')) {
+      if($inside.parent().hasClass('note')) {
         $currentFolder = $inside;
-        return $inside.attr('id').slice(7);
+        return $inside.parent().parent().children().first().attr('id').slice(7);
       }
-      $currentFolder = $inside.parent();
-      return $inside.parent().attr('id').slice(7);
+      $currentFolder = $inside;
+      console.log($inside);
+      return $inside.attr('id').slice(7);
     }
-    // else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.note')) {
-    //   $currentFolder = $inside.parent();
-    //   return $inside.parent().find('h5').eq(0).attr('id').slice(7);
-    // }
-    // else if(!($inside.parent().parent().is('#workspace')) && $inside.has('.folder')) {
-    //   $currentFolder = $inside.parent();
-    //   return $inside.parent().find('h5').eq(0).attr('id').slice(7);
-    // }
-    // else if($inside.parent().parent().is('#workspace')) {
-    //   return null;
-    // }
   }
   else {
     return null;
@@ -95,7 +87,7 @@ function postFolder(name, parentId) {
         }
         $folderh5.prepend($folderI);
         $folderDiv.append($folderh5);
-        $currentFolder.parent().append($folderDiv);
+        $(`#folder_${parentId}`).parent().append($folderDiv);
         return;
     });
   }
@@ -147,7 +139,7 @@ function postNote(name, parentId) {
 
       $folderh5.on('click', function() {
         clearInterval(window.interval);
-        simplemde.value(data.content);
+        simplemde.value('Loading...');
         let noteId = res.id;
         let $current = $('*').find('.inside');
         $.get(`/notes/${noteId}`, data => {
@@ -167,7 +159,7 @@ function postNote(name, parentId) {
       $currentFolder.parent().find('*').show();
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
-      $currentFolder.parent().append($folderDiv);
+      $(`#folder_${parentId}`).parent().append($folderDiv);
       return;
     });
   }
