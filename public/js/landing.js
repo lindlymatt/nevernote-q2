@@ -59,7 +59,7 @@ var progressCounter = 0;
         new ScrollMagic.Scene({
             triggerElement: $('#postColonLogo'),
             duration: 9000,
-            offset: 320
+            offset: 160
         })
         .setPin($('#postColonLogo'))
         .setTween($('.logo-color2'), 0.5, {scrollTo: {y: 50}})
