@@ -147,7 +147,7 @@ function postNote(name, parentId) {
 
       $folderh5.on('click', function() {
         clearInterval(window.interval);
-        simplemde.value(data.content);
+        simplemde.value('Loading...');
         let noteId = res.id;
         let $current = $('*').find('.inside');
         $.get(`/notes/${noteId}`, data => {
