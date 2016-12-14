@@ -160,6 +160,7 @@ $(document).ready(function() {
             $('#faded-background').hide();
             patchName(type, name, id);
         }
+        $('#faded-background').hide();
     });
 
     $('#modal-close-button').on('click', () => {
