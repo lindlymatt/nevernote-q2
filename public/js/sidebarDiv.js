@@ -7,8 +7,6 @@ $(document).ready(function() {
     simplemde = document.getElementById("iframe").contentWindow.simplemde;
     $.getJSON('/workspace')
     .done((workspace) => {
-      console.log(workspace);
-      console.log(simplemde);
       addSidebarFilesToPage(workspace); // Create sidebar navigation for the user
     });
   });
@@ -29,12 +27,14 @@ function createSidebarStructure(folderObj) {
   folderObj.childFolders.forEach((folder) => {
     let childrenFolders = createSidebarStructure(folder);
     if (childrenFolders) {
+      childrenFolders.css('display', 'none');
       $folderDiv.append(childrenFolders);
     }
   });
 
   folderObj.folderNotes.forEach((note) => {
-    $folderDiv.append(createNote(note));
+    let $note = createNote(note).css('display', 'none');
+    $folderDiv.append($note);
   });
 
   return $folderDiv;
@@ -120,6 +120,22 @@ function addSidebarFilesToPage(userWorkspace) {
   userWorkspace.notes.forEach((note) => {
     $('#workspace').append(createNote(note));
   });
+
+  let wsChild = $('#workspace').children().not('#search-tag').not('#search-icon');
+
+  if(wsChild.length < 1) {
+      $('#embedded-text').html('CLICK "NEW NOTE"<br /> TO CREATE YOUR<br /> FIRST NOTE<br />AND GET STARTED!');
+  }
+  else if(wsChild.length > 1 && wsChild.length < 5) {
+      $('#embedded-text').text('Low ammo.');
+  } else if (wsChild.length > 5 && wsChild.length < 15) {
+      $('#embedded-text').text('Food supply: shortening.');
+  } else if (wsChild.length > 15 && wsChild.length < 25) {
+      $('#embedded-text').text('You won the Oregon Trail.');
+  } else if (wsChild.length > 25 && wsChild.length < 40) {
+      $('#embedded-text').text('RE:Note CHAMPION!');
+  }
+
 }
 
 //return users workspace object

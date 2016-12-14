@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>RE:Note</title>
-  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cinzel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans|Cinzel" rel="stylesheet" />
+  <link href="http://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet" />
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/simplemde.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
@@ -15,6 +16,8 @@
   <script type="text/javascript" src="../js/new_note.js"></script>
   <script type="text/javascript" src="../js/sidebarDiv.js" defer></script>
   <script type="text/javascript" src="../js/logout.js" defer></script>
+  <script type="text/javascript" src="../js/cookies.js" defer></script>
+  <script type="text/javascript" src="../js/imageUpload.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +30,10 @@
         <h5 id="icon-description">Enter your new folder name, and then hit the save button to create it!</h5>
         <img id="divider" width="100%" src="../img/divider.jpg" />
         <h5 id="form-description">Folder Name: </h5>
-        <input id="form-text" type="text" name="new-item" />
+        <input id="form-text" type="text" name="new-item" onchange="onFileSelected(event)" />
+        <h5 id="hidden-link">Link: </h5>
+        <div id="link-place">
+          <h5 id="link-itself"></h5></div>
         <button id="modal-submit-button" type="submit">SUBMIT</button>
         <button id="modal-close-button">CLOSE</button>
       </div>
@@ -36,24 +42,21 @@
   <!-- Create the Navigation -->
   <nav>
     <div class="row">
-      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> Matt's Workspace</h1>
+      <h1 class="left-align workspace-title"><img src="../img/renote_logo_small.jpg" class="logo-small"> <span id="userName"></span> Workspace</h1>
       <h1 class="logo"><span class="logo-color1">RE<span class="logo-color1 colon">:</span></span><span id="note-text" class="logo-color2">Note</span></h1>
       <!-- Creates the Help Menu -->
       <div class="dropdown">
-        <a href="#/" class="right-align top-item" id="user-text">matt.pestridge@gmail.com<i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
+        <a href="#/" class="right-align top-item" id="user-text"><span id="userEmail"></span><i class="fa fa-caret-down fa-fw"  aria-hidden="true"></i></a>
         <div id="email-dropdown" class="dropdown-content dropdown">
           <a id="logout" href="#">Logout</a>
-          <a href="#">Do Something Else</a>
-          <a href="#">Do Another Something</a>
         </div>
       </div>
       <img class="user-profile right-align" src="../img/mpestridge.png" />
       <div class="dropdown">
         <a href="#/" class="right-align top-item" id="help-text">HELP<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
         <div id="help-dropdown" class="dropdown-content">
-          <a href="#">Do Something</a>
-          <a href="#">Do Something Else</a>
-          <a href="#">Do Another Something</a>
+          <a href="#">Markdown Guide</a>
+          <a href="#">Adding an Image</a>
         </div>
       </div>
     </div>
@@ -63,10 +66,9 @@
       <div class="dropdown">
         <a href="#/" id="sort-text" class="left-align menu-item">SORT PREFERENCES<i class="fa fa-caret-down fa-fw" aria-hidden="true"></i></a>
         <div id="sort-dropdown" class="dropdown-content">
-          <a href="#">Name (a-z)</a>
-          <a href="#">Name (z-a)</a>
-          <a href="#">Creation Date</a>
-          <a href="#">Modification Date</a>
+          <a id="edit-name" href="#">Edit Name</a>
+          <a id="upload-image" href="#">Upload Image (Get Link)</a>
+          <a id="delete-item" href="#">Delete Item</a>
         </div>
       </div>
     </div>
@@ -78,6 +80,7 @@
       <input id="search-tag" placeholder="Search tags here..." type="text" name="tag-search" /><i id="search-icon" class="fa fa-search fa-fw" aria-hidden="true"></i>
     </div>
     <div id="editor">
+      <h1 id="embedded-text"></h1>
       <iframe id="iframe" src="simplemde.html">
       </iframe>
     </div>
