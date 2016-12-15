@@ -209,8 +209,6 @@ function patchNote(content, id) {
     id = id.split('_')[1];
   }
 
-  console.log(id);
-
   let data = { content };
   $.ajax({
     url : `/notes/${id}`,
