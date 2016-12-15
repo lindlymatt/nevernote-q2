@@ -167,10 +167,10 @@ $(document).ready(function() {
             name = $('#form-text').val();
             showModal('success edited');
             $('#faded-background').hide();
-            $('#iframe').hide();
+            // $('#iframe').hide();
             patchName(type, name, id);
         }
-        $('#faded-background').hide();
+        // $('#faded-background').hide();
     });
 
     $('#modal-close-button').on('click', () => {
