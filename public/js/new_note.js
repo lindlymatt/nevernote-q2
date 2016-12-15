@@ -22,10 +22,12 @@ $(document).ready(function() {
       }
       if($formType === 'Folder Name: ') {
         showModal('success folder');
+        $('#faded-background').hide();
         return postFolder($name, $parent);
       }
       else if($formType === 'Note Name: ') {
         showModal('success note');
+        $('#faded-background').hide();
         return postNote($name, $parent);
       }
     }
