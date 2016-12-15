@@ -161,6 +161,7 @@ $(document).ready(function() {
             }
             else if(currentItem.parent().hasClass('note')) {
                 currentItem.html(`<i class="fa fa-sticky-note-o fa-fw"></i> ${$('#form-text').val()}`);
+                $('#note-text').text($('#form-text').val());
                 id = currentItem.attr('id').slice(5);
                 type = 'note';
             }
