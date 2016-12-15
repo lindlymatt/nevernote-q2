@@ -360,8 +360,8 @@ function dragAndDrop(event) {
 }
 
 function dragAndDropNote(event) {
-  const id = $(event.target).find('h5').attr('id');
-  const content = $(event.target).find('h5').text();
+  const id = $(event.target).attr('id');
+  const content = $(event.target).text();
   event.dataTransfer.setData('noteId', id);
   event.dataTransfer.setData('noteContent', content);
   // console.log(event.dataTransfer.getData('noteId'));
@@ -378,8 +378,6 @@ function dropElement(event) {
     if ($element.hasClass('folder')) {
       updateFolder($element, event);
     } else {
-      console.log('noteId', noteId);
-      console.log('noteContent', noteContent);
       updateNote(noteId, noteContent, event);
     }
   }
@@ -424,7 +422,6 @@ function updateFolder($element, event) {
       }
     }).done((results) => {
       console.log('folder updated');
-      console.log('updated');
     });
   }
 }
@@ -433,7 +430,6 @@ function updateNote(noteId, noteContent, event) {
   // const oldElementId = $element.find('h5').attr('id');
   // const oldNoteId = oldElementId.split('_')[1];
 
-  console.log('did we make it');
   if (!$(event.target).attr('id').startsWith('note') && $(event.target).is('h5')) {
 
     let $noteDiv = $('<div>')
@@ -467,21 +463,21 @@ function updateNote(noteId, noteContent, event) {
     let display = $(event.target).siblings().css('display');
     $noteDiv.css('display', display);
 
-    console.log(noteId);
     $(`#${noteId}`).parent().empty();
     $(`#${noteId}`).parent().remove();
 
     $(event.target).parent().append($noteDiv);
 
+    let notesId = noteId.split('_')[1];
+    console.log(notesId);
     $.ajax({
-      url: `/notes/${noteId.split('_')[1]}`,
+      url: '/notes/' + notesId,
       method: 'PATCH',
       data: {
         parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
       }
     }).done((results) => {
       console.log('note updated');
-      console.log('updated');
     });
   }
 }

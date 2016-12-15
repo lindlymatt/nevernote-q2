@@ -141,10 +141,10 @@ function postNote(name, parentId) {
         });
       });
 
-      $folderDiv.attr('draggable', true);
-      $folderDiv.attr('ondragstart', 'dragAndDropNote(event)');
-      $folderDiv.attr('ondrop', 'dropElement(event)');
-      $folderDiv.attr('ondragover', 'dragOver(event)');
+      $folderh5.attr('draggable', true);
+      $folderh5.attr('ondragstart', 'dragAndDropNote(event)');
+      $folderh5.attr('ondrop', 'dropElement(event)');
+      $folderh5.attr('ondragover', 'dragOver(event)');
 
 
       $folderh5.prepend($folderI);
@@ -186,6 +186,12 @@ function postNote(name, parentId) {
         $currentFolder.parent().children().first().children().first().toggleClass('fa-folder-open-o');
       }
       $currentFolder.parent().find('*').show();
+
+      $folderh5.attr('draggable', true);
+      $folderh5.attr('ondragstart', 'dragAndDropNote(event)');
+      $folderh5.attr('ondrop', 'dropElement(event)');
+      $folderh5.attr('ondragover', 'dragOver(event)');
+
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $(`#folder_${parentId}`).parent().append($folderDiv);
@@ -198,6 +204,12 @@ function patchNote(content, id) {
   if(!content) {
     content = ' ';
   }
+
+  if (typeof(id) === 'string' && id.includes('note')) {
+    id = id.split('_')[1];
+  }
+
+  console.log(id);
 
   let data = { content };
   $.ajax({
