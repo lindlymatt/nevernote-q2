@@ -139,6 +139,12 @@ function postNote(name, parentId) {
         });
       });
 
+      $folderh5.attr('draggable', true);
+      $folderh5.attr('ondragstart', 'dragAndDrop(event)');
+      $folderh5.attr('ondrop', 'dropElement(event)');
+      $folderh5.attr('ondragover', 'dragOver(event)');
+
+
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $('#workspace').append($folderDiv);
