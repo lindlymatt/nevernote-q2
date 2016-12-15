@@ -142,11 +142,15 @@ $(document).ready(function() {
             }
             currentItem.parent().empty();
             currentItem.parent().remove();
+            showModal('success deleted');
             $('#faded-background').hide();
             $('#iframe').hide();
             deleteItem(type, id);
         }
         if($('#modal-title').text().includes('Edit')) {
+            if($('#form-text').val().length > 20) {
+                return showModal('failed edit');
+            }
             let id = 0;
             let type = '';
             let currentItem = $('*').find('.inside');
@@ -157,15 +161,17 @@ $(document).ready(function() {
             }
             else if(currentItem.parent().hasClass('note')) {
                 currentItem.html(`<i class="fa fa-sticky-note-o fa-fw"></i> ${$('#form-text').val()}`);
+                $('#note-text').text($('#form-text').val());
                 id = currentItem.attr('id').slice(5);
                 type = 'note';
             }
             name = $('#form-text').val();
+            showModal('success edited');
             $('#faded-background').hide();
-            $('#iframe').hide();
+            // $('#iframe').hide();
             patchName(type, name, id);
         }
-        $('#faded-background').hide();
+        // $('#faded-background').hide();
     });
 
     $('#modal-close-button').on('click', () => {
@@ -450,4 +456,34 @@ function updateNote(noteId, noteContent, event) {
 function dragOver(event) {
   event.preventDefault();
   event.dataTransfer.dropEffect = 'move';
+}
+
+function showModal(action) {
+    console.log(action);
+  if(action.includes('failed')) {
+    if(action.includes('note')) {
+        $('#toast-text').html('Failed to make note.<br /> Name too long. (20 char max)');
+    }
+    if(action.includes('folder')) {
+        $('#toast-text').html('Failed to make folder.<br /> Name too long. (20 char max)');
+    }
+    if(action.includes('edit')) {
+        $('#toast-text').html('Failed to edit item.<br /> Name too long. (20 char max)');
+    }
+  }
+  if(action.includes('success')) {
+    if(action.includes('deleted')) {
+        $('#toast-text').html('Success! Your file<br /> has been deleted.');
+    }
+    if(action.includes('edited')) {
+        $('#toast-text').html('Success! The name<br /> has been edited.');
+    }
+    if(action.includes('note')) {
+        $('#toast-text').html('Success! Your note<br /> has been created!');
+    }
+    if(action.includes('folder')) {
+        $('#toast-text').html('Success! Your folder<br />has been created!');
+    }
+  }
+  $('#toast').fadeIn(200).delay(1500).fadeOut(200);
 }
