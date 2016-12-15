@@ -117,7 +117,9 @@ function postFolder(name, parentId) {
 function postNote(name, parentId) {
   if(parentId === null) {
     $.post('/notes', { name: name }, res => {
+      console.log('res', res);
       let nId = res.id;
+      console.log(nId);
       let $folderDiv = $('<div>')
       .addClass('note');
       let $folderh5 = $('<h5>')
@@ -139,15 +141,16 @@ function postNote(name, parentId) {
         });
       });
 
-      $folderh5.attr('draggable', true);
-      $folderh5.attr('ondragstart', 'dragAndDrop(event)');
-      $folderh5.attr('ondrop', 'dropElement(event)');
-      $folderh5.attr('ondragover', 'dragOver(event)');
+      $folderDiv.attr('draggable', true);
+      $folderDiv.attr('ondragstart', 'dragAndDropNote(event)');
+      $folderDiv.attr('ondrop', 'dropElement(event)');
+      $folderDiv.attr('ondragover', 'dragOver(event)');
 
 
       $folderh5.prepend($folderI);
       $folderDiv.append($folderh5);
       $('#workspace').append($folderDiv);
+      console.log('NOTE', $folderDiv);
       return;
     });
   }
