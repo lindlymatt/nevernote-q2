@@ -6,6 +6,14 @@ $(document).ready(function() {
 
   $submit.on('click', function() {
     if($('#modal-title').text().includes('Create')) {
+      if($('#form-text').val().length > 20) {
+        if($('#modal-text').text().includes('Folder')) {
+          return showModal('failed folder');
+        }
+        else {
+          return showModal('failed note');
+        }
+      }
       var $formType = $('#form-description').text();
       var $name = $('#form-text').val();
       let $parent = getParent();
@@ -13,9 +21,11 @@ $(document).ready(function() {
         $parent = null;
       }
       if($formType === 'Folder Name: ') {
+        showModal('success folder');
         return postFolder($name, $parent);
       }
       else if($formType === 'Note Name: ') {
+        showModal('success note');
         return postNote($name, $parent);
       }
     }

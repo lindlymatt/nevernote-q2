@@ -274,6 +274,35 @@ a:active {
 }
 
 
+/* Toast Things */
+
+#toast {
+  display: none;
+  background-color: #E18B50;
+  z-index: 100;
+  height: 10%;
+  width: 20%;
+  position: absolute;
+  top: 88%;
+  left: 79%;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-shadow: 16px 14px 64px -17px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 16px 14px 64px -17px rgba(0, 0, 0, 1);
+  box-shadow: 16px 14px 64px -17px rgba(0, 0, 0, 1);
+}
+
+#toast-text {
+  padding-top: 6.5%;
+  word-wrap: break-word;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: -.2px;
+}
+
+
 /* Navigation Text */
 
 #user-text {
