@@ -58,10 +58,10 @@ function createFolder(folder) {
       .attr('aria-hidden', true);
 
   $folderh5.prepend($folderI);
-  $folderDiv.attr('draggable', true);
-  $folderDiv.attr('ondragstart', 'dragAndDrop(event)');
-  $folderDiv.attr('ondrop', 'dropElement(event)');
-  $folderDiv.attr('ondragover', 'dragOver(event)');
+  $folderh5.attr('draggable', true);
+  $folderh5.attr('ondragstart', 'dragAndDrop(event)');
+  $folderh5.attr('ondrop', 'dropElement(event)');
+  $folderh5.attr('ondragover', 'dragOver(event)');
 
   return $folderDiv.append($folderh5);
 }
@@ -105,8 +105,8 @@ function createNote(note) {
   $noteh5.prepend($noteI);
 
   $noteDiv.attr('draggable', true);
-  $noteDiv.attr('ondragstart', 'dragAndDrop(event)');
-  $noteDiv.attr('ondrop', 'dropNote(event)');
+  $noteDiv.attr('ondragstart', 'dragAndDropNote(event)');
+  $noteDiv.attr('ondrop', 'dropElement(event)');
   $noteDiv.attr('ondragover', 'dragOver(event)');
 
   return $noteDiv.append($noteh5);

@@ -13,7 +13,7 @@ $(document).ready(() => {
 
   const cookieUnparsed = Cookies.get('userInfo');
   const cookieParsed = JSON.parse(cookieUnparsed.slice(cookieUnparsed.indexOf('{')));
-  
+
   $('#userName').text(`${cookieParsed.name}'s`);
   $('#userEmail').text(cookieParsed.email);
 

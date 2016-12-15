@@ -323,18 +323,26 @@ function dragAndDrop(event) {
   event.dataTransfer.dropEffect = 'move';
 }
 
+function dragAndDropNote(event) {
+  const id = $(event.target).find('h5').attr('id');
+  const content = $(event.target).find('h5').text();
+  event.dataTransfer.setData('noteId', id);
+  event.dataTransfer.setData('noteContent', content);
+  // console.log(event.dataTransfer.getData('noteId'));
+  // console.log(event.dataTransfer.getData('noteContent'));
+}
+
 function dropElement(event) {
   event.preventDefault();
-
   const fileDroppedInFolder = $(event.target).parent().hasClass('folder');
-
   if (fileDroppedInFolder) {
-    const $element = $(event.dataTransfer.getData('Text'));
+    let $element = $(event.dataTransfer.getData('Text'));
+    let noteId = event.dataTransfer.getData('noteId');
+    let noteContent = event.dataTransfer.getData('noteContent');
     if ($element.hasClass('folder')) {
       updateFolder($element, event);
-    } else if ($element.hasClass('note')) {
-      console.log('this rannnnnnn');
-      updateNote($element, event);
+    } else {
+      updateNote(noteId, noteContent, event);
     }
   }
 }
@@ -383,35 +391,51 @@ function updateFolder($element, event) {
   }
 }
 
-function updateNote($element, event) {
-  const oldElementId = $element.find('h5').attr('id');
+function updateNote(noteId, noteContent, event) {
+  // const oldElementId = $element.find('h5').attr('id');
+  // const oldNoteId = oldElementId.split('_')[1];
 
-  const oldNoteId = oldElementId.split('_')[1];
-  // console.log('this ran');
-
+  console.log('did we make it');
   if (!$(event.target).attr('id').startsWith('note') && $(event.target).is('h5')) {
-    $element.on('click', function(event) {
+
+    let $noteDiv = $('<div>')
+      .addClass('note');
+    let $noteh5 = $('<h5>')
+      .attr('id', noteId)
+      .text(noteContent);
+    let $noteI = $('<i>')
+      .addClass('fa fa-sticky-note-o fa-fw')
+      .attr('aria-hidden', true);
+
+    $noteh5.on('click', () => {
       clearInterval(window.interval);
       simplemde.value("Loading...");
-      $.get(`/notes/${oldNoteId}`, data => {
+      $.get(`/notes/${noteId.split('_')[1]}`, data => {
         simplemde.value(data.content);
         interval = setInterval(function() {
-          patchNote(simplemde.value(), oldNoteId);
+          patchNote(simplemde.value(), noteId);
         }, 2000);
       });
     });
 
-    $(event.target).parent().append($element);
-    $(`#${oldElementId}`).parent().remove();
-    console.log($(`#${oldElementId}`).parent());
+    $noteh5.prepend($noteI);
+    $noteDiv.attr('draggable', true);
+    $noteDiv.attr('ondragstart', 'dragAndDropNote(event)');
+    $noteDiv.attr('ondrop', 'dropElement(event)');
+    $noteDiv.attr('ondragover', 'dragOver(event)');
+
+    $noteDiv.append($noteh5);
 
     let display = $(event.target).siblings().css('display');
-    $element.css('display', display);
+    $noteDiv.css('display', display);
 
-    $(event.target).parent().append($element);
+    $(`#${noteId}`).parent().empty();
+    $(`#${noteId}`).parent().remove();
+
+    $(event.target).parent().append($noteDiv);
 
     $.ajax({
-      url: `/notes/${oldNoteId}`,
+      url: `/notes/${noteId.split('_')[1]}`,
       method: 'PATCH',
       data: {
         parentFolder: Number.parseInt($(event.target).attr('id').split('_')[1])
