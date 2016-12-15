@@ -376,7 +376,7 @@ a:active {
 
 #workspace {
   vertical-align: middle;
-  font-size: 1vw;
+  font-size: 1.1vw;
   letter-spacing: -.5px;
   display: inline-block;
   float: left;
@@ -443,7 +443,9 @@ iframe {
   height: 100%;
 }
 
+
 /* Dropdown Button */
+
 #email-dropdown {
   right: 50px;
   top: 35px;
@@ -469,9 +471,15 @@ iframe {
 }
 
 
-/*.dropa:hover, .dropa:focus {
-    background-color: #E18B50;
-}*/
+/* Folder Coloring */
+
+.fa-folder-o {
+  color: #E18B50;
+}
+
+.fa-folder-open-o {
+  color: #E18B50;
+}
 
 
 /* Dropdown Content (Hidden by Default) */

@@ -69,7 +69,7 @@ $(document).ready(function() {
         $('#form-text').show();
         $('#modal-title').text('Upload New Image');
         $('#new-icon').attr('src', '../img/imgur-item-icon.png');
-        $('#icon-text').text('Get a Embeddable Link');
+        $('#icon-text').text('Get an Embeddable Link');
         $('#icon-description').text('Please select the image upload form below, and upload your image for a link!');
         $('#form-description').text('Image Uploader: ');
         $('#form-text').attr('type', 'file').attr('accept', 'image/*');
