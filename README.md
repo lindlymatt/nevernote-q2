@@ -8,9 +8,9 @@ When it came to RE:Note, we created the project with the above-average note take
 
 Here are our skeletons (wire-frames):
 
-![Landing Page Image](https://files.slack.com/files-pri/T1T555TL0-F3FMY3FEK/renote_landing_wireframe.jpg)
+![Landing Page Image](http://i.imgur.com/07rRNM7.jpg)
 
-![App Page Image](https://files.slack.com/files-pri/T1T555TL0-F3G6J18VD/slack_for_ios_upload.jpg)
+![App Page Image](http://i.imgur.com/dmdXw7o.jpg)
 
 As for the stylish and ultra-simplistic design, we decided to utilize a color palette from one picture to produce a consistent color scheme. The color palette we utilized was this:
 
