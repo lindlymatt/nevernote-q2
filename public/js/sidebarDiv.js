@@ -136,13 +136,13 @@ function addSidebarFilesToPage(userWorkspace) {
       $('#embedded-text').html('CLICK "NEW NOTE"<br /> TO CREATE YOUR<br /> FIRST NOTE<br />AND GET STARTED!');
   }
   else if(wsChild.length > 1 && wsChild.length < 5) {
-      $('#embedded-text').html(`Markdown <br> for What?`);
+      $('#embedded-text').html(`#Markdown<br>For What?`);
   } else if (wsChild.length > 5 && wsChild.length < 15) {
-      $('#embedded-text').html(`Markdown <br> for What?`);
+      $('#embedded-text').html(`#Markdown<br>For What?`);
   } else if (wsChild.length > 15 && wsChild.length < 25) {
-      $('#embedded-text').html(`Markdown <br> for What?`);
+      $('#embedded-text').html(`#Markdown<br>For What?`);
   } else if (wsChild.length > 25 && wsChild.length < 40) {
-      $('#embedded-text').html(`Markdown <br> for What?`);
+      $('#embedded-text').html(`#Markdown<br>For What?`);
   }
 
 }
