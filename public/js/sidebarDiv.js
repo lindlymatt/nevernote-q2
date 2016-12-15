@@ -136,13 +136,13 @@ function addSidebarFilesToPage(userWorkspace) {
       $('#embedded-text').html('CLICK "NEW NOTE"<br /> TO CREATE YOUR<br /> FIRST NOTE<br />AND GET STARTED!');
   }
   else if(wsChild.length > 1 && wsChild.length < 5) {
-      $('#embedded-text').text('Low ammo.');
+      $('#embedded-text').text(`Markdown <br> for What?`);
   } else if (wsChild.length > 5 && wsChild.length < 15) {
-      $('#embedded-text').text('Food supply: shortening.');
+      $('#embedded-text').text('Markdown <br> for What?');
   } else if (wsChild.length > 15 && wsChild.length < 25) {
-      $('#embedded-text').text('You won the Oregon Trail.');
+      $('#embedded-text').text('Markdown <br> for What?');
   } else if (wsChild.length > 25 && wsChild.length < 40) {
-      $('#embedded-text').text('RE:Note CHAMPION!');
+      $('#embedded-text').text('Markdown <br> for What?');
   }
 
 }
