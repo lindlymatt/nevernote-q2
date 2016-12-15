@@ -8,12 +8,21 @@
   <link rel="stylesheet" href="../css/simplemde.css">
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <script src="../js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
 </head>
 
 <body id="#embedded-bod">
   <textarea></textarea>
   <script>
-    var simplemde = new SimpleMDE();
+    var simplemde = new SimpleMDE({
+      parsingConfig: {
+        allowAtxHeaderWithoutSpace: true
+      },
+      renderingConfig: {
+        codeSyntaxHighlighting: true
+      }
+    });
   </script>
 </body>
 
