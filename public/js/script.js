@@ -409,7 +409,14 @@ function updateFolder($element, event) {
     $(`#${oldElementId}`).parent().remove();
 
     let display = $(event.target).siblings().css('display');
-
+    if (!display) {
+      let isOpen = $(event.target).parent().children().first().children().first().hasClass('fa-folder-open-o');
+      if (isOpen) {
+        display = 'block';
+      } else {
+        display = 'none';
+      }
+    }
     $element.css('display', display);
 
     $(event.target).parent().append($element);
@@ -461,6 +468,14 @@ function updateNote(noteId, noteContent, event) {
     $noteDiv.append($noteh5);
 
     let display = $(event.target).siblings().css('display');
+    if (!display) {
+      let isOpen = $(event.target).parent().children().first().children().first().hasClass('fa-folder-open-o');
+      if (isOpen) {
+        display = 'block';
+      } else {
+        display = 'none';
+      }
+    }
     $noteDiv.css('display', display);
 
     $(`#${noteId}`).parent().empty();
