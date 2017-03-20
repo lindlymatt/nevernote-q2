@@ -2,17 +2,19 @@
 
 This is the RE:Note repository, it is a project designed to target competent users of computers, and allow for a seamless and quick experience in note-taking. Visit it [here](http://renoteq2.herokuapp.com/).
 
+![](/md-images/renote-landing.gif)
+
 ## Features
 RE:Note is a web-based markdown note-taking app. Users can create and organize folders and notes, as well as upload their own images. Markdown notes can also be downloaded to a users personal computer.
 
 ### Notes
-![](/md-images/renote-notes)
+![](/md-images/renote-notes.gif)
 
 ### Drag and Drop
-![](/md-images/renote-drag)
+![](/md-images/renote-drag.gif)
 
 ### Upload Image
-![](/md-images/renote-upload)
+![](/md-images/renote-upload.gif)
 
 ## Technologies
 * PostgreSQL
