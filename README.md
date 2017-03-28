@@ -1,8 +1,32 @@
 # RE:Note - Quarter 2 Project
 
-This is the RE:Note repository, it is a project designed to target competent users of computers, and allow for a seamless and quick experience in note-taking.
+This is the RE:Note repository, it is a project designed to target competent users of computers, and allow for a seamless and quick experience in note-taking. Visit it [here](http://renoteq2.herokuapp.com/).
 
-Here is our pivotal tracker: [https://www.pivotaltracker.com/n/projects/1933323](Pivotal Tracker Link).
+![](/md-images/renote-landing.gif)
+
+## Features
+RE:Note is a web-based markdown note-taking app. Users can create and organize folders and notes, as well as upload their own images. Markdown notes can also be downloaded to a users personal computer.
+
+### Notes
+![](/md-images/renote-notes.gif)
+
+### Drag and Drop
+![](/md-images/renote-drag.gif)
+
+### Upload Image
+![](/md-images/renote-upload.gif)
+
+## Technologies
+* PostgreSQL
+* Knex.js
+* Express
+* Node
+* jQuery
+* Materialize
+* [Scroll Magic](http://scrollmagic.io/)
+* [Simple MDE](https://simplemde.com/)
+
+## Styling
 
 When it came to RE:Note, we created the project with the above-average note taker in mind. Efficiency, effectiveness and speed were our main priorities when creating the workspace interface; as well as a stylish and ultra-simplistic design (on both the app and landing pages).
 
